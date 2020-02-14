@@ -1,10 +1,10 @@
 (() => {
-  'use strict';
-  
+  "use strict";
+
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+    return val;
   };
 
   _.add = (x, y) => {
@@ -14,7 +14,7 @@
   /**
   | ARRAYS
   |~~~~~~~~~~
-  **/ 
+  **/
 
   _.head = (array) => {
     return array[0];
@@ -39,7 +39,7 @@
   /**
   | COLLECTIONS
   |~~~~~~~~~~
-  **/ 
+  **/
 
   _.size = (collection) => {
     // YOUR CODE HERE
@@ -71,19 +71,22 @@
     });
   };
 
-  _.reduce = (collection, iterator, accumulator) => {
-  };
+  _.reduce = (collection, iterator, accumulator) => {};
 
   _.contains = (collection, target) => {
-    return _.reduce(collection, (wasFound, item) => {
-      if (wasFound) {
-        return true;
-      }
-      return item === target;
-    }, false);
+    return _.reduce(
+      collection,
+      (wasFound, item) => {
+        if (wasFound) {
+          return true;
+        }
+        return item === target;
+      },
+      false
+    );
   };
 
-  _.every = function (/* Your Arguments Here*/) {
+  _.every = function(/* Your Arguments Here*/) {
     // YOUR CODE HERE
   };
 
@@ -92,7 +95,7 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
+  _.extend = function(obj) {
     // YOUR CODE HERE
   };
 
@@ -101,15 +104,15 @@
   |~~~~~~~~~~
   **/
 
-  _.once = function (func) {
+  _.once = function(func) {
     // YOUR CODE HERE
   };
 
-  _.memoize = function (func) {
+  _.memoize = function(func) {
     // YOUR CODE HERE
   };
-  
-  _.invoke = function (collection, functionOrKey) {
+
+  _.invoke = function(collection, functionOrKey) {
     // YOUR CODE HERE
   };
 
@@ -118,24 +121,23 @@
   |~~~~~~~~~~~~~
   **/
 
-  _.sortBy = function (/* Your Arguments Here */) {
+  _.sortBy = function(/* Your Arguments Here */) {
     // YOUR CODE HERE
   };
 
-  _.zip = function (/* Your Arguments Here */) {
+  _.zip = function(/* Your Arguments Here */) {
     // YOUR CODE HERE
   };
 
-  _.delay = function (/* Your Arguments Here */) {
+  _.delay = function(/* Your Arguments Here */) {
     // YOUR CODE HERE
   };
 
-  _.defaults = function (/* Your Arguments Here */) {
+  _.defaults = function(/* Your Arguments Here */) {
     // YOUR CODE HERE
   };
 
-  _.throttle = function (/* Your Arguments Here */) {
+  _.throttle = function(/* Your Arguments Here */) {
     // YOUR CODE HERE
   };
 })();
-
