@@ -37,7 +37,6 @@
 
   //take should create a slice of an array with n elements taken from the beginning
   _.take = (array, n) => {
-  console.log('array:', array, n)
 
     let result = [];
     let i = 0;
@@ -54,8 +53,25 @@
     return result;
   };
 
+
+  // takeRight should create a slice of an array with n elements taken from the end
   _.takeRight = (array, n) => {
-    // 
+    let result = [];
+    let i = array.length-(n);
+
+    if (n === 0) {
+      return result;
+    } 
+    if (i < 0) {
+      i = 0;
+    }
+    
+    do {
+      result.push(array[i]); //pushes "2"
+      i++; // i becomes [2]
+      } while (i < array.length);
+  
+  return result;
   };
 
  
