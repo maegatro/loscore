@@ -3,11 +3,8 @@
   
   window._ = {};
 
-
-  /*
-  identity should return the first argument it receives. This may seem useless because of how simple it is, but later it will be used by functions that require a transformation function. If a transformation function is not supplied as an argument, _.identity will be used in its place.
-  */
-
+  // identity should return the first argument it receives. This may seem useless because of how simple it is, but later it will be used by functions that require a transformation function. If a transformation function is not supplied as an argument, _.identity will be used in its place.
+  
   _.identity = (val) => {
     return val;
   };
@@ -71,7 +68,7 @@
       i++;
       } while (i < array.length);
   
-  return result;
+    return result;
   };
 
  
@@ -79,7 +76,6 @@
   _.uniq = (array) => {
   let result = [];
   result.push(array[0]);
-
 
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < result.length; j++) { 
@@ -91,20 +87,6 @@
     }
   }
 
-
-  // for (let i = 0; i < array.length; i++) {
-  //   for (let j = 0; j < result.length; j++) {
-  //     console.log('array[i]:', array[i])
-  //     console.log('result[j]:', result[j])
-
-  //   if (result[j] === array[i]) {
-  //       continue;
-  //     } else if (j === result.length-1) {
-  //       result.push(array[i])
-  //     }
-  //   }
-  // }
-
   return result;
   };
 
@@ -113,16 +95,36 @@
   |~~~~~~~~~~
   **/ 
 
+  //size should return the size of collection by returning its length for array-like values, number of characters in a string, or number of elements in an object.
   _.size = (collection) => {
-    // YOUR CODE HERE
+    if (Array.isArray(collection) || typeof collection === "string") {
+      return collection.length;
+    } else if (typeof collection === "object") {
+      let objectLength = Object.keys(collection);
+      return objectLength.length;
+    }
   };
 
+  // indexOf should get the first index at which the target is found in the array.
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === target) {
+        return i;
+      }
+    }
   };
 
+  //size should call an 'iteratee' for each element of the collection. It can accept both objects AND arrays. The iteratee should receive the value, key (or index), and collection. It has no return value and simply runs the given function over each element of the array.
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      } 
+    } else {
+      for (const key in collection) {
+        iteratee(collection[key], key, collection)
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
