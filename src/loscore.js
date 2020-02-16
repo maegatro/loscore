@@ -67,17 +67,45 @@
     }
     
     do {
-      result.push(array[i]); //pushes "2"
-      i++; // i becomes [2]
+      result.push(array[i]);
+      i++;
       } while (i < array.length);
   
   return result;
   };
 
  
-
+//uniq should take an array and return a duplicate-free version
   _.uniq = (array) => {
-    // YOUR CODE HERE
+  let result = [];
+  result.push(array[0]);
+
+
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < result.length; j++) { 
+      if (array[i] === result[j]) {
+        break;
+      } else if (j === result.length-1) {
+        result.push(array[i]);
+      }
+    }
+  }
+
+
+  // for (let i = 0; i < array.length; i++) {
+  //   for (let j = 0; j < result.length; j++) {
+  //     console.log('array[i]:', array[i])
+  //     console.log('result[j]:', result[j])
+
+  //   if (result[j] === array[i]) {
+  //       continue;
+  //     } else if (j === result.length-1) {
+  //       result.push(array[i])
+  //     }
+  //   }
+  // }
+
+  return result;
   };
 
   /**
