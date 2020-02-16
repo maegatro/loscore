@@ -3,8 +3,13 @@
   
   window._ = {};
 
+
+  /*
+  identity should return the first argument it receives. This may seem useless because of how simple it is, but later it will be used by functions that require a transformation function. If a transformation function is not supplied as an argument, _.identity will be used in its place.
+  */
+
   _.identity = (val) => {
-    // YOUR CODE HERE
+    return val;
   };
 
   _.add = (x, y) => {
