@@ -36,13 +36,29 @@
   };
 
   //take should create a slice of an array with n elements taken from the beginning
-  _.take = (array, n = 1) => {
-    
+  _.take = (array, n) => {
+  console.log('array:', array, n)
+
+    let result = [];
+    let i = 0;
+
+    if (n === 0) {
+      return result;
+    } else {
+    do {
+      result.push(array[i]);
+      i++;
+    } while (i < n && i < array.length);
+  }
+
+    return result;
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    // 
   };
+
+ 
 
   _.uniq = (array) => {
     // YOUR CODE HERE
