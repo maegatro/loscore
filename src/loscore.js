@@ -25,12 +25,19 @@
     return array[0];
   };
 
+  //tail should return all but the first element of array.
   _.tail = (array) => {
-    // YOUR CODE HERE
+    let result = [];
+    for (const e of array) {
+      result.push(e);
+    }
+    result.shift();
+    return result;
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  //take should create a slice of an array with n elements taken from the beginning
+  _.take = (array, n = 1) => {
+    
   };
 
   _.takeRight = (array, n) => {
