@@ -107,11 +107,17 @@
 
   // indexOf should get the first index at which the target is found in the array.
   _.indexOf = (array, target) => {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === target) {
-        return i;
+    let i = 0;
+    let result;
+    _.each(array, element => {
+      if (element === target && !result) {
+        result = i;
+      } else {
+        i++;
       }
-    }
+    })
+
+    return (result !== undefined) ? result : -1;
   };
 
   //size should call an 'iteratee' for each element of the collection. It can accept both objects AND arrays. The iteratee should receive the value, key (or index), and collection. It has no return value and simply runs the given function over each element of the array.
