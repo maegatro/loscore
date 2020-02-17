@@ -133,27 +133,39 @@
     }
   };
 
+  //map should return a new array containing all results returned by calling the iteratee with the value, key (or index), and collection. In other words, the iteratee should return the resulting value that is to be stored in the array eventually returned by map.
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    const result = [];
+    _.each(collection, element => {
+      let value = iteratee(element);
+      result.push(value);
+    });
+    return result;
   };
 
+  // filter should return an array of all elements of an array that pass a given truth test. Return all elements if no truth test is given. Use _.each. Think about why you should not use _.map to write _.filter. BIG HINT: The callback here should return a boolean.
   _.filter = (collection, test) => {
     // YOUR CODE HERE
   };
 
+  //reject should return all elements of an array that DON'T pass a truth test. Use _.filter.
   _.reject = (collection, test) => {
     // YOUR CODE HERE
   };
 
+  // Rewrite _.pluck so that it uses for loops and does not use any built-in methods.
   _.pluck = (collection, key) => {
     return _.map(collection, (item) => {
       return item[key];
     });
   };
 
+  //reduce should "reduce" a collection to a single value by repetitively calling the iterator(accumulator, item) for each item. The accumulator should be the return value of the previous iterator call.
+  //If no starting value is passed, the first element in the collection should be used as the accumulator.
   _.reduce = (collection, iterator, accumulator) => {
   };
 
+  //_.contains determines if the array or object contains a target value. It uses '==='. We have done this one for you, using reduce. Once you write a correct reduce, the tests for this one should also pass. Please do not proceed until you understand what is going on.
   _.contains = (collection, target) => {
     return _.reduce(collection, (wasFound, item) => {
       if (wasFound) {
@@ -163,6 +175,7 @@
     }, false);
   };
 
+  //every should determine if all the elements pass the given truth test. ✅ It stakes in a callback (the test), and should return a boolean.
   _.every = function (/* Your Arguments Here*/) {
     // YOUR CODE HERE
   };
@@ -172,6 +185,7 @@
   |~~~~~~~~~~
   **/
 
+  //extend should "extend" a main object with the properties of another object. The first argument should be the main object and subsequent arguments should be objects to add to the main object. It makes shallow copies only. Use _.each.
   _.extend = function (obj) {
     // YOUR CODE HERE
   };
@@ -181,14 +195,18 @@
   |~~~~~~~~~~
   **/
 
+  //once should return a function that can be called at most one time. Any subsequent calls should return the previously returned value. Use closures.
   _.once = function (func) {
     // YOUR CODE HERE
   };
 
+  //memoize should take a function as an input. It takes the results from the input function and stores them (a cache). It should return a function that, when called, will check if it has already computed a result for the given argument. It should return the cached value if possible. Assume the input function only takes primitives as arguments. Possibly use json stringify?
   _.memoize = function (func) {
     // YOUR CODE HERE
   };
   
+  //should call the method named by functionOrKey on each value in the list. Assume there are no extra arguments.
+  // Besides being a string, functionOrKey can also be a function passed in. If it is a function, then we can apply the values directly onto it. Possibly use .apply?
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
   };
