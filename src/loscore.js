@@ -52,13 +52,13 @@
 
 
   // takeRight should create a slice of an array with n elements taken from the end
-  _.takeRight = (array, n) => {
+  _.takeRight = (array, n = 1) => {
     let result = [];
     let i = array.length-(n);
 
     if (n === 0) {
       return result;
-    } 
+    }
     if (i < 0) {
       i = 0;
     }
@@ -181,10 +181,25 @@
     return result;
   };
 
+
   //reduce should "reduce" a collection to a single value by repetitively calling the iterator(accumulator, item) for each item. The accumulator should be the return value of the previous iterator call.
   //If no starting value is passed, the first element in the collection should be used as the accumulator.
   _.reduce = (collection, iterator, accumulator) => {
-  };
+    if (accumulator === undefined) {
+      accumulator = collection[0];
+      let testArray = _.takeRight(collection, collection.length-1)
+      
+      _.each(testArray, element => {
+        accumulator = iterator(accumulator, element, collection);
+      });
+    } else {
+      _.each(collection, element => {
+        accumulator = iterator(accumulator, element, collection);
+      });
+    }
+
+    return accumulator;
+  }
 
   //_.contains determines if the array or object contains a target value. It uses '==='. We have done this one for you, using reduce. Once you write a correct reduce, the tests for this one should also pass. Please do not proceed until you understand what is going on.
   _.contains = (collection, target) => {
