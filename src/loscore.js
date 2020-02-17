@@ -145,7 +145,20 @@
 
   // filter should return an array of all elements of an array that pass a given truth test. Return all elements if no truth test is given. Use _.each. Think about why you should not use _.map to write _.filter. BIG HINT: The callback here should return a boolean.
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    const result = [];
+    if (!test) {
+      const result = [];
+      _.each(collection, element => {
+        result.push(element);
+      });
+    } else {
+      _.each(collection, element => {
+        if (test(element)) {
+          result.push(element);
+        }
+      });
+      return result;
+    }
   };
 
   //reject should return all elements of an array that DON'T pass a truth test. Use _.filter.
