@@ -163,7 +163,13 @@
 
   //reject should return all elements of an array that DON'T pass a truth test. Use _.filter.
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    const result = [];
+    _.filter(collection, element => {
+      if (!test(element)) {
+        result.push(element);
+      }
+    })
+    return result;
   };
 
   // Rewrite _.pluck so that it uses for loops and does not use any built-in methods.
