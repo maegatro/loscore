@@ -174,9 +174,11 @@
 
   // Rewrite _.pluck so that it uses for loops and does not use any built-in methods.
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    const result = [];
+    for (const item of collection) {
+      result.push(item[key]);
+    }
+    return result;
   };
 
   //reduce should "reduce" a collection to a single value by repetitively calling the iterator(accumulator, item) for each item. The accumulator should be the return value of the previous iterator call.
