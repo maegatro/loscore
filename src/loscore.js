@@ -21,19 +21,38 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    return array.slice(1, array.length);
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  _.take = (array, n = 1) => {
+    return array.slice(0, n);
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    let startingPoint = array.length - n;
+    if (startingPoint < 0) {
+      return array;
+    }
+    return array.slice(startingPoint, array.length);
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let uniqueCheck = true;
+    let uniqArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < uniqArray.length; j++) {
+        if (array[i] === uniqArray[j]) {
+          uniqueCheck = false;
+        }
+      }
+      if (uniqueCheck) {
+        uniqArray.push(array[i]);
+      }
+      uniqueCheck = true;
+    }
+
+    return uniqArray;
   };
 
   /**
