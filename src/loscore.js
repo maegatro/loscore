@@ -86,7 +86,14 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
+    console.log('collection',collection);
+    if (typeof collection !== 'object'){
+      return collection.length;
+    }else if(Array.isArray(collection)){
+      return collection.length;
+    }else return Object.keys(collection).length;
+
   };
 
   _.indexOf = (array, target) => {
