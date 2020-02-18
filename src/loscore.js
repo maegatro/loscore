@@ -61,7 +61,11 @@
   **/
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    let count = 0;
+    for (let prop in collection) {
+      count++;
+    }
+    return count;
   };
 
   _.indexOf = (array, target) => {
@@ -69,7 +73,15 @@
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+      for (let value in collection) {
+        iteratee(collection[value], value, collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
