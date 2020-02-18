@@ -31,7 +31,7 @@
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
     if(n === undefined){return [array[0]]};
     console.log('array', array, 'n', n);
     console.log(array.slice(0,n));
@@ -39,16 +39,23 @@
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
-    const result =[];
-    for (i=n; i >array.length-n; i--){
-      result.unshift(i-1);
+    // YOUR CODE HERE => committed
+    console.log('array', array, 'n', n);
+    if(n===undefined){
+      console.log([array[array.length-1]]);
+      return [array[array.length-1]];
+    }else if(n >= array.length){
+      console.log(array);
+      return array;
+    }else {
+      console.log(array.slice(array.length-n));
+      return array.slice(array.length-n);
     }
-    return result;
+  
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE => commited
+    // YOUR CODE HERE => committed
     console.log('array',array);
     const result =[];
     for (const element of array){
