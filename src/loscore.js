@@ -4,7 +4,7 @@
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+    return val;
   };
 
   _.add = (x, y) => {
@@ -21,7 +21,7 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    return array.slice(1);
   };
 
   _.take = (array, n) => {
