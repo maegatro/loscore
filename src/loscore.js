@@ -93,15 +93,28 @@
     }else if(Array.isArray(collection)){
       return collection.length;
     }else return Object.keys(collection).length;
-
   };
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
+
   };
 
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE
+    console.log('collection:',collection, 'iteratee:', iteratee);
+    const iterations =[];
+    if (Array.isArray(collection)){
+      for (let i = 0; i <collection.length; i++){
+        let l = collection[i];
+        iteratee(l,i,collection);
+      };
+    }else{
+      for (const key in collection){
+        let value = collection[key];
+        iteratee(value,key,collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
