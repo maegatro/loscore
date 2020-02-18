@@ -5,6 +5,8 @@
 
   _.identity = (val) => {
     // YOUR CODE HERE
+    //return first argument it receives
+    return val;
   };
 
   _.add = (x, y) => {
