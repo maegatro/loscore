@@ -159,11 +159,16 @@
   _.every = function(collection, test) {
     return _.reduce(
       collection,
-      (value) => {
-        if (test(value)) return true;
-        return false;
+      (result, item) => {
+        if (!result) {
+          return false;
+        } else if (!test) {
+          return Boolean(item);
+        } else {
+          return test(item);
+        }
       },
-      false
+      true
     );
   };
 
