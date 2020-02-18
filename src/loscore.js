@@ -4,7 +4,8 @@
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
+    return val;
   };
 
   _.add = (x, y) => {
@@ -21,19 +22,56 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
+    const result = [];
+    for (let i = 1; i<array.length; i++){
+      result.push(array[i]);
+    }
+    return result;
   };
 
   _.take = (array, n) => {
     // YOUR CODE HERE
+    const result = [];
+    for (let i =0; i<n; i++){
+      result.push(i);
+    }
+    return result;
   };
 
   _.takeRight = (array, n) => {
     // YOUR CODE HERE
+    const result =[];
+    for (i=n; i >array.length-n; i--){
+      result.unshift(i-1);
+    }
+    return result;
   };
 
   _.uniq = (array) => {
     // YOUR CODE HERE
+    console.log('array',array);
+    const result =[];
+    for (const element of array){
+      result.find(value => value === element)? '' : result.push(element);
+      console.log('result',result)
+    }
+    return result;
+
+    /* => log the failed code
+    console.log('array',array);
+    const dict = {}, result = [];
+    for (const element of array){
+      dict[element]? dict[element]+=1 :dict[element]=1;
+      console.log('dict',dict);
+    };
+    for (const key in dict){
+      result.unshift(Number(key));
+      console.log('result', result);
+    }
+    console.log('final result', result);
+    return result;
+    */
   };
 
   /**
