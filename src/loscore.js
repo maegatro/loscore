@@ -69,7 +69,14 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let wantedIndex = [];
+    _.each(array, (value, key) => {
+      if (target === value) {
+        wantedIndex.push(key);
+      }
+    });
+    if (!wantedIndex.length) return -1;
+    else return wantedIndex[0];
   };
 
   _.each = (collection, iteratee) => {
@@ -85,15 +92,27 @@
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let results = [];
+    _.each(collection, (value) => {
+      results.push(iteratee(value));
+    });
+    return results;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, (value) => {
+      if (test(value)) result.push(value);
+    });
+    return result;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.filter(collection, (value) => {
+      if (!test(value)) result.push(value);
+    });
+    return result;
   };
 
   _.pluck = (collection, key) => {
