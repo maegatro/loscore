@@ -127,9 +127,11 @@
     let result;
 
     if (accumulator === undefined) {
+      result = collection[0];
       _.each(collection, (value, index, collection) => {
-        result = collection[0];
-        result = iterator(result, value);
+        if (index + 1 < collection.length) {
+          result = iterator(result, collection[index + 1]);
+        }
       });
     } else {
       result = accumulator;
@@ -170,8 +172,12 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function(obj) {
-    // YOUR CODE HERE
+  _.extend = function(obj, otherObj) {
+    let extendedObj = obj;
+    _.each(extendedObj, (key, value) => {
+      extendedObj[key] = value;
+    });
+    return extendedObj;
   };
 
   /**
@@ -180,7 +186,15 @@
   **/
 
   _.once = function(func) {
-    // YOUR CODE HERE
+    let count = 0;
+    let result;
+    return function(value) {
+      if (count > 0) {
+        return result;
+      }
+      count++;
+      result = func(value);
+    };
   };
 
   _.memoize = function(func) {
