@@ -123,7 +123,23 @@
     return result;
   };
 
-  _.reduce = (collection, iterator, accumulator) => {};
+  _.reduce = (collection, iterator, accumulator) => {
+    let result;
+
+    if (accumulator === undefined) {
+      _.each(collection, (value, index, collection) => {
+        result = collection[0];
+        result = iterator(result, value);
+      });
+    } else {
+      result = accumulator;
+      _.each(collection, (value) => {
+        result = iterator(result, value);
+      });
+    }
+
+    return result;
+  };
 
   _.contains = (collection, target) => {
     return _.reduce(
@@ -138,8 +154,15 @@
     );
   };
 
-  _.every = function(/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function(collection, test) {
+    return _.reduce(
+      collection,
+      (value) => {
+        if (test(value)) return true;
+        return false;
+      },
+      false
+    );
   };
 
   /**
