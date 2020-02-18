@@ -32,11 +32,10 @@
 
   _.take = (array, n) => {
     // YOUR CODE HERE
-    const result = [];
-    for (let i =0; i<n; i++){
-      result.push(i);
-    }
-    return result;
+    if(n === undefined){return [array[0]]};
+    console.log('array', array, 'n', n);
+    console.log(array.slice(0,n));
+    return array.slice(0,n);
   };
 
   _.takeRight = (array, n) => {
@@ -49,7 +48,7 @@
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => commited
     console.log('array',array);
     const result =[];
     for (const element of array){
