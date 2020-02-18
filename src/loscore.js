@@ -97,6 +97,10 @@
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
+    console.log('array',array,'target', target);
+    for (let i = 0; i<array.length; i++){
+      if (array[i]===target){return i};
+    }
 
   };
 
