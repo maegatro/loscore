@@ -150,16 +150,25 @@
   _.reject = (collection, test) => {
     // YOUR CODE HERE => committed
     console.log('collection:',collection, 'iteratee:', test);
-    const callback = (l,i,collection) =>{
-      return !(test(l,i,collection));
-    }
+    const callback = (l,i,collection) => !(test(l,i,collection));
     return _.filter(collection, callback);
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    // committed
+    console.log('collection:',collection, 'key:', key);
+    const result =[];
+    for (const element of collection){
+      for (const keyOfElement in element){
+        if(keyOfElement === key){
+          result.push(element[keyOfElement]);
+        }
+      }
+    }
+    return result;
+  //   return _.map(collection, (item) => {
+  //     return item[key];
+  //   });
   };
 
   _.reduce = (collection, iterator, accumulator) => {
