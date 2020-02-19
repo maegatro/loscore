@@ -41,8 +41,18 @@
 
   _.take = (array, n) => {
     // Create slice of an array with the n elements taken from the beginning
+    // console.log(`Original Array: ${array} and Second input: ${n}`);
+    // console.log(array.slice(0, n));
+    let newArr;
+
+    if(n === undefined){
+      newArr = array.slice(0, 1);
+    }else {
+      newArr = array.slice(0, n);
+    }
 
     //Return the slice
+    return newArr;
   };
 
   _.takeRight = (array, n) => {
