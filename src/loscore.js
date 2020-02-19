@@ -96,18 +96,15 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE 
+    // YOUR CODE HERE => committed
     console.log('array',array,'target',target);
-    const iterateeIndexOf = (l,i) => l === target? i: '';
-    //console.log(iterateeIndexOf(1,'yay'));
-    const result = _.each(array,iterateeIndexOf);
-    console.log('result', result);
-    return result;
-    
-
-    // for (let i = 0; i<array.length; i++){
-    //   if (array[i]===target){return i};
-    // }
+    const result = [-1];
+    const callback = (l,i,collection) => {
+      if(l===target){result.push(i)};
+    }
+    _.each(array, callback);
+    console.log('result', result, 'answer', result[1]);
+    return typeof result[1]==='number'? result[1]: result[0];
   };
 
   _.each = (collection, iteratee) => {
