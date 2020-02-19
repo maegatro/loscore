@@ -210,7 +210,15 @@
   };
 
   _.memoize = function(func) {
-    // YOUR CODE HERE
+    let result = {};
+    return function(value) {
+      if (value in result) {
+        return result[value];
+      } else {
+        result[value] = func(value);
+        return result[value];
+      }
+    };
   };
 
   _.invoke = function(collection, functionOrKey) {
