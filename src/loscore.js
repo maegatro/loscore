@@ -134,7 +134,17 @@
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
+    const result =[];
+    console.log('collection:',collection, 'iteratee:', test);
+    const callback = (l,i,collection) => {
+      if(test(l,i,collection)){
+        result.push(l)
+      };
+    }
+    _.each(collection, callback);
+    console.log(result);
+    return result;
   };
 
   _.reject = (collection, test) => {
