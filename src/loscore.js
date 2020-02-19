@@ -24,14 +24,36 @@
 
   _.tail = (array) => {
     // YOUR CODE HERE
+    // returns all elements of array except for the first 
+    let tailArray = [];
+
+    for (let i = 1; i < array.length; i++) {
+      tailArray.push(array[i]);
+    }
+    // ALSO -> array.slice(1);
+
+    return tailArray;
+
   };
 
-  _.take = (array, n) => {
+  _.take = (array, n = 1) => {
     // YOUR CODE HERE
+    //create slice of array with n elements from beginning
+
+    return array.slice(0, n);
+
   };
 
-  _.takeRight = (array, n) => {
+  _.takeRight = (array, n = 1) => {
     // YOUR CODE HERE
+    // create slice of array with n elements from end
+
+   //return array.slice().reverse().slice(0, n).reverse();
+
+   if (n === 0) {
+     return [];
+   }
+  return array.slice(-n);
   };
 
   _.uniq = (array) => {
@@ -45,6 +67,7 @@
 
   _.size = (collection) => {
     // YOUR CODE HERE
+
   };
 
   _.indexOf = (array, target) => {
@@ -68,9 +91,7 @@
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+
   };
 
   _.reduce = (collection, iterator, accumulator) => {
