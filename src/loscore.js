@@ -96,16 +96,22 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
-    console.log('array',array,'target', target);
-    for (let i = 0; i<array.length; i++){
-      if (array[i]===target){return i};
-    }
+    // YOUR CODE HERE 
+    console.log('array',array,'target',target);
+    const iterateeIndexOf = (l,i) => l === target? i: '';
+    //console.log(iterateeIndexOf(1,'yay'));
+    const result = _.each(array,iterateeIndexOf);
+    console.log('result', result);
+    return result;
+    
 
+    // for (let i = 0; i<array.length; i++){
+    //   if (array[i]===target){return i};
+    // }
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
     console.log('collection:',collection, 'iteratee:', iteratee);
     const iterations =[];
     if (Array.isArray(collection)){
@@ -122,7 +128,12 @@
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
+    const result =[];
+    const callback = (l,i,collection) => result.push(iteratee(l,i,collection));
+    _.each(collection, callback);
+    console.log('result',result);
+    return result;
   };
 
   _.filter = (collection, test) => {
