@@ -222,7 +222,23 @@
   };
 
   _.invoke = function(collection, functionOrKey) {
-    // YOUR CODE HERE
+    let result = [];
+
+    if (typeof functionOrKey === "function") {
+      for (var key in collection) {
+        result.push(functionOrKey.apply(collection[key]));
+      }
+    }
+
+    if (typeof functionOrKey === "string") {
+      let stringToFunction = new Function(functionOrKey);
+      for (var key in collection) {
+        stringToFunction(...collection[key]);
+        alert(collection[key]);
+      }
+    }
+
+    return result;
   };
 
   /**
