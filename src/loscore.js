@@ -58,6 +58,10 @@
 
   _.uniq = (array) => {
     // YOUR CODE HERE
+    //take an array and return a duplicate-free version
+    // create a set and return array from set
+    let set = new Set(array);
+    return Array.from(set);
   };
 
   /**
