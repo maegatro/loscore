@@ -86,10 +86,35 @@
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
+    // get the first index location of target in array using each
+    // declare if no result is found 
+    let index = -1;
+
+    //test for index locations using each
+    _.each(array, (el, i) => {
+      if (index === -1 && target === el) {
+        index = i;
+      }
+    });
+    return index;
   };
 
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE
+    //call iteratee for each collection to accept objects and arrays
+    // receive value, key/index, and collection
+    //no return value
+
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      }
+    } else if (typeof collection === 'object' && collection !== null) {
+      for (let i in collection) {
+        iteratee(collection[i], i, collection);
+      }
+    }
+
   };
 
   _.map = (collection, iteratee) => {
