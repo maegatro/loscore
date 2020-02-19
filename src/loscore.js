@@ -4,8 +4,8 @@
   window._ = {};
 
   _.identity = (val) => {
-
     // Return the first argument received as input
+    return val;
   };
 
   _.add = (x, y) => {
