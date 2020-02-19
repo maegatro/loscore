@@ -172,6 +172,23 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    // committed
+    console.log('collection:',collection,'iterator:',iterator,'accum:', accumulator);
+    
+    let result;
+    if (accumulator === undefined){
+      result = collection[0];
+      collection = collection.slice(1);
+    }else{result = accumulator};
+
+    const callback =(l,i,collection) =>{
+      console.log('i:',i,'result(before):',result);
+      result = iterator(result,l);
+      console.log('i:',i,'result(after):',result);
+    };
+    
+    _.each(collection, callback);
+    return result;
   };
 
   _.contains = (collection, target) => {
