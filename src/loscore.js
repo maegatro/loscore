@@ -178,11 +178,16 @@
   **/
 
   _.extend = function(obj, otherObj) {
-    let extendedObj = obj;
-    _.each(extendedObj, (key, value) => {
-      extendedObj[key] = value;
-    });
-    return extendedObj;
+    if (arguments.length > 2) {
+      _.each(arguments[arguments.length - 1], (value, key) => {
+        obj[key] = value;
+      });
+    } else {
+      _.each(otherObj, (value, key) => {
+        obj[key] = value;
+      });
+    }
+    return obj;
   };
 
   /**
@@ -196,9 +201,10 @@
     return function(value) {
       if (count > 0) {
         return result;
+      } else {
+        count++;
+        result = func(value);
       }
-      count++;
-      result = func(value);
     };
   };
 
