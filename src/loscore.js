@@ -34,13 +34,19 @@
   
 
   _.uniq = (array) => {
-    for (let i = 0; i < array.length; i++){
-      if (!(i in array)){
-        array.push(i);
+    let newArray = [];
+    for (const i of array){
+      let count = 0;
+      for (const k of newArray){
+        if (k === i){
+          count += 1;
+        }
+      }
+      if (count === 0){
+        newArray.push(i);
       }
     }
-    console.log(array);
-    return array;
+    return newArray;
   };
 
   /**
@@ -57,7 +63,11 @@
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    for (const i of collection){
+      
+    }
+    //if an array loop through it and do shit
+    //if object, do something else bc objects
   };
 
   _.map = (collection, iteratee) => {
