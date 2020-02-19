@@ -25,15 +25,24 @@
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+    let newArray = array.slice(0);
+    return newArray.splice(n);
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    let newArray = array.slice(0);
+    return newArray.slice(Math.max(array.length-n, 0));
   };
+  
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    for (let i = 0; i < array.length; i++){
+      if (!(i in array)){
+        array.push(i);
+      }
+    }
+    console.log(array);
+    return array;
   };
 
   /**
@@ -42,7 +51,7 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    return Object.keys(collection).length;
   };
 
   _.indexOf = (array, target) => {
