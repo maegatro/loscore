@@ -139,7 +139,7 @@
     console.log('collection:',collection, 'iteratee:', test);
     const callback = (l,i,collection) => {
       if(test(l,i,collection)){
-        result.push(l)
+        result.push(l);
       };
     }
     _.each(collection, callback);
@@ -148,7 +148,12 @@
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
+    console.log('collection:',collection, 'iteratee:', test);
+    const callback = (l,i,collection) =>{
+      return !(test(l,i,collection));
+    }
+    return _.filter(collection, callback);
   };
 
   _.pluck = (collection, key) => {
