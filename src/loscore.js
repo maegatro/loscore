@@ -29,35 +29,36 @@
   };
 
   _.take = (array, n) => {
+    let result = [];
     if (n == undefined) {
-      return array[0];
+      result.push(array[0]);
     } else {
-      let result = [];
       for (let i = 0; i < n; i++) {
         if (array[i] != undefined) {
           result.push(array[i]);
         }
       }
-      return result;
     }
+    return result;
   };
 
   _.takeRight = (array, n) => {
+    let result = [];
     if (n == undefined) {
-      return array[array.length - 1];
+      result.push(array[array.length - 1]);
     } else {
-      let result = [];
       for (let i = array.length - n; i < array.length; i++) {
         if (array[i] != undefined) {
           result.push(array[i]);
         }
       }
-      return result;
     }
+    return result;
   };
 
   _.uniq = (array) => {
     let copy = [];
+    let result = [];
     for (const i of array) {
       copy.push(i);
     }
@@ -68,7 +69,12 @@
         }
       }
     }
-    return copy.filter((ele) => ele != "Duplicate");
+    for (const ele of copy) {
+      if (ele != "Duplicate") {
+        result.push(ele);
+      }
+    }
+    return result;
   };
 
   /**
