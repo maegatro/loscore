@@ -22,7 +22,21 @@
   };
 
   _.tail = (array) => {
+    //Iterate through array
+    let newArr = [];
+    for(let i = 0; i < array.length; i++){
+      // IF first element, skip
+      if(i === 0){
+        continue;
+      // ELSE Append to new array
+      }else{
+        newArr.push(array[i]);
+      }
+    // console.log(`Original Array : ${array}`);
+    // console.log(newArr);
+    }
     // Return all but the first element of array
+    return newArr;
   };
 
   _.take = (array, n) => {
@@ -32,7 +46,7 @@
   };
 
   _.takeRight = (array, n) => {
-    // Crate a slice of n elements from the end and return them
+    // Create a slice of n elements from the end and return them
   };
 
   _.uniq = (array) => {
