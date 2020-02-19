@@ -4,7 +4,8 @@
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+
+    // Return the first argument received as input
   };
 
   _.add = (x, y) => {
@@ -14,26 +15,28 @@
   /**
   | ARRAYS
   |~~~~~~~~~~
-  **/ 
+  **/
 
   _.head = (array) => {
     return array[0];
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    // Return all but the first element of array
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+    // Create slice of an array with the n elements taken from the beginning
+
+    //Return the slice
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    // Crate a slice of n elements from the end and return them
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    // Return a duplicate-free version of an array
   };
 
   /**
