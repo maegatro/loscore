@@ -71,6 +71,16 @@
 
   _.size = (collection) => {
     // YOUR CODE HERE
+    // return the size of collection 
+    // return the length for arrays, # of properties in objects
+    // and length characters in string
+    if (collection.length !== undefined) {
+      return collection.length;
+    } else if (typeof collection === 'object' && collection !== null) {
+      return Object.keys(collection).length;
+    } else {
+      return undefined;
+    }
 
   };
 
