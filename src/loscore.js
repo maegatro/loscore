@@ -4,7 +4,7 @@
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+    return val;
   };
 
   _.add = (x, y) => {
@@ -21,19 +21,59 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+     let arr = array.slice(0);
+     arr.splice(0,1);
+     return arr;
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+   var arr;
+   if(n == 0){
+     arr = [];
+     return arr;
+   }
+   else if (typeof(n) == 'undefined'){
+     arr = array.slice(0,1);
+     return arr
+   }
+    else{
+     arr = array.slice(0,n);
+     return arr;
+    }
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    var arr;
+    if(n == 0){
+      arr = [];
+      return arr;
+    }
+    else if (typeof(n) == 'undefined'){
+      arr = array.slice(array.length-1);
+      return arr
+    }
+     else{
+      arr = array.slice(n<array.length?array.length-n:0);
+      return arr;
+     }
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    var arr = [];
+    if(array!=[]){arr.push(array[0])}
+    else{return [];};
+    for (var value of array){
+      var checker = false;
+      for(var val of arr){
+        if(val == value){
+          checker=true;
+        }
+      }
+      if(!checker){
+        arr.push(value);
+      }
+    }
+    return arr;
   };
 
   /**
