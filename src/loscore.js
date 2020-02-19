@@ -88,7 +88,17 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    var index=[];
+    var checker = false;
+    _.each(array,(value,i)=>{
+      if(value==target)
+      {index.push(i);
+        checker=true;
+      }
+    })
+    if(checker)
+    return index[0];
+    else return -1;
   };
 
   _.each = (collection, iteratee) => {
@@ -112,24 +122,46 @@
 };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+  var arr=[];
+  _.each(collection, (val)=>{arr.push(iteratee(val))})
+  return arr;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    var arr=[];
+    _.each(collection, (val)=>{if(test(val)){arr.push(val);}
+    })
+    return arr;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+
+   var arr=[];
+   _.filter(collection,(val)=>{if(!test(val)){arr.push(val)}})
+   return arr;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    var arr=[];
+    for(var val of collection){
+    var temp = Object.entries(val);
+    for(var value of temp){
+      if(value[0]==key){
+        arr.push(value[1]);
+      }
+    }
+    }
+    return arr;
+
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    var result;
+
+    _.each((accumulator || accumulator == 0)?collection:collection.slice(1),(val)=>{result=iterator((accumulator || accumulator == 0)?accumulator:collection[0],val);accumulator = result});
+  
+   return result;
+    
   };
 
   _.contains = (collection, target) => {

@@ -522,15 +522,18 @@
 
       it('should pass every item of the array through the iterator if a memo is passed in', () => {
         const result = _.reduce([1, 2, 3], (memo, item) => {
-          return memo - item;
+          var test=memo-item;
+          return test;
         }, 10);
 
         expect(result).toEqual(4);
       });
 
       it('should accept falsy values as a valid memo', () => {
-        const result = _.reduce([1, 2, 3], (memo, item) => {
-          return memo * item;
+          const result = _.reduce([1, 2, 3], (memo, item) => {
+          console.log(memo);
+          var test = memo * item;
+          return test;
         }, 0);
 
         expect(result).toEqual(0);
