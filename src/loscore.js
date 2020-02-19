@@ -202,8 +202,9 @@
       if (count > 0) {
         return result;
       } else {
-        count++;
         result = func(value);
+        count++;
+        return result;
       }
     };
   };
