@@ -21,19 +21,35 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    return array.slice(1, array.length);
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  _.take = (array, n = 1) => {
+    return array.slice(0, n);
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    if (n <= array.length){
+      return array.slice(array.length - n, array.length);
+    }else{
+      return array;
+    }
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    var result = [];
+    for(var originalIndex = 0; originalIndex < array.length; originalIndex++){ //もとの配列を前から順に確認
+      var counter = 0;
+      for(var resultIndex = 0; resultIndex < result.length; resultIndex++){ //結果の配列を前から順に比較
+        if(result[resultIndex] == array[originalIndex]){
+          counter++;
+        }
+      }
+      if(counter == 0){
+        result.push(array[originalIndex]);
+      }
+    }
+    return result;
   };
 
   /**
