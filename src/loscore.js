@@ -155,7 +155,7 @@
   };
 
   _.pluck = (collection, key) => {
-    // committed
+    // => committed
     console.log('collection:',collection, 'key:', key);
     const result =[];
     for (const element of collection){
@@ -172,7 +172,7 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
-    // committed
+    // => committed
     console.log('collection:',collection,'iterator:',iterator,'accum:', accumulator);
     
     let result;
@@ -180,13 +180,11 @@
       result = collection[0];
       collection = collection.slice(1);
     }else{result = accumulator};
-
-    const callback =(l,i,collection) =>{
+    const callback = (l,i,collection) => {
       console.log('i:',i,'result(before):',result);
       result = iterator(result,l);
       console.log('i:',i,'result(after):',result);
     };
-    
     _.each(collection, callback);
     return result;
   };
@@ -200,8 +198,17 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection,testFunc) {
+    // YOUR CODE HERE => committed
+    console.log('START EVERY! collection=>',collection,'testFunc=>',testFunc);
+    if (testFunc === undefined){
+      testFunc = (val) => val;
+    };
+    const iterator =(result,l) =>{
+      console.log('result=>',result,'test(l)=>',testFunc(l),'!test(l)=>',!testFunc(l));
+      return !testFunc(l)? testFunc(l): result;
+    };
+    return _.reduce(collection,iterator,true);
   };
 
   /**
