@@ -82,7 +82,9 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    var keys = Object.keys(collection);
+    return keys.length;
+
   };
 
   _.indexOf = (array, target) => {
@@ -90,8 +92,24 @@
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
-  };
+  var keys = Object.keys(collection);
+  if(Array.isArray(collection)){
+  
+  for(var val of keys){
+    var cKey = parseInt(val);
+    if(isNaN(cKey)){
+      break;
+    }
+    iteratee(collection[val],cKey,collection);
+  }
+}
+  else{
+    for(var val of keys){
+      iteratee(collection[val],val,collection);
+    }
+  }
+  
+};
 
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
