@@ -63,7 +63,7 @@
   _.size = (collection) => {
     let count = 0;
     for (let prop in collection) {
-      count++;
+      if (prop) count++;
     }
     return count;
   };
