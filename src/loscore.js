@@ -24,14 +24,12 @@
     return array.slice(1);
   };
 
-  _.take = (array, n) => {
-    let newArray = array.slice(0);
-    return newArray.splice(n);
+  _.take = (array, n = 1) => {
+    return array.slice(0, n);
   };
 
   _.takeRight = (array, n = 1) => {
-    let newArray = array.slice(0);
-    return newArray.slice(Math.max(array.length-n, 0));
+    return array.slice(Math.max(array.length-n, 0));
   };
   
 
