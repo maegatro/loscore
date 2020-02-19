@@ -57,6 +57,18 @@
 
   _.takeRight = (array, n) => {
     // Create a slice of n elements from the end and return them
+    let newArr;
+
+    if(n === undefined){
+      newArr = array.slice(-1);
+    }else if(n === 0){
+      newArr = [];
+    }else{
+      newArr = array.slice(-n);
+    }
+
+    //Return the slice
+    return newArr;
   };
 
   _.uniq = (array) => {
