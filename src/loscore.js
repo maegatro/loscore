@@ -207,8 +207,8 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
+  _.extend = function (obj,compObj) {
+    var
   };
 
   /**
