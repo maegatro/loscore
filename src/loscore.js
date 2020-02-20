@@ -181,9 +181,9 @@
       collection = collection.slice(1);
     }else{result = accumulator};
     const callback = (l,i,collection) => {
-      console.log('i:',i,'result(before):',result);
+      //console.log('i:',i,'result(before):',result);
       result = iterator(result,l);
-      console.log('i:',i,'result(after):',result);
+      //console.log('i:',i,'result(after):',result);
     };
     _.each(collection, callback);
     return result;
@@ -205,7 +205,7 @@
       testFunc = (val) => val;
     };
     const iterator =(result,l) =>{
-      console.log('result=>',result,'test(l)=>',testFunc(l),'!test(l)=>',!testFunc(l));
+      //console.log('result=>',result,'test(l)=>',testFunc(l),'!test(l)=>',!testFunc(l));
       return !testFunc(l)? testFunc(l): result;
     };
     return _.reduce(collection,iterator,true);
@@ -218,6 +218,7 @@
 
   _.extend = function (obj) {
     // YOUR CODE HERE
+    console.log('obj',obj);
   };
 
   /**
@@ -227,6 +228,14 @@
 
   _.once = function (func) {
     // YOUR CODE HERE
+    let count = 0, memory;
+    return (...args) => {
+      if(count === 0){
+        count++;
+        memory = func(...args);
+        return memory;
+      }else return memory;
+    }
   };
 
   _.memoize = function (func) {
