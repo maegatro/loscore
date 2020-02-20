@@ -32,10 +32,24 @@
 
   _.take = (array, n) => {
     // YOUR CODE HERE
+    let newArray = [];
+    if(n === undefined){
+      n = 1;
+    } else if(n === 0){
+      return newArray;
+    } else if(n > array.length){
+      n = array.length;
+    }
+    for(let i = 0; i < n; i++){
+      newArray.push(array[i]);
+    }
+    return newArray;
   };
 
   _.takeRight = (array, n) => {
     // YOUR CODE HERE
+    array.slice(n);
+    return array;
   };
 
   _.uniq = (array) => {
