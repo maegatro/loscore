@@ -23,6 +23,11 @@
 
   _.tail = (array) => {
     // YOUR CODE HERE
+    let newArray = [];
+    for(let i = 1; i < array.length; i++){
+      newArray.push(array[i]);
+    }
+    return newArray;
   };
 
   _.take = (array, n) => {
