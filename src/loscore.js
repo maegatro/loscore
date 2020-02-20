@@ -100,7 +100,23 @@
   **/
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    let counter = 0;
+    let finalCollection = collection;
+    if(Object.prototype.toString.call(collection) === "[object Object]") finalCollection = Object.entries(collection);
+
+    for(let el of finalCollection){
+      counter = counter + 1;
+    }
+
+    console.log(counter);
+
+    // 1 Possible Approach to this method
+    //Declare a counter variable
+
+    // Iterate through the input
+      //Count up by 1 (+1) each iteration
+
+    // Return counter
   };
 
   _.indexOf = (array, target) => {
