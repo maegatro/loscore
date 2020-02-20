@@ -37,8 +37,13 @@
     return result;
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    if (n > array.length) return array;
+    let result = [];
+    for (let i = array.length - n; i < array.length ; i++) {
+      result.push(array[i]);
+    }
+    return result;
   };
 
   _.uniq = (array) => {
