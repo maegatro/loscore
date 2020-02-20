@@ -5,6 +5,7 @@
 
   _.identity = (val) => {
     // YOUR CODE HERE
+    return val;
   };
 
   _.add = (x, y) => {
