@@ -44,7 +44,6 @@
     const seen = {};
     const ret_arr = [];
     for (var i = 0; i < array.length; i++) {
-      console.log(seen[array[i]])
           if (!seen[array[i]]) {
             ret_arr.push(array[i]);
             seen[array[i]] = true;
