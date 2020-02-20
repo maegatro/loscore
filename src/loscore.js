@@ -38,9 +38,9 @@
 
   _.uniq = (array) => {
     var result = [];
-    for(var originalIndex = 0; originalIndex < array.length; originalIndex++){ //もとの配列を前から順に確認
+    for(var originalIndex = 0; originalIndex < array.length; originalIndex++){
       var counter = 0;
-      for(var resultIndex = 0; resultIndex < result.length; resultIndex++){ //結果の配列を前から順に比較
+      for(var resultIndex = 0; resultIndex < result.length; resultIndex++){
         if(result[resultIndex] == array[originalIndex]){
           counter++;
         }
@@ -58,23 +58,53 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
-  };
-
-  _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    if(Array.isArray(collection) || typeof collection == "string"){
+      return collection.length;
+    }else if(typeof collection == "object"){
+      return Object.keys(collection).length;
+    }
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if(Array.isArray(collection)){
+      for(let index = 0; index < collection.length; index++){
+        iteratee(collection[index], index, collection);
+      }
+    }else{
+      for (let index in collection){
+        iteratee(collection[index], index, collection);
+      }
+    }
+  };
+
+  _.indexOf = (array, target) => {
+    var index = -1;
+
+    _.each(array, function(value, i){
+    if(value == target && index == -1){
+      index = i;
+    }
+    })
+    return index
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    var result = [];
+    _.each(collection, function(value, index){
+      result.push(iteratee(value, index));
+    });
+    return result;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    var result = [];
+
+    _.each(collection, function(value, index){
+      if(test(value, index)){
+        result.push(value);
+      }
+    })
+    return result;
   };
 
   _.reject = (collection, test) => {
