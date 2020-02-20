@@ -211,9 +211,25 @@
     }, false);
   };
 
-  //every should determine if all the elements pass the given truth test. ✅ It stakes in a callback (the test), and should return a boolean.
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  //every should determine if all the elements pass the given truth test. It stakes in a callback (the test), and should return a boolean.
+  _.every = function (collection, test) {
+    if (collection.length === 0) {
+      return true;
+    }    
+
+    return _.reduce(collection, (testResult, item) => {
+      if (test === undefined) {
+        if (!testResult) {
+          return false;
+        }
+        return item;
+      } else {
+        if (!testResult) {
+          return false;
+        }
+        return test(item);
+      }
+    }, true);
   };
 
   /**
