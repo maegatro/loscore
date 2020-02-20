@@ -66,7 +66,14 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    if (typeof collection === "object") {
+      let count = 0;
+      for (const property in collection) {
+        count++;
+      }
+      return count;
+    }
+    return collection.length;
   };
 
   _.indexOf = (array, target) => {
