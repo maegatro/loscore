@@ -107,16 +107,7 @@
     for(let el of finalCollection){
       counter = counter + 1;
     }
-
-    console.log(counter);
-
-    // 1 Possible Approach to this method
-    //Declare a counter variable
-
-    // Iterate through the input
-      //Count up by 1 (+1) each iteration
-
-    // Return counter
+    return counter;
   };
 
   _.indexOf = (array, target) => {
