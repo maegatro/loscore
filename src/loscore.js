@@ -151,13 +151,51 @@
 
   _.reject = (collection, test) => {
     // YOUR CODE HERE
+    // reject all elements of array that don't pass truth test
+    let filterr = [];
+
+    //use filter
+    _.filter(collection, (el, i) => {
+      if (!test(el, i, collection)) {
+        filterr.push(el);
+      }
+    });
+
+    return filterr;
   };
 
   _.pluck = (collection, key) => {
+    // take an array of objects, return values of certain properties
+    // initialize result
+    let plucked = [];
 
+    // use for loop to iterate through object
+    for (let obj of collection) {
+      plucked.push(obj[key]);
+    }
+
+    // return result
+    return plucked;
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    //reduce collection to single value calling iterator(accumulator, item)
+    //accumulator should return value of previous iterator call
+
+    if (accumulator === undefined) {
+      // set accumulator at first index of collection
+      accumulator = collection[0];
+      //reduce length and starting index of collection
+      collection = collection.slice(1);
+    }
+
+    // run each for accumulator
+    _.each(collection, (el, i) => {
+      accumulator = iterator(accumulator, el);
+    });
+
+    return accumulator;
+
   };
 
   _.contains = (collection, target) => {
@@ -169,8 +207,24 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
+  _.every = function (array, func) {
     // YOUR CODE HERE
+    //determine if all elements pass given truth test
+    // basically one giant 'logical and'
+    // use reduce
+    //return boolean
+
+    return _.reduce(array, (a, b) => {
+      if (!a) {
+        return false;
+      }
+
+      if (typeof func === 'function') {
+        return func(b);
+      }
+      
+      return Boolean(b);
+    }, true);
   };
 
   /**
