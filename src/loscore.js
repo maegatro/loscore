@@ -234,6 +234,21 @@
 
   _.extend = function (obj) {
     // YOUR CODE HERE
+    // extend a primary object wiht properties from another object
+    // first argument = main object
+    // following args = obejects added to main object & make shallow copies
+    //use each in implementation
+
+    // call _.each
+    _.each(arguments, function(item) {
+      // nest each within function input
+      _.each(item, function(value, prop) {
+        // shallow copy value (object) into main object
+        obj[prop] = value;
+      })
+    })
+    //return object
+    return obj;
   };
 
   /**
@@ -243,14 +258,53 @@
 
   _.once = function (func) {
     // YOUR CODE HERE
+    // return a function that can be called at most one time
+    // every subsequent call return initial returned value
+    //initialize result
+   let result;
+
+   //return function
+   return function() {
+     //if function is called, result = the arguments called
+    if (func) {
+      result = func.apply(this, arguments);
+      // return null if called more than once
+      func = null;
+    }
+
+    //return result
+    return result;
+   };
+    
   };
 
   _.memoize = function (func) {
     // YOUR CODE HERE
+    // stores result from input function and return a function to check 
+    // if identical and previously computed result exists.
+    // if possible, return stored value, and use JSON.stringify
+    let memo = {};
+
+    let slice = Array.prototype.slice;
+
+    return function() {
+      let args = slice.call(arguments);
+      
+      if (args in memo) {
+        return memo[args];
+      } else {
+        return (memo[args] = func.apply(this, args));
+      }
+    }
+
   };
   
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
+    //call functionOrKey on each value in list, if function, apply values onto it
+
+
+
   };
 
   /**
