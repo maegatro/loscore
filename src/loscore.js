@@ -227,7 +227,7 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    // YOUR CODE HERE => committed
     let count = 0, memory;
     return (...args) => {
       if(count === 0){
@@ -240,6 +240,13 @@
 
   _.memoize = function (func) {
     // YOUR CODE HERE
+    let memory={};
+    return (arg) =>{
+      if (!memory[arg]){
+        memory[arg]=func(arg);
+        return memory[arg];
+      }else return memory[arg]; 
+    };
   };
   
   _.invoke = function (collection, functionOrKey) {
