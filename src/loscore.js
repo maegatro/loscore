@@ -254,18 +254,43 @@
 
   //once should return a function that can be called at most one time. Any subsequent calls should return the previously returned value. Use closures.
   _.once = function (func) {
-    // YOUR CODE HERE
+    return checker(2, func);
   };
+
+  const checker = (i, func) => {
+    let result;
+    return function() {
+      if (--i > 0) {
+        result = func.apply(this, arguments);
+      }
+      return result;
+    };
+  }
 
   //memoize should take a function as an input. It takes the results from the input function and stores them (a cache). It should return a function that, when called, will check if it has already computed a result for the given argument. It should return the cached value if possible. Assume the input function only takes primitives as arguments. Possibly use json stringify?
   _.memoize = function (func) {
-    // YOUR CODE HERE
-  };
+    let memo = {};
+
+    return function(){
+      let key = JSON.stringify(arguments);
+      if (memo[key]){
+        return memo[key];
+      } else {
+        let val = func.apply(null, arguments);
+        memo[key] = val;
+        return val;
+      }
+    }
+  }
   
   //should call the method named by functionOrKey on each value in the list. Assume there are no extra arguments.
   // Besides being a string, functionOrKey can also be a function passed in. If it is a function, then we can apply the values directly onto it. Possibly use .apply?
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    console.log('collection:', collection)
+    if (typeof functionOrKey === "string") {
+      collection[functionOrKey];
+      return collection;
+    }
   };
 
   /**
