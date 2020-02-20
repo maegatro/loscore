@@ -92,17 +92,18 @@
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
-    let result = -1;
+    let store = []
     _.each(array,function(val,i){
       if(target===val){
-        //console.log(target,val)
-        result=i;
-        if(result){
-          return result; 
-        }
+        store.push(i)
+        //console.log(store)
       }
     })
-    return result;
+      if(store.length>=1){
+        return store[0]
+      }else{
+        return -1
+      }
   };
 
   _.each = (collection, iteratee) => {
@@ -166,10 +167,28 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    //console.log(collection,iterator,"this",accumulator)
+    let reducer;
+    if(accumulator!==undefined){
+      reducer = accumulator;
+      _.each(collection,function(val){
+        reducer = iterator(reducer, val)
+      })
+    }else{
+      reducer = collection[0]
+      _.each(collection,function(val,i,collection){
+        //console.log(val,i,collection)
+        if(i+1<collection.length){
+          reducer = iterator(reducer,collection[i+1])
+        }
+      })
+    }
+    return reducer;
   };
 
   _.contains = (collection, target) => {
     return _.reduce(collection, (wasFound, item) => {
+      //console.log(wasFound,item)
       if (wasFound) {
         return true;
       }
@@ -177,8 +196,18 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
+  _.every = function (collection,iterator) {
     // YOUR CODE HERE
+    return _.reduce(collection,function(total,item){
+      console.log("total",total,"item",item)
+      if(!total){
+        return false;
+      }else if(!iterator){
+          return true
+      }else{
+        return iterator(item)
+      }
+    },true)
   };
 
   /**
