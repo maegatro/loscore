@@ -28,8 +28,13 @@
     return result;
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  _.take = (array, n = 1) => {
+    if (n > array.length) return array;
+    let result = [];
+    for (let i = 0; i < n; i++) {
+      result.push(array[i]);
+    }
+    return result;
   };
 
   _.takeRight = (array, n) => {
