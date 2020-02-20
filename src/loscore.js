@@ -199,7 +199,7 @@
   _.every = function (collection,iterator) {
     // YOUR CODE HERE
     return _.reduce(collection,function(total,item){
-      console.log("total",total,"item",item)
+      //console.log("total",total,"item",item)
       if(!total){
         return false;
       }else if(!iterator){
@@ -215,8 +215,16 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
+  _.extend = function (obj1,...obj2) {
     // YOUR CODE HERE
+    _.each(obj2,function(subObj){
+      //console.log(subObj)
+      _.each(subObj,function(val,key){
+         //console.log("val:",val,"key:",key)
+         obj1[key]=val
+      })
+    })
+    return obj1;
   };
 
   /**
@@ -226,14 +234,43 @@
 
   _.once = function (func) {
     // YOUR CODE HERE
+    let count = 0;
+    let countStore = [];
+    return function(v){
+      if(count<=0){
+      countStore.push(func(v))
+      }
+     count +=1
+     return countStore[0]
+    }
   };
 
   _.memoize = function (func) {
     // YOUR CODE HERE
+    let memory = {}
+    return function(...args){
+      let n = args[0];
+      if(n in memory){
+        return memory[n];
+      }else{
+        let result = func(n);
+        memory[n]=result;
+        return result;
+      }
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
+      if(typeof functionOrKey == "string"){
+        return _.map(collection,function(val){
+          return val[functionOrKey].apply(val);
+      })
+      }else{
+        return _.map(collection,function(val){
+          return functionOrKey.apply(val)
+        })
+      }
   };
 
   /**
