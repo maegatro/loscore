@@ -531,7 +531,6 @@
 
       it('should accept falsy values as a valid memo', () => {
           const result = _.reduce([1, 2, 3], (memo, item) => {
-          console.log(memo);
           var test = memo * item;
           return test;
         }, 0);
@@ -736,8 +735,11 @@
       });
       it('should return the previously returned value if a function has been called before', () => {
         const getNumber = _.once((n) => ++n);
+        console.log(getNumber);
         const initialNumber = getNumber(0);
+        console.log(initialNumber);
         const secondNumber = getNumber(99);
+        console.log(secondNumber);
         expect(initialNumber).toBe(1);
         expect(secondNumber).toBe(initialNumber);
       });

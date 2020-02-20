@@ -173,8 +173,33 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+
+    var answer= _.reduce(collection,(accumulator,val)=>{
+      if(test == undefined){
+        return val;
+      }
+      if(val===null){
+        return true;
+      }
+      if(!accumulator){
+        return false;
+      }
+      if(test(val))
+      {
+       return accumulator = true;
+      }
+      else{
+      return accumulator = false;
+      }
+    },true);
+    if(answer == undefined){
+      return true
+    }
+    else{
+      return answer;
+    }
+    
   };
 
   /**
@@ -192,7 +217,15 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+   var result;
+     return function(){
+      if(func!==null){
+       result = func.apply(this, arguments);
+       func = null;
+       return result;
+     }
+     else return result;
+   }
   };
 
   _.memoize = function (func) {
