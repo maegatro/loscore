@@ -64,6 +64,8 @@
 
   _.uniq = (array) => {
     // YOUR CODE HERE
+    let newArray = Array.from(new Set(array))
+    return newArray;
   };
 
   /**
