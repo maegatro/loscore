@@ -21,19 +21,27 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    return array.slice(1, array.length)
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  _.take = (array, n = 1) => {
+    return array.slice(0, n)
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    return array.slice(array.length - n >=0 ? array.length -n : 0, array.length)
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let output = array
+    for ( let i=0; i < output.length; i++) {
+      for ( let j=0; j < output.length; j++) {
+        if (i !== j && output[i] === output[j]) {
+          output = output.slice(0, j).concat(output.slice(j + 1, output.length))
+        }
+      }
+    }
+    return output
   };
 
   /**
