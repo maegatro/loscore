@@ -21,7 +21,11 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] != array[0]) result.push(array[i]);
+    }
+    return result;
   };
 
   _.take = (array, n) => {
