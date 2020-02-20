@@ -674,6 +674,7 @@
 
         // Extend objA to have all of objB's properties.
         const extendedObjA = _.extend(objA, objB);
+        console.log(extendedObjA);
         expect(extendedObjA).toEqual({
           name: 'moe',
           age: 50,
@@ -735,11 +736,8 @@
       });
       it('should return the previously returned value if a function has been called before', () => {
         const getNumber = _.once((n) => ++n);
-        console.log(getNumber);
         const initialNumber = getNumber(0);
-        console.log(initialNumber);
         const secondNumber = getNumber(99);
-        console.log(secondNumber);
         expect(initialNumber).toBe(1);
         expect(secondNumber).toBe(initialNumber);
       });

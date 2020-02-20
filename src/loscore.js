@@ -207,8 +207,13 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj,compObj) {
-    var
+  _.extend = function (obj) {
+    _.each(arguments,(item)=>{
+      _.each(item,(val,key)=>{
+        obj[key] = val;
+      })
+    })
+    return obj;
   };
 
   /**
