@@ -119,10 +119,34 @@
 
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
+    // initialize result
+    let mapp = [];
+
+    // initialize each and push values to mapp
+    _.each(collection, (el, i) => {
+      let value = iteratee(el, i, collection);
+      mapp.push(value);
+    });
+
+    // return result
+    return mapp;
   };
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE
+    //return an array of all elements that pass truth test
+    //initialize result
+    let filterr = [];
+
+    // initialize filter tests
+    _.each(collection, (el, i) => {
+      if (test(el, i, collection)) {
+        filterr.push(el);
+      }
+    });
+
+    //return result
+    return filterr;
   };
 
   _.reject = (collection, test) => {
