@@ -95,19 +95,41 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    _.each(array, function(ele, index, array) {
+      if (ele == target) {
+        return index;
+      }
+    });
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+      for (let key in collection) {
+        iteratee(collection[key], key, collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, function(ele, index, collection) {
+      result.push(iteratee(ele, index, collection));
+    });
+    return result;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, function(ele, index, collection) {
+      if (test(ele)) {
+        result.push(ele);
+      }
+    });
+    return result;
   };
 
   _.reject = (collection, test) => {
