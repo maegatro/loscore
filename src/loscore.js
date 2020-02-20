@@ -238,8 +238,13 @@
   **/
 
   //extend should "extend" a main object with the properties of another object. The first argument should be the main object and subsequent arguments should be objects to add to the main object. It makes shallow copies only. Use _.each.
-  _.extend = function (obj) {
-    // YOUR CODE HERE
+  _.extend = function (destObj, ...sourceObj) {
+     _.each(sourceObj, element => {
+      for (const key in element) {
+        destObj[key] = element[key];
+      }
+    })
+    return destObj;
   };
 
   /**
