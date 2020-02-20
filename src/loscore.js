@@ -64,7 +64,7 @@
 
   _.uniq = (array) => {
     // YOUR CODE HERE
-    let newArray = Array.from(new Set(array))
+    let newArray = Array.from(new Set(array));
     return newArray;
   };
 
@@ -75,6 +75,7 @@
 
   _.size = (collection) => {
     // YOUR CODE HERE
+    return Object.keys(collection).length;
   };
 
   _.indexOf = (array, target) => {
