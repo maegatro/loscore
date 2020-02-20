@@ -238,19 +238,36 @@
     }
   };
 
+  // _.memoize = function (func) {
+  //   // YOUR CODE HERE => committed
+  //   const memory={};
+  //   return (arg) =>{
+  //     if (!memory[arg]){
+  //       memory[arg]=func(arg);
+  //       return memory[arg];
+  //     }else return memory[arg]; 
+  //   };
+  // };
+
   _.memoize = function (func) {
-    // YOUR CODE HERE
-    let memory={};
-    return (arg) =>{
-      if (!memory[arg]){
-        memory[arg]=func(arg);
-        return memory[arg];
-      }else return memory[arg]; 
+    // YOUR CODE HERE => committed
+    const memory=[],result=[];
+    return (...args) =>{
+      for (let i = 0; i<memory.length; i++){
+        if(JSON.stringify(memory[i]) === JSON.stringify([...args])){
+          return result[i];
+        }
+      }
+      const answer = func(...args);
+      memory.push([...args]);
+      result.push(answer);
+      return answer;
     };
   };
   
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
+    return collection.apply()
   };
 
   /**
