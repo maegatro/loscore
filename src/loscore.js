@@ -72,13 +72,46 @@
   };
 
   _.uniq = (array) => {
-    // Return a duplicate-free version of an array
+    console.log(`Original Array: ${array}`);
+    // Declare newArr variable with an empty array
+    let newArr = [];
+      //Iterate through array
+      for(let el of array){
+        //IF (Check if the element is already included inside newArr)
+        if(isIncluded(el, newArr)){
+          //Skip without adding
+          continue;
+        }else {
+          //ELSE
+            // Add the element to newArr
+            newArr.push(el);
+        }
+      }
+      console.log(`Returned value: ${newArr}`);
   };
+
+  // Made this function as an alternative of the built-in function(includes)
+  // Separate logics by placing the checking logic outside of the uniq method
+  let isIncluded = (currentElement, newArr) => {
+    // console.log(`currentElement inside isIncluded: ${currentElement}`);
+    // console.log(`newArr inside isIncluded: ${newArr}`);
+    for(let el of newArr){
+      // console.log(`currentElement in Iteration: ${currentElement}`);
+      // console.log(`el in Iteration: ${el}`);
+      // console.log(`Is it included????: ${currentElement === el}`);
+
+      if(currentElement === el){
+        return true;
+      }
+    }
+
+    return false;
+  }
 
   /**
   | COLLECTIONS
   |~~~~~~~~~~
-  **/ 
+  **/
 
   _.size = (collection) => {
     // YOUR CODE HERE
