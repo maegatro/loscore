@@ -47,7 +47,17 @@
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+      if (!alreadyExists(result, array[i])) result.push(array[i]);
+    }
+    return result;
+    
+    function alreadyExists(array, element) {
+      for (let i = 0; i < array.length; i++) {
+        if (array[i] === element) return true;
+      }
+    }
   };
 
   /**
