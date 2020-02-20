@@ -21,11 +21,14 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    return array.slice(1);
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+    if (typeof n === "undefined") {
+      return array.slice(0,1)
+    }
+    return array.slice(0, n)
   };
 
   _.takeRight = (array, n) => {
