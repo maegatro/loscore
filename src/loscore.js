@@ -59,19 +59,37 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let result = -1;
+    _.each(array, function(k, l){
+      for (let i = 0; i < array.length; i++){
+        if (k === target){
+          result = l;
+        }
+      }
+    });
+    return result;
   };
 
   _.each = (collection, iteratee) => {
-    for (const i of collection){
-      
+    if (Array.isArray(collection)){
+      for (let i = 0; i < collection.length; i++){
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+      for (const k in collection){
+        iteratee(collection[k], k, collection);
+      }
     }
     //if an array loop through it and do shit
     //if object, do something else bc objects
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, function (val, i, collection){
+      result.push(iteratee(val, i, collection));
+    })
+    return result;
   };
 
   _.filter = (collection, test) => {
