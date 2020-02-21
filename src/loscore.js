@@ -234,11 +234,38 @@
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    var arr = {};
+    return function(){
+      if(arr[arguments[0]]!==undefined){;
+      return arr[arguments[0]];
+      }
+      else{
+      var result = func.apply(this,arguments)
+      arr[arguments[0]]= result;
+      return result;
+      }
+    }
+ 
+    
+
   };
   
-  _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+  _.invoke = function (collection, func) {
+   var arr=[];    
+   if(typeof(func)=='function')
+   {
+    for(var i=0;i<collection.length;i++){
+     collection[i] = func.apply(collection[i]);
+    }
+    return collection;
+   }
+   else
+  {
+    for(var i=0;i<collection.length;i++){
+      collection[i] = collection[i][func]();
+     }
+     return collection;
+  }
   };
 
   /**

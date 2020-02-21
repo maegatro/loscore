@@ -674,7 +674,6 @@
 
         // Extend objA to have all of objB's properties.
         const extendedObjA = _.extend(objA, objB);
-        console.log(extendedObjA);
         expect(extendedObjA).toEqual({
           name: 'moe',
           age: 50,
