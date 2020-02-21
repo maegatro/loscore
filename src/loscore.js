@@ -81,8 +81,11 @@
     // YOUR CODE HERE
     if(typeof collection === "object"){
       let count = 0;
-      for(const i in collection){
-        count += 1
+      for(const index in collection){
+        if(index){
+          count += 1
+        }
+        
       }
       return count;
     }else{
