@@ -79,12 +79,24 @@
       }
     }
   };
-
+  
   _.map = (collection, iteratee) => {
     let output = []
-    _.each(collection, (el) => {
-      output.push(iteratee(el))
-    })
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        output.push(iteratee(collection[i]))
+      }
+    }
+    else {
+      for (let i = 0; i < Object.keys(collection).length; i++) {
+        output.push(iteratee(collection[Object.keys(collection)[i]])) //, Object.keys(collection)[i], collection) 
+      }
+    }
+
+
+    // _.each(collection, (el) => {
+    //   output.push(iteratee(el))
+    // })
     return output
   };
 
@@ -110,6 +122,7 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+
   };
 
   _.contains = (collection, target) => {
