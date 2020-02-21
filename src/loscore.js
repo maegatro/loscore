@@ -114,8 +114,8 @@
   }
 }
   else{
-    for(var val of keys){
-      iteratee(collection[val],val,collection);
+    for(var value of keys){
+      iteratee(collection[value],value,collection);
     }
   }
   
@@ -251,7 +251,7 @@
   };
   
   _.invoke = function (collection, func) {
-   var arr=[];    
+      
    if(typeof(func)=='function')
    {
     for(var i=0;i<collection.length;i++){
@@ -261,8 +261,8 @@
    }
    else
   {
-    for(var i=0;i<collection.length;i++){
-      collection[i] = collection[i][func]();
+    for(var j=0;j<collection.length;j++){
+      collection[j] = collection[j][func]();
      }
      return collection;
   }
