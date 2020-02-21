@@ -96,24 +96,41 @@
   _.filter = (collection, test) => {
     let result = [];
     _.each(collection, function (values){
-        if (test(collection[values]) % 2 === 0){
-          result.push(values);
-        }
+      if (test(values) === true){
+        result.push(values);
+      }
     });
     return result;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.filter(collection, function (value){
+      if (!test(value)){
+        result.push(value);
+      }
+    })
+    return result;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let result = [];
+    for (const i of collection){
+      for (const k in i){
+        if (k === key){
+          result.push(i[k]);
+        }
+      }
+    }
+    return result;
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    let result = [];
+    _.each(collection, function (value, index, collection){
+      
+    })
+    return result;
   };
 
   _.contains = (collection, target) => {
