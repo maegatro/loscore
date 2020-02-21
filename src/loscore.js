@@ -115,7 +115,20 @@
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    console.log(collection);
+    console.log(`This function takes : ${iteratee.length} arguments.`);
+    for(let el in collection){
+       console.log("Index "+  el);
+        if(iteratee.length === 0){
+          iteratee();
+        } else if(iteratee.length === 1){
+          iteratee(collection[el]);
+        } else if(iteratee.length === 2){
+          iteratee(collection[el], el);
+        } else {
+          iteratee(collection[el], el, collection)
+        }
+  }
   };
 
   _.map = (collection, iteratee) => {
