@@ -82,21 +82,17 @@
   
   _.map = (collection, iteratee) => {
     let output = []
-    if (Array.isArray(collection)) {
-      for (let i = 0; i < collection.length; i++) {
-        output.push(iteratee(collection[i]))
-      }
-    }
-    else {
-      for (let i = 0; i < Object.keys(collection).length; i++) {
-        output.push(iteratee(collection[Object.keys(collection)[i]])) //, Object.keys(collection)[i], collection) 
-      }
-    }
-
-
-    // _.each(collection, (el) => {
-    //   output.push(iteratee(el))
-    // })
+    // if (Array.isArray(collection)) {
+    //   for (let i = 0; i < collection.length; i++) {
+    //     output.push(iteratee(collection[i]))
+    //   }
+    // }
+    // else {
+    //   for (let i = 0; i < Object.keys(collection).length; i++) {
+    //     output.push(iteratee(collection[Object.keys(collection)[i]])) 
+    //   }
+    // }
+    _.each(collection, (el) => output.push(iteratee(el)))
     return output
   };
 
@@ -116,13 +112,23 @@
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let output = []
+    for (let i = 0; i < collection.length; i++) {
+      output.push(collection[i][key])
+    }
+    
+    // return _.map(collection, (item) => {
+    //   return item[key];
+    // });
+    return output
   };
 
   _.reduce = (collection, iterator, accumulator) => {
-
+    _.each(collection, (el, accumulator) => { 
+      accumulator = iterator(accumulator, el)
+      return accumulator
+    })
+    return accumulator
   };
 
   _.contains = (collection, target) => {
