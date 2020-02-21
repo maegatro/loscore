@@ -115,20 +115,28 @@
   };
 
   _.each = (collection, iteratee) => {
-    console.log(collection);
-    console.log(`This function takes : ${iteratee.length} arguments.`);
-    for(let el in collection){
-       console.log("Index "+  el);
-        if(iteratee.length === 0){
-          iteratee();
-        } else if(iteratee.length === 1){
+    console.log(Object.prototype.toString.call(collection));
+    // console.log(`This function takes : ${iteratee.length} arguments.`);
+      for(let el in collection){
+         if(iteratee.length === 0){
+           console.log(`Value: ${collection[el]} and Index: ${el}`);
+           if(isNaN(el) === true && Object.prototype.toString.call(collection) === "[object Array]") continue;
+           iteratee();
+         } else if(iteratee.length === 1){
+          console.log(`Value: ${collection[el]} and Index: ${el}`);
+           if(isNaN(el) === true && Object.prototype.toString.call(collection) === "[object Array]") continue;
           iteratee(collection[el]);
-        } else if(iteratee.length === 2){
-          iteratee(collection[el], el);
-        } else {
-          iteratee(collection[el], el, collection)
-        }
-  }
+         } else if(iteratee.length === 2){
+           console.log(`Value: ${collection[el]} and Index ${el}`);
+           if(isNaN(el) === true && Object.prototype.toString.call(collection) === "[object Array]") continue;
+           iteratee(collection[el], el);
+         } else {
+          console.log(`Value: ${collection[el]} and Index: ${el}`);
+           if(isNaN(el) === true && Object.prototype.toString.call(collection) === "[object Array]") continue;
+           iteratee(collection[el], el, collection);
+         }
+    }
+
   };
 
   _.map = (collection, iteratee) => {
