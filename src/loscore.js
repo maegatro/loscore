@@ -84,6 +84,15 @@
 
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE
+    if(Array.isArray(collection)){
+      for(let [index, key] of collection.entries()){
+        iteratee(key, index, collection)
+      }
+    } else{
+      for(let key in collection){
+        iteratee(collection[key], key, collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
