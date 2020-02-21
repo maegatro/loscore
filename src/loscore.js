@@ -95,9 +95,15 @@
   };
 
   _.indexOf = (array, target) => {
-    _.each(array, function(target, index, array) {
-      return index;
+    let index = -1;
+    _.each(array, function(ele, i) {
+      if (ele === target) {
+        if (index == -1) {
+          index = i;
+        }
+      }
     });
+    return index;
   };
 
   _.each = (collection, iteratee) => {
@@ -151,7 +157,17 @@
     return result;
   };
 
-  _.reduce = (collection, iterator, accumulator) => {};
+  _.reduce = (collection, iterator, accumulator) => {
+    // let iterator = (accumulator, item) => {
+    //   return accumulator + item;
+    // };
+    // if (accumulator == undefined) {
+    //   accumulator = collection[0];
+    //   return each(collection, iterator);
+    // } else {
+    //   return each(collection, iterator);
+    // }
+  };
 
   _.contains = (collection, target) => {
     return _.reduce(
