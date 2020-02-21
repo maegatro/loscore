@@ -113,22 +113,13 @@
   _.indexOf = (array, target) => {
     let result = -1;
 
-    // Must use _.each method in implementation
-      _.each(array, (l, i, collection) => {
-        console.log(`value: ${l}`);
-        console.log(`procesed index: ${i}`);
-        console.log(`target: ${target}`);
-        console.log(`collection: ${collection}`);
-        console.log(`-----------------------------`);
-
-        if(target === Number(l) && result === -1){
-          console.log(`Matched!!! ${target === Number(l)}`)
-          result = i;
-        }
-      });
-      
-      return result;
-  };
+    _.each(array, (l, i) => {
+      if(target === l && result === -1){
+        result = i;
+      }
+    });
+    return result;
+  }
 
   _.each = (collection, iteratee) => {
     let index = 0;
