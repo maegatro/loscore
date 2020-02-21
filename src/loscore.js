@@ -116,19 +116,18 @@
     for (let i = 0; i < collection.length; i++) {
       output.push(collection[i][key])
     }
-    
-    // return _.map(collection, (item) => {
-    //   return item[key];
-    // });
     return output
   };
 
-  _.reduce = (collection, iterator, accumulator) => {
-    _.each(collection, (el, accumulator) => { 
-      accumulator = iterator(accumulator, el)
-      return accumulator
+  _.reduce = (collection, iterator, accumulator = collection[0]) => {
+    let memo = accumulator
+    let item
+    _.each(collection, (el) => {
+      item = el 
+      if (item !== collection[0] || item !== memo) memo = iterator(memo, item)
+      else if (iterator(memo, item) == undefined) memo
     })
-    return accumulator
+    return memo
   };
 
   _.contains = (collection, target) => {
