@@ -60,6 +60,7 @@
 
   _.indexOf = (array, target) => {
     let result = -1;
+    let newArray = [];
     _.each(array, function(k, l){
       for (let i = 0; i < array.length; i++){
         if (k === target){
@@ -93,7 +94,13 @@
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, function (values){
+        if (test(collection[values]) % 2 === 0){
+          result.push(values);
+        }
+    });
+    return result;
   };
 
   _.reject = (collection, test) => {
