@@ -104,6 +104,11 @@
 
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
+    let result = [];
+    _.each(collection, function(value, index, list){
+      result.push(iteratee(value, index, list))
+    });
+    return result;
   };
 
   _.filter = (collection, test) => {
