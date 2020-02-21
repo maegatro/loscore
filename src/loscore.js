@@ -124,6 +124,13 @@
 
   _.reject = (collection, test) => {
     // YOUR CODE HERE
+    let result = [];
+    _.filter(collection, function(value){
+      if(!test(value)){
+        result.push(value);
+      }
+    })
+    return result;
   };
 
   _.pluck = (collection, key) => {
