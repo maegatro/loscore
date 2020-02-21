@@ -81,7 +81,15 @@
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (collection.constructor === Array) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+      for (const property in collection) {
+        iteratee(collection[property], property, collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
