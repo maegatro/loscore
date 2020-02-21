@@ -77,7 +77,11 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let index = [];
+    _.each(array, (l, i) => {
+      if (l === target) index[index.length] = i;
+    });
+    return index.length === 0 ? -1 : index[0];
   };
 
   _.each = (collection, iteratee) => {
