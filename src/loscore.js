@@ -216,10 +216,32 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
-    console.log('obj',obj);
+  _.extend = function (obj1, ...objs) {
+    // YOUR CODE HERE => committed
+    for (const obj of objs){
+      const callback = (value,key,collection) => obj1[key]=value;
+      _.each(obj,callback);
+    }
+    return obj1;
+
   };
+
+  // _.each = (collection, iteratee) => {
+  //   // YOUR CODE HERE => committed
+  //   console.log('collection:',collection, 'iteratee:', iteratee);
+  //   const iterations =[];
+  //   if (Array.isArray(collection)){
+  //     for (let i = 0; i <collection.length; i++){
+  //       let l = collection[i];
+  //       iteratee(l,i,collection);
+  //     };
+  //   }else{
+  //     for (const key in collection){
+  //       let value = collection[key];
+  //       iteratee(value,key,collection);
+  //     }
+  //   }
+  // };
 
   /**
   | FUNCTIONS
@@ -267,7 +289,27 @@
   
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
-    return collection.apply()
+    console.log('start!,collection',collection,'functionOrKey', typeof functionOrKey);
+    const result =[];
+    for (const element of collection){
+      console.log('element',element,'result',result,'func',element.__proto__[functionOrKey]);
+      //console.log(functionOrKey(element));
+      if(typeof functionOrKey === 'function'){
+        result.push(functionOrKey(element));
+      }else{
+        console.log(element.__proto__[functionOrKey]);
+        const func = element.__proto__[functionOrKey];
+        console.log(func(element));
+        //result.push(this.prototype[functionOrKey].apply(this, element));
+        // const func = this.prototype[functionOrKey];
+        // console.log(func);
+        // func(elememt)
+        // result.push(func(elememt));
+      }
+      // console.log(functionOrKey.apply(this,element));
+      // result.push(functionOrKey.apply(this,element));
+    }
+    return result;
   };
 
   /**
