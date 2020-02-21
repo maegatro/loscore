@@ -23,18 +23,96 @@
 
   _.tail = (array) => {
     // YOUR CODE HERE
+    let returnArray = [];
+    for(let i=1; i<=array.length-1;i++){
+      returnArray.push(array[i]);
+    }
+    return returnArray;
+    
   };
 
   _.take = (array, n) => {
     // YOUR CODE HERE
+    let returnArray = [];
+
+    if (n === 0){
+        return returnArray;
+    }
+
+    if (!n){
+        returnArray.push(array[0]);
+        return returnArray;
+    }
+
+    for(let i = 0; i <= n-1; i++){
+        if (typeof array[i] !== "undefined"){
+            returnArray.push(array[i])
+        }
+    }
+    return returnArray;
   };
 
   _.takeRight = (array, n) => {
     // YOUR CODE HERE
+    let returnArray = [];
+
+    if (n === 0){
+        return returnArray;
+    }
+
+    if (!n){
+        returnArray.push(array[array.length-1]);
+        return returnArray;
+    }
+
+    for(let i = (array.length - n); i <= n; i++){
+        if (typeof array[i] !== "undefined"){
+            returnArray.push(array[i])
+        }
+    }
+    return returnArray; 
   };
 
   _.uniq = (array) => {
     // YOUR CODE HERE
+
+    let returnArray = [];
+    let tempValue = undefined;
+    let alreadyExists = false;
+
+    for(let i = 0; i < array.length; i++){
+        tempValue = array[i];
+        for(let j = 0; j<= returnArray.length; j++){
+            if(returnArray[j] === tempValue){
+                alreadyExists = true;
+            }
+        }
+        if (alreadyExists === false){
+            returnArray.push(tempValue);
+        }
+        alreadyExists = false;
+        tempValue = undefined;
+    }
+    return returnArray;
+
+    //The code below works but doesn't pass the test because it produces a SORTED array which the test doesn't validate.
+    // let returnArray = [];
+    // let tempObj = {};
+
+    // for(let i = 0; i < array.length; i++){
+
+    //     if(tempObj[array[i]]){
+    //         tempObj[array[i]]++; 
+    //     } else {
+    //         tempObj[array[i]] = 1
+    //     }
+    // }
+    // //console.table(tempObj)
+    // for(let key in tempObj){
+    //     returnArray.push(key)
+    // }
+    // //console.log(returnArray)
+    // return returnArray;
   };
 
   /**
@@ -44,6 +122,13 @@
 
   _.size = (collection) => {
     // YOUR CODE HERE
+    if (Array.isArray(collection)){
+      return collection.length
+    } else if (typeof collection === 'object' && collection.constructor === Object) {
+      return Object.keys(collection).length;
+    } else if (typeof collection === "string"){
+      return collection.length;
+    }
   };
 
   _.indexOf = (array, target) => {
