@@ -56,12 +56,15 @@
   };
 
   _.indexOf = (array, target) => {
-    // let i = -1 
-    // for(let el in array) {
-    //   i++
-    //   if( el === target) stop
-    // }
-    // return i
+    let output = -1
+    let flag = 0
+    _.each(array, (l, i, collection) => {
+      if (l === target && flag === 0 ) {
+        output = i
+        flag = 1
+      }
+    })
+    return output
   };
 
   _.each = (collection, iteratee) => {
@@ -78,15 +81,26 @@
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let output = []
+    _.each(collection, (el) => {
+      output.push(iteratee(el))
+    })
+    return output
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let output = []
+    _.each(collection, (el) => {
+      if (test(el)) output.push(el)
+    })
+    return output
   };
-
+  
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let output = _.filter(collection, (el) => { 
+      return !test(el)
+    })
+    return output
   };
 
   _.pluck = (collection, key) => {
