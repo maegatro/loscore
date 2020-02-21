@@ -80,6 +80,13 @@
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
+    let indexOfTarget = -1;
+    _.each(array, function(key, index){
+      if(target === key && indexOfTarget === -1){
+        indexOfTarget = index;
+      }
+    })
+    return indexOfTarget;
   };
 
   _.each = (collection, iteratee) => {
