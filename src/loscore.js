@@ -50,15 +50,31 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    let i = 0
+    for (let el in collection) i++
+    return i
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    // let i = -1 
+    // for(let el in array) {
+    //   i++
+    //   if( el === target) stop
+    // }
+    // return i
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if(Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection)
+      }
+    }
+    else {
+      for (let i = 0; i < Object.keys(collection).length; i++) {
+        iteratee(collection[Object.keys(collection)[i]], Object.keys(collection)[i], collection) 
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
