@@ -138,11 +138,17 @@
       return item === target;
     }, false);
   };
-
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  
+  _.every = function (collection, test) {
+    if (test == undefined) return true
+    return _.reduce(collection, (wasnotFound, item) => {
+      if (!wasnotFound) {
+        return false;
+      }
+      return test(item)
+    }, true);
   };
-
+  
   /**
   | OBJECTS
   |~~~~~~~~~~
