@@ -95,10 +95,8 @@
   };
 
   _.indexOf = (array, target) => {
-    _.each(array, function(ele, index, array) {
-      if (ele == target) {
-        return index;
-      }
+    _.each(array, function(target, index, array) {
+      return index;
     });
   };
 
@@ -133,13 +131,24 @@
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.filter(collection, function(ele, index, collection) {
+      if (!test(ele)) {
+        result.push(ele);
+      }
+    });
+    return result;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    // return _.map(collection, (item) => {
+    //   return item[key];
+    // });
+    let result = [];
+    for (let i = 0; i < collection.length; i++) {
+      result.push(collection[i][key]);
+    }
+    return result;
   };
 
   _.reduce = (collection, iterator, accumulator) => {};
