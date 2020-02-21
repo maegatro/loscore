@@ -111,7 +111,23 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let result = -1;
+
+    // Must use _.each method in implementation
+      _.each(array, (l, i, collection) => {
+        console.log(`value: ${l}`);
+        console.log(`procesed index: ${i}`);
+        console.log(`target: ${target}`);
+        console.log(`collection: ${collection}`);
+        console.log(`-----------------------------`);
+
+        if(target === Number(l) && result === -1){
+          console.log(`Matched!!! ${target === Number(l)}`)
+          result = i;
+        }
+      });
+      
+      return result;
   };
 
   _.each = (collection, iteratee) => {
@@ -129,14 +145,13 @@
         if(iteratee.length === 0){
           iteratee();
         } else if(iteratee.length === 1){
-        iteratee(collection[el]);
+          iteratee(collection[el]);
         } else if(iteratee.length === 2){
           iteratee(collection[el], index);
         } else {
           iteratee(collection[el], index, collection);
         }
     }
-
   };
 
   _.map = (collection, iteratee) => {
