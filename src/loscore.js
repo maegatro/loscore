@@ -181,9 +181,23 @@
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let result = [];
+
+    for(let arr of collection){
+      result.push(arr[key]);
+    }
+
+    return result;
+
+    // return _.map(collection, (item) => {
+    //   console.log(item[key])
+    //   return item[key];
+    // });
+    // let result = [];
+
+    // _.each(collection, (val, i, collection) => {
+    //     result.push(val[key])
+    // });
   };
 
   _.reduce = (collection, iterator, accumulator) => {
