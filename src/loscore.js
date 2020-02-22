@@ -212,6 +212,18 @@
 
   _.pluck = (collection, key) => {
 
+    let resultArray = [];
+ 
+    for(let object of collection){
+      for(let id in object){
+        if(id === key){
+          resultArray.push(object[id])
+        }
+      }
+    }
+    console.log("resultArray is", resultArray)
+    return resultArray;    
+
   };
 
   _.reduce = (collection, iterator, accumulator) => {
