@@ -70,7 +70,7 @@
 
   _.indexOf = (array, target) => {
      let resultArray = []
-    _.each(array, function(value, key, array) {
+    _.each(array, function(value, key) {
       if (value === target) {
         resultArray.push(key)
       }  
@@ -95,11 +95,21 @@
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let resultArray = [];
+    _.each(collection, function (value){
+        let newValue = iteratee(value)
+        resultArray.push(newValue)
+    }); return resultArray;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, function(value){
+      if(test(value) === true) {
+        result.push(value);
+      }
+    });
+    return result;
   };
 
   _.reject = (collection, test) => {
