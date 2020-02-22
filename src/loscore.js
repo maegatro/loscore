@@ -169,7 +169,15 @@
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+
+    _.filter(collection, (num) => {
+      if(!test(num)){
+        result.push(num);
+      }
+    });
+
+    return result;
   };
 
   _.pluck = (collection, key) => {
