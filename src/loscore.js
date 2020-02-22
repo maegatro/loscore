@@ -26,18 +26,35 @@
 
   _.take = (array, n) => {
     if (typeof n === "undefined") {
-      return array.slice(0,1)
+      return array.slice(0,1);
     }
-    return array.slice(0, n)
+    return array.slice(0, n);
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    if (n === 0) {
+      return [];
+    }if (typeof n === "undefined") {
+      return array.slice(-1);
+    }
+    return array.slice(-n)
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
-  };
+    let unique = true;
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < result.length; j++) {
+        if (array[i] === result[j]) {
+          unique = false;
+        }
+      }
+      if (unique === true) {
+        result.push(array[i]);
+      }
+      unique = true;  
+    }return result;
+  }
 
   /**
   | COLLECTIONS
