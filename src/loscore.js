@@ -286,10 +286,14 @@
   //should call the method named by functionOrKey on each value in the list. Assume there are no extra arguments.
   // Besides being a string, functionOrKey can also be a function passed in. If it is a function, then we can apply the values directly onto it. Possibly use .apply?
   _.invoke = function (collection, functionOrKey) {
-    console.log('collection:', collection)
     if (typeof functionOrKey === "string") {
-      collection[functionOrKey];
-      return collection;
+      return _.map(collection, element => {
+        return element[functionOrKey]();
+      });
+    } else if (typeof functionOrKey === "function") {
+      return _.map(collection, (element) => {
+        return functionOrKey.apply(element);
+      });
     }
   };
 
