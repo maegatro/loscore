@@ -175,11 +175,8 @@
     let resultArray = [];
 
     _.each(collection,function(value){
-
       resultArray.push(iteratee(value))
-
     })
-
     return resultArray;
 
   };
@@ -188,10 +185,29 @@
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE
+
+    let resultArray = [];
+    _.each(collection,function(value){
+      if(test(value)){
+        resultArray.push(value)
+      }
+    })
+    return resultArray;
+
   };
 
   _.reject = (collection, test) => {
     // YOUR CODE HERE
+
+    let resultArray = [];
+    _.filter(collection,function(value){
+      if(!test(value)){
+        resultArray.push(value)
+      }
+    })
+
+    return resultArray
+
   };
 
   _.pluck = (collection, key) => {
