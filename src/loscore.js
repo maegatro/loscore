@@ -62,15 +62,36 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    let counter = 0;
+    for (let item in collection) {
+      counter ++;
+    }return counter;    
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+     let resultArray = []
+    _.each(array, function(value, key, array) {
+      if (value === target) {
+        resultArray.push(key)
+      }  
+    });
+    if (resultArray.length >= 1) {
+      return resultArray[0]
+    }else {
+      return -1;
+    }
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (Array.isArray(collection) === true) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection)
+      }
+    }else {
+      for (let item in collection) {
+        iteratee(collection[item], item, collection)
+      }  
+    }  
   };
 
   _.map = (collection, iteratee) => {
