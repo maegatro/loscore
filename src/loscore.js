@@ -80,7 +80,7 @@
   _.indexOf = (array, target) => {
     var index = -1;
 
-    _.each(array, function(value, i){
+    _.each(array, (value, i) => {
     if(value == target && index == -1){
       index = i;
     }
@@ -90,7 +90,7 @@
 
   _.map = (collection, iteratee) => {
     var result = [];
-    _.each(collection, function(value, index){
+    _.each(collection, (value, index) => {
       result.push(iteratee(value, index));
     });
     return result;
@@ -99,25 +99,44 @@
   _.filter = (collection, test) => {
     var result = [];
 
-    _.each(collection, function(value, index){
+    _.each(collection, (value, index) => {
       if(test(value, index)){
         result.push(value);
       }
-    })
+    });
     return result;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    var original = [...collection];
+    var array = _.filter(collection, test);
+    var result = [];
+
+    for(var i = 0; i < original.length; i++){
+      if((_.indexOf(array, original[i])) == -1){
+        result.push(original[i]);
+      }
+    }
+    return result;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    var result = [];
+    for(var a in collection){
+      result.push(collection[a][key]);
+    }
+    return result;
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    _.each(collection, (value, index) => {
+      if(index == 0 && accumulator == undefined){
+          accumulator = value;
+      }else{
+        accumulator = iterator(accumulator, value, index);
+      }
+    });
+    return accumulator;
   };
 
   _.contains = (collection, target) => {
@@ -129,8 +148,23 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (array, test) {
+    var result = 0;
+    if(test == undefined){
+      return array;
+    }
+
+    _.reduce(array, function(accumulator, value){
+      if(!test(value)){
+        result++;
+      }
+    });
+
+    if(result > 0){
+      return false;
+    }else{
+      return true;
+    }
   };
 
   /**
