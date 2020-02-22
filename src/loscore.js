@@ -146,7 +146,14 @@
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let result = [];
+
+    _.each(collection, (val) => {
+      result.push(iteratee(val))
+    });
+
+    // Return new array
+    return result;
   };
 
   _.filter = (collection, test) => {
