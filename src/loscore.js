@@ -131,17 +131,60 @@
     }
   };
 
-  _.indexOf = (array, target) => {
-    // YOUR CODE HERE
-  };
-
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE
+    let type = typeof collection;
+    if (collection instanceof Array){
+      for (let i = 0; i < collection.length; i++){
+        iteratee(collection[i], i, collection);
+      } 
+      } else if (type === "object") {
+        for (let item in collection) {
+          iteratee(collection[item], item, collection);
+        }
+      }
+ 
   };
+
+  _.indexOf = (array, target) => {
+    // YOUR CODE HERE
+
+    let exists = [];
+    _.each(array,function(value,i){
+      console.log("array",array)
+      console.log("value",value)
+      console.log("i",i)
+      console.log("target",target)
+      if (value === target){
+        console.log("Found!", i)
+        exists.push(i)
+      }
+    })
+    
+    if(exists.length === 0){
+      return -1;
+    } else {
+    return exists[0];
+    }
+
+  };
+
 
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
+    let resultArray = [];
+
+    _.each(collection,function(value){
+
+      resultArray.push(iteratee(value))
+
+    })
+
+    return resultArray;
+
   };
+
+
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE
@@ -152,21 +195,14 @@
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+
   };
 
   _.reduce = (collection, iterator, accumulator) => {
   };
 
   _.contains = (collection, target) => {
-    return _.reduce(collection, (wasFound, item) => {
-      if (wasFound) {
-        return true;
-      }
-      return item === target;
-    }, false);
+
   };
 
   _.every = function (/* Your Arguments Here*/) {
@@ -197,6 +233,9 @@
   
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
+
+ 
+
   };
 
   /**
