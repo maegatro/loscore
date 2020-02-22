@@ -157,7 +157,15 @@
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+
+    _.each(collection, (num) => {
+      if(test(num)){
+        result.push(num);
+      }
+    });
+
+    return result;
   };
 
   _.reject = (collection, test) => {
