@@ -33,22 +33,22 @@
   _.take = (array, n) => {
     // YOUR CODE HERE => committed
     if(n === undefined){return [array[0]]};
-    console.log('array', array, 'n', n);
-    console.log(array.slice(0,n));
+    // console.log('array', array, 'n', n);
+    // console.log(array.slice(0,n));
     return array.slice(0,n);
   };
 
   _.takeRight = (array, n) => {
     // YOUR CODE HERE => committed
-    console.log('array', array, 'n', n);
+    // console.log('array', array, 'n', n);
     if(n===undefined){
-      console.log([array[array.length-1]]);
+      // console.log([array[array.length-1]]);
       return [array[array.length-1]];
     }else if(n >= array.length){
-      console.log(array);
+      // console.log(array);
       return array;
     }else {
-      console.log(array.slice(array.length-n));
+      // console.log(array.slice(array.length-n));
       return array.slice(array.length-n);
     }
   
@@ -56,28 +56,14 @@
 
   _.uniq = (array) => {
     // YOUR CODE HERE => committed
-    console.log('array',array);
+    // console.log('array',array);
     const result =[];
     for (const element of array){
       result.find(value => value === element)? '' : result.push(element);
-      console.log('result',result)
+      // console.log('result',result)
     }
     return result;
 
-    /* => log the failed code
-    console.log('array',array);
-    const dict = {}, result = [];
-    for (const element of array){
-      dict[element]? dict[element]+=1 :dict[element]=1;
-      console.log('dict',dict);
-    };
-    for (const key in dict){
-      result.unshift(Number(key));
-      console.log('result', result);
-    }
-    console.log('final result', result);
-    return result;
-    */
   };
 
   /**
@@ -87,7 +73,7 @@
 
   _.size = (collection) => {
     // YOUR CODE HERE => committed
-    console.log('collection',collection);
+    // console.log('collection',collection);
     if (typeof collection !== 'object'){
       return collection.length;
     }else if(Array.isArray(collection)){
@@ -97,20 +83,19 @@
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE => committed
-    console.log('array',array,'target',target);
+    // console.log('array',array,'target',target);
     const result = [-1];
-    const callback = (l,i,collection) => {
+    const callback = (l,i) => {
       if(l===target){result.push(i)};
     }
     _.each(array, callback);
-    console.log('result', result, 'answer', result[1]);
+    // console.log('result', result, 'answer', result[1]);
     return typeof result[1]==='number'? result[1]: result[0];
   };
 
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE => committed
-    console.log('collection:',collection, 'iteratee:', iteratee);
-    const iterations =[];
+    // console.log('collection:',collection, 'iteratee:', iteratee);
     if (Array.isArray(collection)){
       for (let i = 0; i <collection.length; i++){
         let l = collection[i];
@@ -129,34 +114,34 @@
     const result =[];
     const callback = (l,i,collection) => result.push(iteratee(l,i,collection));
     _.each(collection, callback);
-    console.log('result',result);
+    // console.log('result',result);
     return result;
   };
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE => committed
     const result =[];
-    console.log('collection:',collection, 'iteratee:', test);
+    // console.log('collection:',collection, 'iteratee:', test);
     const callback = (l,i,collection) => {
       if(test(l,i,collection)){
         result.push(l);
       };
     }
     _.each(collection, callback);
-    console.log(result);
+    // console.log(result);
     return result;
   };
 
   _.reject = (collection, test) => {
     // YOUR CODE HERE => committed
-    console.log('collection:',collection, 'iteratee:', test);
+    // console.log('collection:',collection, 'iteratee:', test);
     const callback = (l,i,collection) => !(test(l,i,collection));
     return _.filter(collection, callback);
   };
 
   _.pluck = (collection, key) => {
     // => committed
-    console.log('collection:',collection, 'key:', key);
+    // console.log('collection:',collection, 'key:', key);
     const result =[];
     for (const element of collection){
       for (const keyOfElement in element){
@@ -173,14 +158,14 @@
 
   _.reduce = (collection, iterator, accumulator) => {
     // => committed
-    console.log('collection:',collection,'iterator:',iterator,'accum:', accumulator);
+    // console.log('collection:',collection,'iterator:',iterator,'accum:', accumulator);
     
     let result;
     if (accumulator === undefined){
       result = collection[0];
       collection = collection.slice(1);
     }else{result = accumulator};
-    const callback = (l,i,collection) => {
+    const callback = (l) => {
       //console.log('i:',i,'result(before):',result);
       result = iterator(result,l);
       //console.log('i:',i,'result(after):',result);
@@ -200,7 +185,7 @@
 
   _.every = function (collection,testFunc) {
     // YOUR CODE HERE => committed
-    console.log('START EVERY! collection=>',collection,'testFunc=>',testFunc);
+    // console.log('START EVERY! collection=>',collection,'testFunc=>',testFunc);
     if (testFunc === undefined){
       testFunc = (val) => val;
     };
@@ -219,7 +204,7 @@
   _.extend = function (original, ...objs) {
     // YOUR CODE HERE => committed
     for (const obj of objs){
-      const callback = (value,key,collection) => original[key]=value;
+      const callback = (value,key) => original[key]=value;
       _.each(obj,callback);
     }
     return original;
@@ -264,12 +249,12 @@
     let resultArr =[];
     if (typeof functionOrKey !== "function"){
       resultArr = _.map(collection, (i)=> {
-        console.log('i',i);
+        // console.log('i',i);
         return i[functionOrKey].apply(i);
     });
     } else if (typeof functionOrKey === "function") {
       resultArr = _.map(collection, (i)=> {
-        console.log('i',i);
+        // console.log('i',i);
         return functionOrKey.apply(i)
       })}
     return resultArr;
