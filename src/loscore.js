@@ -113,13 +113,22 @@
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let result = []
+    _.filter(collection, function(value) {
+      if (!test(value)) {
+        result.push(value)
+      }
+      
+    });
+    return result;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let result = [];
+      for (let object of collection) {
+        result.push(object[key])
+      }
+    return result;  
   };
 
   _.reduce = (collection, iterator, accumulator) => {
