@@ -216,32 +216,14 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj1, ...objs) {
+  _.extend = function (original, ...objs) {
     // YOUR CODE HERE => committed
     for (const obj of objs){
-      const callback = (value,key,collection) => obj1[key]=value;
+      const callback = (value,key,collection) => original[key]=value;
       _.each(obj,callback);
     }
-    return obj1;
-
+    return original;
   };
-
-  // _.each = (collection, iteratee) => {
-  //   // YOUR CODE HERE => committed
-  //   console.log('collection:',collection, 'iteratee:', iteratee);
-  //   const iterations =[];
-  //   if (Array.isArray(collection)){
-  //     for (let i = 0; i <collection.length; i++){
-  //       let l = collection[i];
-  //       iteratee(l,i,collection);
-  //     };
-  //   }else{
-  //     for (const key in collection){
-  //       let value = collection[key];
-  //       iteratee(value,key,collection);
-  //     }
-  //   }
-  // };
 
   /**
   | FUNCTIONS
@@ -260,17 +242,6 @@
     }
   };
 
-  // _.memoize = function (func) {
-  //   // YOUR CODE HERE => committed
-  //   const memory={};
-  //   return (arg) =>{
-  //     if (!memory[arg]){
-  //       memory[arg]=func(arg);
-  //       return memory[arg];
-  //     }else return memory[arg]; 
-  //   };
-  // };
-
   _.memoize = function (func) {
     // YOUR CODE HERE => committed
     const memory=[],result=[];
@@ -287,29 +258,21 @@
     };
   };
   
+
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
-    console.log('start!,collection',collection,'functionOrKey', typeof functionOrKey);
-    const result =[];
-    for (const element of collection){
-      console.log('element',element,'result',result,'func',element.__proto__[functionOrKey]);
-      //console.log(functionOrKey(element));
-      if(typeof functionOrKey === 'function'){
-        result.push(functionOrKey(element));
-      }else{
-        console.log(element.__proto__[functionOrKey]);
-        const func = element.__proto__[functionOrKey];
-        console.log(func(element));
-        //result.push(this.prototype[functionOrKey].apply(this, element));
-        // const func = this.prototype[functionOrKey];
-        // console.log(func);
-        // func(elememt)
-        // result.push(func(elememt));
-      }
-      // console.log(functionOrKey.apply(this,element));
-      // result.push(functionOrKey.apply(this,element));
-    }
-    return result;
+    let resultArr =[];
+    if (typeof functionOrKey !== "function"){
+      resultArr = _.map(collection, (i)=> {
+        console.log('i',i);
+        return i[functionOrKey].apply(i);
+    });
+    } else if (typeof functionOrKey === "function") {
+      resultArr = _.map(collection, (i)=> {
+        console.log('i',i);
+        return functionOrKey.apply(i)
+      })}
+    return resultArr;
   };
 
   /**
