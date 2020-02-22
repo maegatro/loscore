@@ -21,11 +21,21 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    let arr = array.slice(1);
+    return arr;
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+    if (n === 0) {
+      let arri = [];
+      return arri;
+    } else if (n === undefined) {
+      let non = array.slice(0, 1);
+      return non;
+    } else {
+      let arr = array.slice(0, n);
+      return arr;
+    }
   };
 
   _.takeRight = (array, n) => {
