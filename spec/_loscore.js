@@ -613,9 +613,9 @@
     });
 
     describe('every', () => {
-      // testForNativeMethods(() => {
-      //   _.every([1, 2, 3, 4], () => {});
-      // });
+      testForNativeMethods(() => {
+        _.every([1, 2, 3, 4], () => {});
+      });
       it('should use _.reduce', () => {
         spyOn(_, 'reduce');
         _.every([1, 2, 3], _.identity);

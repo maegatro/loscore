@@ -95,7 +95,7 @@
     }
     return returnArray;
 
-    //The code below works but doesn't pass the test because it produces a SORTED array which the test doesn't validate.
+    //The code below works but doesn't pass the test because it produces a SORTED array which the test doesn't validate but may be helpful in the future.
     // let returnArray = [];
     // let tempObj = {};
 
@@ -143,19 +143,19 @@
           iteratee(collection[item], item, collection);
         }
       }
- 
+
   };
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
     let exists = [];
     _.each(array,function(value,i){
-      console.log("array",array)
-      console.log("value",value)
-      console.log("i",i)
-      console.log("target",target)
+      // console.log("array",array)
+      // console.log("value",value)
+      // console.log("i",i)
+      // console.log("target",target)
       if (value === target){
-        console.log("Found!", i)
+        //console.log("Found!", i)
         exists.push(i)
       }
     })
@@ -167,7 +167,6 @@
 
   };
 
-
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
     let resultArray = [];
@@ -177,8 +176,6 @@
     return resultArray;
 
   };
-
-
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE
@@ -216,7 +213,7 @@
         }
       }
     }
-    console.log("resultArray is", resultArray)
+    //console.log("resultArray is", resultArray)
     return resultArray;    
   };
 
@@ -226,6 +223,7 @@
         collection = collection[0];
         accumulator = iterator(val, 0);
       } else {
+        //console.log(accumulator)
         accumulator = iterator(accumulator, val);
       }
       })
@@ -278,6 +276,7 @@ return object[0];
     return function() {
         if (!alreadyCalled) {
             result = func.apply(this, arguments);
+            //console.log(result)
             alreadyCalled = true;
         }
         return result;
@@ -291,11 +290,12 @@ return object[0];
     return function(){
       let key = JSON.stringify(arguments);
       if (cache[key]){
-        console.log(cache)
+        //console.log(cache)
         return cache[key];
       }
       else{
         let val = func.apply(null, arguments);
+        //console.log(val)
         cache[key] = val;
         return val; 
       }
@@ -305,6 +305,7 @@ return object[0];
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
     let resultArr =[];
+    //console.log(resultArr)
     if (typeof functionOrKey !== "function"){
       resultArr = _.map(collection, (i)=> {
         return i[functionOrKey].apply(i)
