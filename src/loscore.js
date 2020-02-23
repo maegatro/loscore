@@ -229,12 +229,22 @@
     console.log(`collection is passed as first outer input: ${collection}`);
     console.log(`test is passed as second outer input: ${test}`);
 
+    let result = true;
+
     // let accumulator = true;
 
+    if(test === undefined){
+      for(let el of collection){
+        if(el === false){
+          result = false;
+          break;
+        }
+      }
+    } else {
     // Check if all elements passes the tests
-    let result =  _.reduce(collection, (doesPass, item) => {
+    result =  _.reduce(collection, (doesPass, item) => {
       // IF All Items pass through tests
-      console.log(`Doespass is ???: ${doesPass}`);
+      // console.log(`Doespass is ???: ${doesPass}`);
       if(!doesPass){
         return false;
       }
@@ -244,8 +254,9 @@
       // Else Some Items or no items pass the tests
         //Return false
       // console.log(`Iterator data type: ${Object.prototype.toString.call(val)}`);
-      console.log(`Value: ${val}`);
+      // console.log(`Value: ${val}`);
     }, true);
+    }
 
     return result;
 
