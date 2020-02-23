@@ -281,12 +281,6 @@
         return previousValue;
       }
     }
-    // Return a function
-      //IF the function hasn't been called before
-        // Return function object
-      //Else
-        // Don't increment (Return previous value)
-    // return func;
   };
 
   _.memoize = function (func) {
