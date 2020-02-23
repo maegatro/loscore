@@ -158,15 +158,12 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
-    // let iterator = (accumulator, item) => {
-    //   return accumulator + item;
-    // };
-    // if (accumulator == undefined) {
-    //   accumulator = collection[0];
-    //   return each(collection, iterator);
-    // } else {
-    //   return each(collection, iterator);
-    // }
+    _.each(collection, (item, i) => {
+      i == 0 && accumulator == undefined
+        ? (accumulator = item)
+        : (accumulator = iterator(accumulator, item));
+    });
+    return accumulator;
   };
 
   _.contains = (collection, target) => {
@@ -182,8 +179,29 @@
     );
   };
 
-  _.every = function(/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function(collection, test) {
+    if (collection.length == 0) {
+      return true;
+    } else if (test == undefined) {
+      for (const i of collection) {
+        if (!i) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    } else {
+      return _.reduce(
+        collection,
+        (passedTest, item) => {
+          if (!passedTest) {
+            return false;
+          }
+          return test(item);
+        },
+        true
+      );
+    }
   };
 
   /**
@@ -191,9 +209,7 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function(obj) {
-    // YOUR CODE HERE
-  };
+  _.extend = function(...obj) {};
 
   /**
   | FUNCTIONS
