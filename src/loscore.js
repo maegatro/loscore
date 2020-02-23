@@ -287,21 +287,17 @@
     // console.log(func);
     let cache = {}; // Data Format --> {key: xxx, value: xxx}
     let cacheArr = [];
-    let hasExecuted = false;
+    // let hasExecuted = false;
 
     return val => {
-
       if(checkCache(cacheArr, val)){
         return cacheArr[0]["value"];
       }else {
         cache["key"] = val;
         cache["value"] = func(val);
-        console.log(cache);
         cacheArr.push(cache);
-        console.log(cacheArr);
         return cache["value"];
       }
-
     }
   }
 
