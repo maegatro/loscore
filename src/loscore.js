@@ -39,11 +39,25 @@
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    if (n === 0) {
+      let arri = [];
+      return arri;
+    } else if (n === undefined) {
+      let non = array.slice(-1);
+      return non;
+    } else {
+      if (n > array.length) {
+        return array;
+      } else {
+        let arr = array.slice(array.length - n);
+        return arr;
+      }
+    }
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let unsortedArr = new Set(array);
+    return [...unsortedArr];
   };
 
   /**
