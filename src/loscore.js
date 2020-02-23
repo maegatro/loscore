@@ -172,8 +172,14 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
+  _.extend = function (objA, objB, objC) {
+    _.each(objB, function(value, key){
+      objA[key] = value;
+    });
+    _.each(objC, function(value, key){
+      objA[key] = value;
+    });
+    return objA;
   };
 
   /**
