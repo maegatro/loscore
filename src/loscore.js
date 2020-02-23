@@ -201,9 +201,13 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
-    console.log(iterator);
-    console.log(collection);
+    // console.log(iterator);
+    // console.log(`accumulator from outside scope[ ${accumulator} ]does it match??`);
     //Declare variables
+    let acc = accumulator;
+    let previousAcc = accumulator;
+    let givenMemo = "";
+    let givenItem = "";
 
     //Use _.each method
       /*
@@ -224,7 +228,38 @@
           Need to consider whether the elements of the arrays are string or a numerical value??
       */
 
+      console.log(`iteratee itself? ${iterator}`)
+    _.each(collection, (value, index, array) => {
+      if(acc === undefined){
+        acc = array[0];
+        console.log(`Accumulator seems to be not given... Here it is: ${acc}`);
+      } else if(acc === "memo"){
+        // Temporarily
+        console.log(`Accumulator seems to be given... Here it is: ${acc}`);
+      }
+
+      console.log(`value? ${value}`);
+      console.log(`index? ${index}`);
+      console.log(`array? ${array}`);
+      acc = iterator(acc, array[index]);
+      console.log(`result of iteratee? ${acc}`);
+      console.log(`-----------------------------`);
+      // acc = iterator()
+    })
+
     // Return a single value/text
+    if(givenMemo !== ""){
+      console.log(`givenMemo is ${givenMemo}`);
+    }else if(givenItem !== ""){
+      console.log(`givenItem is ${givenItem}`);
+    }else {
+      console.log(`final result is ${acc}`);
+    }
+
+    return acc;
+
+    console.log(`-----------------------------`);
+    console.log(`-----------------------------`);
   };
 
   _.contains = (collection, target) => {
