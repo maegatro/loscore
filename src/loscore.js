@@ -66,19 +66,49 @@
   **/
 
   _.size = (collection) => {
-    // YOUR CODE HERE
-  };
-
-  _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    if (typeof collection === "string") {
+      return collection.length;
+    } else if (Array.isArray(collection)) {
+      return collection.length;
+    } else if (typeof collection === "object") {
+      return Object.keys(collection).length;
+    }
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        let j = collection[i];
+        iteratee(j, i, collection);
+      }
+    } else if (typeof collection === "object") {
+      for (let key in collection) {
+        iteratee(collection[key], key, collection);
+      }
+    }
+  };
+
+  _.indexOf = (array, target) => {
+    let index = -1;
+
+    let iteratee = (value, key, collection) => {
+      if (value === target && index === -1) {
+        index = key;
+      }
+    };
+
+    _.each(array, iteratee);
+
+    return index;
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let arrAy = [];
+    let cowBack = (value, key, collection) => {
+      arrAy.push(iteratee(value, key, collection));
+    };
+    _.each(collection, cowBack);
+    return arrAy;
   };
 
   _.filter = (collection, test) => {
