@@ -105,7 +105,11 @@
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, (l) => {
+      if (test(l)) result.push(l);
+    });
+    return result;
   };
 
   _.reject = (collection, test) => {
