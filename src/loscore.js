@@ -284,10 +284,8 @@
   };
 
   _.memoize = function (func) {
-    // console.log(func);
     let cache = {}; // Data Format --> {key: xxx, value: xxx}
     let cacheArr = [];
-    // let hasExecuted = false;
 
     return val => {
       if(checkCache(cacheArr, val)){
@@ -315,24 +313,19 @@
 
   _.invoke = function (collection, functionOrKey) {
     let result = [];
-
     if(typeof functionOrKey === "function"){
       for(let el of collection){
-        // console.log(el);
         result.push(functionOrKey.apply(el, collection));
       }
     } else {
       for(let el of collection){
         if(functionOrKey === "sort"){
           result.push(el.sort());
-          // console.log(el.sort())
         }else {
           result.push(el.toUpperCase());
-          // console.log(el.toUpperCase())
         }
       }
     }
-    console.log(`---------------------`);
     return result;
 
   };
