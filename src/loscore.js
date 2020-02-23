@@ -82,16 +82,6 @@
   
   _.map = (collection, iteratee) => {
     let output = []
-    // if (Array.isArray(collection)) {
-    //   for (let i = 0; i < collection.length; i++) {
-    //     output.push(iteratee(collection[i]))
-    //   }
-    // }
-    // else {
-    //   for (let i = 0; i < Object.keys(collection).length; i++) {
-    //     output.push(iteratee(collection[Object.keys(collection)[i]])) 
-    //   }
-    // }
     _.each(collection, (el) => output.push(iteratee(el)))
     return output
   };
@@ -168,11 +158,39 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
-  };
+    let initial 
+    return (b) => {
+      if (b !== undefined) {
+        if (initial === undefined) initial = b
+        return func(initial) 
+      }
+      else {
+        if (initial === undefined) { 
+          initial = 1
+          return func()
+        }
+      }
+    } 
+  }
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let cache
+    return (b) => {
+      if(cache === undefined) {
+        cache = {}
+        let output = func(b)
+        cache[b] = output
+        return output
+      }
+      else if(cache[b] === undefined) {
+        let output = func(b)
+        cache[b] = output
+        return output
+      }
+      else {
+        return cache[b]
+      }
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
