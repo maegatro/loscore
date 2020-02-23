@@ -223,8 +223,34 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
+  _.every = function (collection, test) {
     // YOUR CODE HERE
+    console.log("-------------------------------");
+    console.log(`collection is passed as first outer input: ${collection}`);
+    console.log(`test is passed as second outer input: ${test}`);
+
+    // let accumulator = true;
+
+    // Check if all elements passes the tests
+    let result =  _.reduce(collection, (doesPass, item) => {
+      // IF All Items pass through tests
+      console.log(`Doespass is ???: ${doesPass}`);
+      if(!doesPass){
+        return false;
+      }
+      return test(item);
+      // console.log(`Outcome of the invocation is: ${test(item)}`);
+        //Return true
+      // Else Some Items or no items pass the tests
+        //Return false
+      // console.log(`Iterator data type: ${Object.prototype.toString.call(val)}`);
+      console.log(`Value: ${val}`);
+    }, true);
+
+    return result;
+
+
+    console.log("-------------------------------");
   };
 
   /**
