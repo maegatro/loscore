@@ -201,6 +201,30 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    console.log(iterator);
+    console.log(collection);
+    //Declare variables
+
+    //Use _.each method
+      /*
+        Some important variables to consider:
+        1) Accumulator:
+          IF there is no accumulator given, the FIRST element of the "collection"
+          has to be used as an initial value
+
+          ELSE Use the accumulator to store returned value of the previous iteration
+
+        2) Iteratee:
+          Seems like all iteratee passed from the test code has two inputs in common
+          Despite the fact that the names of the parameters are different (memo, item, total, wasFount, etc), I assume that the Left input will have functionality as a accumulator. While The Right input should be a parameter for taking each element of the collection each loop
+
+        3) Collection
+          All collection are arrays
+
+          Need to consider whether the elements of the arrays are string or a numerical value??
+      */
+
+    // Return a single value/text
   };
 
   _.contains = (collection, target) => {
