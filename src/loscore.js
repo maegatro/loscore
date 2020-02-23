@@ -11,7 +11,6 @@
   };
 
   /** | ARRAYS |~~~~~~~~~~ **/
-
   _.head = (array) => {
     return array[0];
   };
@@ -170,16 +169,18 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
-    _.each(collection, (val) => {
-      if (accumulator === undefined) {
-        collection = collection[0];
-        accumulator = iterator(val, 0);
-      } else {
-        //console.log(accumulator) 
-        accumulator = iterator(accumulator, val);
+	
+    if(typeof accumulator === "undefined") {
+      accumulator = collection[0];
+    }
+    _.each(collection,(item, i)=>{
+      if(collection[0] === accumulator && collection.length > 1 && i === 0) {
+        return accumulator;
       }
-    })
+      return accumulator = iterator(accumulator, item);
+    });
     return accumulator;
+
   };
 
   _.contains = (collection, target) => {
