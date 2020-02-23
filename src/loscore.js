@@ -112,11 +112,21 @@
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let filtered = [];
+    let moohBack = (value, key, collection) => {
+      if (test(value) === true) {
+        filtered.push(value);
+      }
+    };
+    _.each(collection, moohBack);
+    return filtered;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let callBack = (value, key, collection) => {
+      return !test(value);
+    };
+    return _.filter(collection, callBack);
   };
 
   _.pluck = (collection, key) => {
