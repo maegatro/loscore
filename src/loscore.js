@@ -267,7 +267,26 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let executed = false;
+    let previousValue = 0;
+    return val => {
+      if(val === undefined && !executed){
+        executed = true;
+        func();
+      }else if(val !== undefined && !executed){
+        executed = true;
+        previousValue = func(val);
+        return previousValue;
+      }else {
+        return previousValue;
+      }
+    }
+    // Return a function
+      //IF the function hasn't been called before
+        // Return function object
+      //Else
+        // Don't increment (Return previous value)
+    // return func;
   };
 
   _.memoize = function (func) {
