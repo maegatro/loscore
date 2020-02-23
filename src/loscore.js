@@ -284,9 +284,39 @@
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
-  };
-  
+    // console.log(func);
+    let cache = {}; // Data Format --> {key: xxx, value: xxx}
+    let cacheArr = [];
+    let hasExecuted = false;
+
+    return val => {
+
+      if(checkCache(cacheArr, val)){
+        return cacheArr[0]["value"];
+      }else {
+        cache["key"] = val;
+        cache["value"] = func(val);
+        console.log(cache);
+        cacheArr.push(cache);
+        console.log(cacheArr);
+        return cache["value"];
+      }
+
+    }
+  }
+
+  const checkCache = (cacheArr, val) => {
+    for(let cache of cacheArr){
+      if(cache["key"] === val){
+        return true;
+      }else {
+        return false;
+      }
+    }
+  }
+
+
+
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
   };
