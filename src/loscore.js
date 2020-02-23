@@ -209,7 +209,15 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function(...obj) {};
+  _.extend = function(...obj) {
+    let colletion = [...obj];
+    _.each(colletion, function(objEle, objIndex) {
+      _.each(objEle, function(value, key) {
+        colletion[0][key] = value;
+      });
+    });
+    return colletion[0];
+  };
 
   /**
   | FUNCTIONS
