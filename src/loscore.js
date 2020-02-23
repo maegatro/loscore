@@ -201,69 +201,17 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
-    // console.log(iterator);
-    // console.log(`accumulator from outside scope[ ${accumulator} ]does it match??`);
-    //Declare variables
     let acc = accumulator;
-    let newCollection = collection.slice(1);
-    // let givenMemo = "";
-    // let givenItem = "";
-
-    //Use _.each method
-      /*
-        Some important variables to consider:
-        1) Accumulator:
-          IF there is no accumulator given, the FIRST element of the "collection"
-          has to be used as an initial value
-
-          ELSE Use the accumulator to store returned value of the previous iteration
-
-        2) Iteratee:
-          Seems like all iteratee passed from the test code has two inputs in common
-          Despite the fact that the names of the parameters are different (memo, item, total, wasFount, etc), I assume that the Left input will have functionality as a accumulator. While The Right input should be a parameter for taking each element of the collection each loop
-
-        3) Collection
-          All collection are arrays
-
-          Need to consider whether the elements of the arrays are string or a numerical value??
-      */
-
-      console.log(`iteratee itself? ${iterator}`)
     _.each(collection, (value, index, array) => {
       if(acc === undefined){
         acc = array[0];
-        console.log(`Accumulator seems to be not given... Here it is: ${acc}`);
-      } else if(acc === "memo"){
-        // Temporarily
-        console.log(`Accumulator seems to be given... Here it is: ${acc}`);
       }
-
-      console.log(`value? ${value}`);
-      console.log(`index? ${index}`);
-      console.log(`array? ${array}`);
       acc = iterator(acc, array[index]);
-      console.log(`result of iteratee? ${acc}`);
-      console.log(`-----------------------------`);
-      // acc = iterator()
     })
-
-    // Return a single value/text
-    // if(givenMemo !== ""){
-    //   console.log(`givenMemo is ${givenMemo}`);
-    // }else if(givenItem !== ""){
-    //   console.log(`givenItem is ${givenItem}`);
-    // }else {
-    //   console.log(`final result is ${acc}`);
-    // }
-
     if(Math.sign(acc) === -1){
       acc = 0;
     }
-
     return acc;
-
-    console.log(`-----------------------------`);
-    console.log(`-----------------------------`);
   };
 
   _.contains = (collection, target) => {
