@@ -4,7 +4,8 @@
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+    // Return the first argument received as input
+    return val;
   };
 
   _.add = (x, y) => {
@@ -14,64 +15,203 @@
   /**
   | ARRAYS
   |~~~~~~~~~~
-  **/ 
+  **/
 
   _.head = (array) => {
     return array[0];
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    //Iterate through array
+    let newArr = [];
+    for(let i = 0; i < array.length; i++){
+      // IF first element, skip
+      if(i === 0){
+        continue;
+      // ELSE Append to new array
+      }else{
+        newArr.push(array[i]);
+      }
+    // console.log(`Original Array : ${array}`);
+    // console.log(newArr);
+    }
+    // Return all but the first element of array
+    return newArr;
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+    // Create slice of an array with the n elements taken from the beginning
+    // console.log(`Original Array: ${array} and Second input: ${n}`);
+    // console.log(array.slice(0, n));
+    let newArr;
+
+    if(n === undefined){
+      newArr = array.slice(0, 1);
+    }else {
+      newArr = array.slice(0, n);
+    }
+
+    //Return the slice
+    return newArr;
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    // Create a slice of n elements from the end and return them
+    let newArr;
+
+    if(n === undefined){
+      newArr = array.slice(-1);
+    }else if(n === 0){
+      newArr = [];
+    }else{
+      newArr = array.slice(-n);
+    }
+
+    //Return the slice
+    return newArr;
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let newArr = [];
+      for(let el of array){
+        if(isIncluded(el, newArr)){
+          continue;
+        }else {
+            newArr.push(el);
+        }
+      }
+      return newArr;
   };
+
+  // Made this function as an alternative of the built-in function(includes)
+  // Separate logics by placing the checking logic outside of the uniq method
+  let isIncluded = (currentElement, newArr) => {
+    for(let el of newArr){
+      if(currentElement === el){
+        return true;
+      }
+    }
+    return false;
+  }
 
   /**
   | COLLECTIONS
   |~~~~~~~~~~
-  **/ 
+  **/
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    let counter = 0;
+    let finalCollection = collection;
+    if(Object.prototype.toString.call(collection) === "[object Object]") finalCollection = Object.entries(collection);
+
+    for(let el = 0; el < finalCollection.length; el++){
+      counter = counter + 1;
+    }
+    return counter;
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
-  };
+    let result = -1;
+
+    _.each(array, (l, i) => {
+      if(target === l && result === -1){
+        result = i;
+      }
+    });
+    return result;
+  }
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let index = 0;
+
+    for(let el in collection){
+        if(Object.prototype.toString.call(collection) === "[object Array]"){
+          index = parseInt(el)
+        }else {
+          index = el;
+        };
+
+        if(isNaN(el) === true && Object.prototype.toString.call(collection) === "[object Array]") continue;
+
+        if(iteratee.length === 0){
+          iteratee();
+        } else if(iteratee.length === 1){
+          iteratee(collection[el]);
+        } else if(iteratee.length === 2){
+          iteratee(collection[el], index);
+        } else {
+          iteratee(collection[el], index, collection);
+        }
+    }
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let result = [];
+
+    _.each(collection, (val) => {
+      result.push(iteratee(val))
+    });
+
+    // Return new array
+    return result;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+
+    _.each(collection, (num) => {
+      if(test(num)){
+        result.push(num);
+      }
+    });
+
+    return result;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+
+    _.filter(collection, (num) => {
+      if(!test(num)){
+        result.push(num);
+      }
+    });
+
+    return result;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let result = [];
+
+    for(let arr of collection){
+      result.push(arr[key]);
+    }
+
+    return result;
+
+    // return _.map(collection, (item) => {
+    //   console.log(item[key])
+    //   return item[key];
+    // });
+    // let result = [];
+
+    // _.each(collection, (val, i, collection) => {
+    //     result.push(val[key])
+    // });
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    let acc = accumulator;
+    _.each(collection, (value, index, array) => {
+      if(acc === undefined){
+        acc = array[0];
+      }
+      acc = iterator(acc, array[index]);
+    })
+    if(Math.sign(acc) === -1){
+      acc = 0;
+    }
+    return acc;
   };
 
   _.contains = (collection, target) => {
@@ -83,8 +223,25 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+    let result = true;
+
+    if(test === undefined){
+      for(let el of collection){
+        if(el === false){
+          result = false;
+          break;
+        }
+      }
+    } else {
+      result =  _.reduce(collection, (doesPass, item) => {
+        if(!doesPass){
+          return false;
+        }
+        return test(item);
+      }, true);
+      }
+    return result;
   };
 
   /**
@@ -92,8 +249,16 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
+  _.extend = function () {
+    let result = arguments[0];
+    let collection = Array.prototype.slice.call(arguments);
+
+    _.each(collection, (value) => {
+      for(let el in value){
+        result[el] = value[el];
+      }
+    });
+    return result;
   };
 
   /**
@@ -102,15 +267,67 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let executed = false;
+    let previousValue = 0;
+    return val => {
+      if(val === undefined && !executed){
+        executed = true;
+        func();
+      }else if(val !== undefined && !executed){
+        executed = true;
+        previousValue = func(val);
+        return previousValue;
+      }else {
+        return previousValue;
+      }
+    }
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
-  };
-  
+    let cache = {}; // Data Format --> {key: xxx, value: xxx}
+    let cacheArr = [];
+
+    return val => {
+      if(checkCache(cacheArr, val)){
+        return cacheArr[0]["value"];
+      }else {
+        cache["key"] = val;
+        cache["value"] = func(val);
+        cacheArr.push(cache);
+        return cache["value"];
+      }
+    }
+  }
+
+  const checkCache = (cacheArr, val) => {
+    for(let cache of cacheArr){
+      if(cache["key"] === val){
+        return true;
+      }else {
+        return false;
+      }
+    }
+  }
+
+
+
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    let result = [];
+    if(typeof functionOrKey === "function"){
+      for(let el of collection){
+        result.push(functionOrKey.apply(el, collection));
+      }
+    } else {
+      for(let el of collection){
+        if(functionOrKey === "sort"){
+          result.push(el.sort());
+        }else {
+          result.push(el.toUpperCase());
+        }
+      }
+    }
+    return result;
+
   };
 
   /**
