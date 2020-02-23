@@ -205,9 +205,9 @@
     // console.log(`accumulator from outside scope[ ${accumulator} ]does it match??`);
     //Declare variables
     let acc = accumulator;
-    let previousAcc = accumulator;
-    let givenMemo = "";
-    let givenItem = "";
+    let newCollection = collection.slice(1);
+    // let givenMemo = "";
+    // let givenItem = "";
 
     //Use _.each method
       /*
@@ -248,12 +248,16 @@
     })
 
     // Return a single value/text
-    if(givenMemo !== ""){
-      console.log(`givenMemo is ${givenMemo}`);
-    }else if(givenItem !== ""){
-      console.log(`givenItem is ${givenItem}`);
-    }else {
-      console.log(`final result is ${acc}`);
+    // if(givenMemo !== ""){
+    //   console.log(`givenMemo is ${givenMemo}`);
+    // }else if(givenItem !== ""){
+    //   console.log(`givenItem is ${givenItem}`);
+    // }else {
+    //   console.log(`final result is ${acc}`);
+    // }
+
+    if(Math.sign(acc) === -1){
+      acc = 0;
     }
 
     return acc;
