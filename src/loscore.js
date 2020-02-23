@@ -250,27 +250,15 @@
   **/
 
   _.extend = function (obj) {
-    // YOUR CODE HERE
-    console.log(`----------------------`);
-    // console.log(`obj : ${obj}`);
-    console.log(`FROM HERE`);
-    // console.log(arguments);
-    // console.log(Object.values(arguments));
     let result = arguments[0];
     let collection = Array.prototype.slice.call(arguments);
 
     _.each(collection, (value) => {
-      // console.log(value);
       for(let el in value){
-        // console.log(el);
         result[el] = value[el];
       }
-      // console.log(Object.entries(value));
     });
-    console.log(`----------------------`);
-    console.log(result);
     return result;
-
   };
 
   /**
