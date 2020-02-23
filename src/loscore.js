@@ -28,7 +28,6 @@
       returnArray.push(array[i]);
     }
     return returnArray;
-    
   };
 
   _.take = (array, n) => {
@@ -75,7 +74,6 @@
 
   _.uniq = (array) => {
     // YOUR CODE HERE
-
     let returnArray = [];
     let tempValue = undefined;
     let alreadyExists = false;
@@ -94,25 +92,6 @@
         tempValue = undefined;
     }
     return returnArray;
-
-    //The code below works but doesn't pass the test because it produces a SORTED array which the test doesn't validate but may be helpful in the future.
-    // let returnArray = [];
-    // let tempObj = {};
-
-    // for(let i = 0; i < array.length; i++){
-
-    //     if(tempObj[array[i]]){
-    //         tempObj[array[i]]++; 
-    //     } else {
-    //         tempObj[array[i]] = 1
-    //     }
-    // }
-    // //console.table(tempObj)
-    // for(let key in tempObj){
-    //     returnArray.push(key)
-    // }
-    // //console.log(returnArray)
-    // return returnArray;
   };
 
   /**
@@ -129,21 +108,6 @@
     } else if (typeof collection === "string"){
       return collection.length;
     }
-  };
-
-  _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
-    let type = typeof collection;
-    if (collection instanceof Array){
-      for (let i = 0; i < collection.length; i++){
-        iteratee(collection[i], i, collection);
-      } 
-      } else if (type === "object") {
-        for (let item in collection) {
-          iteratee(collection[item], item, collection);
-        }
-      }
-
   };
 
   _.indexOf = (array, target) => {
@@ -164,7 +128,20 @@
     } else {
     return exists[0];
     }
+  };
 
+  _.each = (collection, iteratee) => {
+    // YOUR CODE HERE
+    let type = typeof collection;
+    if (collection instanceof Array){
+      for (let i = 0; i < collection.length; i++){
+        iteratee(collection[i], i, collection);
+      } 
+      } else if (type === "object") {
+        for (let item in collection) {
+          iteratee(collection[item], item, collection);
+        }
+      }
   };
 
   _.map = (collection, iteratee) => {
@@ -174,12 +151,10 @@
       resultArray.push(iteratee(value))
     })
     return resultArray;
-
   };
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE
-
     let resultArray = [];
     _.each(collection,function(value){
       if(test(value)){
@@ -187,12 +162,10 @@
       }
     })
     return resultArray;
-
   };
 
   _.reject = (collection, test) => {
     // YOUR CODE HERE
-
     let resultArray = [];
     _.filter(collection,function(value){
       if(!test(value)){
@@ -200,11 +173,9 @@
       }
     })
     return resultArray
-
   };
 
   _.pluck = (collection, key) => {
-
     let resultArray = [];
     for(let object of collection){
       for(let id in object){
@@ -240,37 +211,32 @@
   };
 
   _.every = function (collection,test) {
-    if (test === undefined){
-      return true;
-    }
-    return _.reduce(collection, (wasPassed, item) => {
-      if(!wasPassed) {
-        return false;
-      }
-      return test(item);
-    }, true);
-};
+    // YOUR CODE HERE
+    if (test === undefined) { return true; } return _.reduce(collection, (wasPassed, item) => { if (!wasPassed) { return false; } return test(item); }, true);
+  };
 
   /**
   | OBJECTS
   |~~~~~~~~~~
   **/
-_.extend = function (...object) {
-for(let i = 0; i < object.length-1; i++){
-  _.each(object[i+1],(value,key)=>{
-    object[0][key] = value;
-  });
-}
-return object[0];
-};
+
+  _.extend = function (...obj) {
+    // YOUR CODE HERE
+    for(let i = 0; i < obj.length-1; i++){
+      _.each(obj[i+1],(value,key)=>{
+        obj[0][key] = value;
+      });
+    }
+    return obj[0];
+  };
 
   /**
   | FUNCTIONS
   |~~~~~~~~~~
   **/
+
   _.once = function (func) {
     // YOUR CODE HERE
-    //https://stackoverflow.com/questions/21166101/what-is-it-used-for-once-in-underscore
     let alreadyCalled = false;
     let result;
     return function() {
@@ -285,7 +251,6 @@ return object[0];
 
   _.memoize = function (func) {
     // YOUR CODE HERE
-    //https://codeburst.io/understanding-memoization-in-3-minutes-2e58daf33a19
     let cache = {};
     return function(){
       let key = JSON.stringify(arguments);
@@ -301,7 +266,7 @@ return object[0];
       }
   }
   };
-
+  
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
     let resultArr =[];
@@ -315,7 +280,6 @@ return object[0];
       return functionOrKey.apply(i)
     })}
     return resultArr;
-
   };
 
   /**
@@ -343,4 +307,3 @@ return object[0];
     // YOUR CODE HERE
   };
 })();
-
