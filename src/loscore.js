@@ -249,7 +249,7 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
+  _.extend = function () {
     let result = arguments[0];
     let collection = Array.prototype.slice.call(arguments);
 
