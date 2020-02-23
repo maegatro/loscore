@@ -148,7 +148,6 @@
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
-
     let exists = [];
     _.each(array,function(value,i){
       console.log("array",array)
@@ -160,7 +159,6 @@
         exists.push(i)
       }
     })
-    
     if(exists.length === 0){
       return -1;
     } else {
@@ -173,7 +171,6 @@
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
     let resultArray = [];
-
     _.each(collection,function(value){
       resultArray.push(iteratee(value))
     })
@@ -205,7 +202,6 @@
         resultArray.push(value)
       }
     })
-
     return resultArray
 
   };
@@ -213,7 +209,6 @@
   _.pluck = (collection, key) => {
 
     let resultArray = [];
- 
     for(let object of collection){
       for(let id in object){
         if(id === key){
@@ -223,46 +218,102 @@
     }
     console.log("resultArray is", resultArray)
     return resultArray;    
-
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    _.each(collection, (val) => {
+      if (accumulator === undefined) {
+        collection = collection[0];
+        accumulator = iterator(val, 0);
+      } else {
+        accumulator = iterator(accumulator, val);
+      }
+      })
+    return accumulator;
   };
 
   _.contains = (collection, target) => {
-
+    return _.reduce(collection, (found, item) => {
+      if (found) {
+        return true;
+      }
+      return item === target;
+    }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
-  };
+  _.every = function (collection,test) {
+    if (test === undefined){
+      return true;
+    }
+    return _.reduce(collection, (wasPassed, item) => {
+      if(!wasPassed) {
+        return false;
+      }
+      return test(item);
+    }, true);
+};
 
   /**
   | OBJECTS
   |~~~~~~~~~~
   **/
-
-  _.extend = function (obj) {
-    // YOUR CODE HERE
-  };
+_.extend = function (...object) {
+for(let i = 0; i < object.length-1; i++){
+  _.each(object[i+1],(value,key)=>{
+    object[0][key] = value;
+  });
+}
+return object[0];
+};
 
   /**
   | FUNCTIONS
   |~~~~~~~~~~
   **/
-
   _.once = function (func) {
     // YOUR CODE HERE
+    //https://stackoverflow.com/questions/21166101/what-is-it-used-for-once-in-underscore
+    let alreadyCalled = false;
+    let result;
+    return function() {
+        if (!alreadyCalled) {
+            result = func.apply(this, arguments);
+            alreadyCalled = true;
+        }
+        return result;
+    };
   };
 
   _.memoize = function (func) {
     // YOUR CODE HERE
+    //https://codeburst.io/understanding-memoization-in-3-minutes-2e58daf33a19
+    let cache = {};
+    return function(){
+      let key = JSON.stringify(arguments);
+      if (cache[key]){
+        console.log(cache)
+        return cache[key];
+      }
+      else{
+        let val = func.apply(null, arguments);
+        cache[key] = val;
+        return val; 
+      }
+  }
   };
-  
+
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
-
- 
+    let resultArr =[];
+    if (typeof functionOrKey !== "function"){
+      resultArr = _.map(collection, (i)=> {
+        return i[functionOrKey].apply(i)
+    })
+  } else if (typeof functionOrKey === "function") {
+      resultArr = _.map(collection, (i)=> {
+      return functionOrKey.apply(i)
+    })}
+    return resultArr;
 
   };
 
