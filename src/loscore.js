@@ -104,7 +104,7 @@
     let finalCollection = collection;
     if(Object.prototype.toString.call(collection) === "[object Object]") finalCollection = Object.entries(collection);
 
-    for(let el of finalCollection){
+    for(let el = 0; el < finalCollection.length; el++){
       counter = counter + 1;
     }
     return counter;
@@ -314,7 +314,27 @@
 
 
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    let result = [];
+
+    if(typeof functionOrKey === "function"){
+      for(let el of collection){
+        // console.log(el);
+        result.push(functionOrKey.apply(el, collection));
+      }
+    } else {
+      for(let el of collection){
+        if(functionOrKey === "sort"){
+          result.push(el.sort());
+          // console.log(el.sort())
+        }else {
+          result.push(el.toUpperCase());
+          // console.log(el.toUpperCase())
+        }
+      }
+    }
+    console.log(`---------------------`);
+    return result;
+
   };
 
   /**
