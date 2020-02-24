@@ -211,7 +211,7 @@
 
   _.extend = function(...obj) {
     let colletion = [...obj];
-    _.each(colletion, function(objEle, objIndex) {
+    _.each(colletion, function(objEle) {
       _.each(objEle, function(value, key) {
         colletion[0][key] = value;
       });
@@ -225,11 +225,44 @@
   **/
 
   _.once = function(func) {
-    // YOUR CODE HERE
+    let record = [{ value: null, fn: null }];
+    return (para) => {
+      for (let i = 0; i < record.length; i++) {
+        if (record[i]["fn"] == func) {
+          return record[i]["value"];
+        } else {
+          record.unshift({ value: null, fn: null });
+          record[0]["fn"] = func;
+          record[0]["value"] = func(para);
+          return record[0]["value"];
+        }
+      }
+    };
   };
 
   _.memoize = function(func) {
-    // YOUR CODE HERE
+    let record = [{ val: null, fn: null, argument: null }];
+    return (para) => {
+      for (let i = 0; i < record.length; i++) {
+        if (record[i]["fn"] == func) {
+          if (record[i]["argument"] == para) {
+            return record[i]["val"];
+          } else {
+            record.unshift({ val: null, fn: null, argument: null });
+            record[0]["val"] = func(para);
+            record[0]["argument"] = para;
+            record[0]["fn"] = func;
+            return record[0]["val"];
+          }
+        } else {
+          record.unshift({ val: null, fn: null, argument: null });
+          record[0]["fn"] = func;
+          record[0]["argument"] = para;
+          record[0]["val"] = func(para);
+          return record[0]["val"];
+        }
+      }
+    };
   };
 
   _.invoke = function(collection, functionOrKey) {
