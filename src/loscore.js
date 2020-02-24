@@ -115,11 +115,11 @@
   _.reject = (collection, test) => {
     const rejectArray =  _.filter(collection, test);
     const notTruth = (val) => {
-      let count = [];
+      let count = 0;
       for (let i = 0; i < rejectArray.length; i++) {
-        if (val === rejectArray[i]) count.push(rejectArray[i]);
+        if (val != rejectArray[i]) count++;
       }
-      if (count.length === 0) return true;
+      if (count === rejectArray.length) return true;
     }
 
     return _.filter(collection, notTruth);
