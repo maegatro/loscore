@@ -4,7 +4,7 @@
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+    return val;
   };
 
   _.add = (x, y) => {
@@ -21,19 +21,35 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    return array.slice(1, array.length);
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  _.take = (array, n = 1) => {
+    return array.slice(0, n);
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    if (n <= array.length){
+      return array.slice(array.length - n, array.length);
+    }else{
+      return array;
+    }
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    var result = [];
+    for(var originalIndex = 0; originalIndex < array.length; originalIndex++){
+      var counter = 0;
+      for(var resultIndex = 0; resultIndex < result.length; resultIndex++){
+        if(result[resultIndex] == array[originalIndex]){
+          counter++;
+        }
+      }
+      if(counter == 0){
+        result.push(array[originalIndex]);
+      }
+    }
+    return result;
   };
 
   /**
@@ -42,36 +58,85 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
-  };
-
-  _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    if(Array.isArray(collection) || typeof collection == "string"){
+      return collection.length;
+    }else if(typeof collection == "object"){
+      return Object.keys(collection).length;
+    }
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if(Array.isArray(collection)){
+      for(let index = 0; index < collection.length; index++){
+        iteratee(collection[index], index, collection);
+      }
+    }else{
+      for (let index in collection){
+        iteratee(collection[index], index, collection);
+      }
+    }
+  };
+
+  _.indexOf = (array, target) => {
+    var index = -1;
+
+    _.each(array, (value, i) => {
+    if(value == target && index == -1){
+      index = i;
+    }
+    })
+    return index
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    var result = [];
+    _.each(collection, (value, index) => {
+      result.push(iteratee(value, index));
+    });
+    return result;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    var result = [];
+
+    _.each(collection, (value, index) => {
+      if(test(value, index)){
+        result.push(value);
+      }
+    });
+    return result;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    var original = [...collection];
+    var array = _.filter(collection, test);
+    var result = [];
+
+    for(var i = 0; i < original.length; i++){
+      if((_.indexOf(array, original[i])) == -1){
+        result.push(original[i]);
+      }
+    }
+    return result;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    var result = [];
+    for(var a in collection){
+      result.push(collection[a][key]);
+    }
+    return result;
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    _.each(collection, (value, index) => {
+      if(index == 0 && accumulator == undefined){
+          accumulator = value;
+      }else{
+        accumulator = iterator(accumulator, value, index);
+      }
+    });
+    return accumulator;
   };
 
   _.contains = (collection, target) => {
@@ -83,8 +148,23 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (array, test) {
+    var result = 0;
+    if(test == undefined){
+      return array;
+    }
+
+    _.reduce(array, function(accumulator, value){
+      if(!test(value)){
+        result++;
+      }
+    });
+
+    if(result > 0){
+      return false;
+    }else{
+      return true;
+    }
   };
 
   /**
@@ -92,8 +172,14 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
+  _.extend = function (objA, objB, objC) {
+    _.each(objB, function(value, key){
+      objA[key] = value;
+    });
+    _.each(objC, function(value, key){
+      objA[key] = value;
+    });
+    return objA;
   };
 
   /**
@@ -102,15 +188,39 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
-  };
+    var result;
+    return function () {
+      if (func) {
+        result = func.apply(this, arguments);
+        func = undefined;
+      }
+      return result;
+    }
+  }
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    var cache = {};
+    return function(){
+      var key = JSON.stringify(arguments);
+      if(!cache[key]){
+        cache[key] = func.apply(this, arguments);
+      }
+      return cache[key];
+    }
   };
-  
-  _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+
+  _.invoke = function(collection, functionOrKey) {
+    return _.map(collection, function(item){
+      if(typeof functionOrKey == "string"){
+        if(Array.isArray(item)){
+          return [][functionOrKey].apply(item);
+        }else{
+          return ""[functionOrKey].apply(item);
+        }
+      }else{
+        return functionOrKey.apply(item);
+      }
+    })
   };
 
   /**
