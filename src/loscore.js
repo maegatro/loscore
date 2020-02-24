@@ -130,9 +130,11 @@
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let arr1 = [];
+    for (let i = 0; i < collection.length; i++) {
+      arr1.push(collection[i][key]);
+    }
+    return arr1;
   };
 
   _.reduce = (collection, iterator, accumulator) => {};
