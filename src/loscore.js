@@ -162,10 +162,19 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
+  _.every = function (collection, test) {
     // YOUR CODE HERE
-  };
-
+    if(test === undefined){
+      return true;
+    };
+    let boolean = true;
+    _.reduce(collection, function(memo, item){
+      if(!test(item)){
+        boolean = false;
+      }
+    });
+    return boolean;
+  }
   /**
   | OBJECTS
   |~~~~~~~~~~
