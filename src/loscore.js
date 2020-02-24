@@ -182,11 +182,16 @@
 
   _.extend = function (obj) {
     // YOUR CODE HERE
-    _.each(obj, function(value, key, collection){
-      collection.key = value;
-      _.extend(obj);
+    let source;
+    if(arguments.length > 2){
+      source = arguments[arguments.length-1];
+    } else if(arguments.length > 1){
+      source = arguments[1];
+    }
+    _.each(source, function(value, key, collection){
+      obj[key] = source[key];
     });
-    return obj
+    return obj;
   };
 
   /**
