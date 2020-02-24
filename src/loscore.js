@@ -169,8 +169,13 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
+  _.extend = function (objA, ...objB) {
+    for (let item of objB) {
+      _.each(item, function(value, key){
+        objA[key] = value;
+      })
+      console.log('result ', objA)
+    }return objA;
   };
 
   /**
