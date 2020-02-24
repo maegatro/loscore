@@ -174,7 +174,6 @@
       _.each(item, function(value, key){
         objA[key] = value;
       })
-      console.log('result ', objA)
     }return objA;
   };
 
@@ -182,13 +181,38 @@
   | FUNCTIONS
   |~~~~~~~~~~
   **/
-
+ 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let counter = 0;
+    let result;
+    return function(...args) {
+      if (counter <= 0) {
+        counter ++
+        let value = func(args)
+        result = value;
+        return result;
+      }
+      else {
+        return result;
+      }
+
+    }
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let cache = {};
+      return function(args) {
+        if (cache[args]) {
+          return cache[args]
+        }else {
+          let value = func(args)
+          cache[args] = value;
+          return value;
+        }
+
+      }
+
+      
   };
   
   _.invoke = function (collection, functionOrKey) {
