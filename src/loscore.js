@@ -60,11 +60,12 @@
 
   _.indexOf = (array, target) => {
     let result = -1;
-    let newArray = [];
-    _.each(array, function(k, l){
+    _.each(array, function(value, index, collection){
       for (let i = 0; i < array.length; i++){
-        if (k === target){
-          result = l;
+        if (value === target){
+          if (result === -1){
+            result = index;
+          }
         }
       }
     });
@@ -126,11 +127,15 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
-    let result = [];
-    _.each(collection, function (value, index, collection){
-      
-    })
-    return result;
+    let memo = accumulator;
+    if (accumulator === undefined){
+      memo = collection[0];
+      collection = collection.slice(1, collection.length);
+    }
+    _.each(collection, function (value){
+      memo = iterator(memo, value);
+    });
+    return memo;
   };
 
   _.contains = (collection, target) => {
@@ -142,8 +147,13 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, truthTest) {
+    if (truthTest === undefined){
+      return true;
+    }
+    return _.reduce(collection, function (accumulator, value){
+      return truthTest(value) && accumulator;
+    }, true);
   };
 
   /**
@@ -151,8 +161,14 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
+  _.extend = function (mainObj, ...otherObjs) {
+    let newObj = mainObj;
+    _.each(otherObjs, function (value){
+      for (const i in value){
+        newObj[i] = value[i];
+      }
+    });
+    return newObj;
   };
 
   /**
@@ -161,15 +177,32 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let wasExecuted = false;
+    let firstResult = func();
+    return function (){
+      if (!wasExecuted){
+        wasExecuted = true;
+        return firstResult;
+      }
+      return firstResult;
+    }
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let newObj = {};
+    
+    return function (val){
+      if (!newObj[val]){
+        newObj[val] = func(val);
+      }
+      return newObj[val];
+    };
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    let result = functionOrKey;
+    
+    return _.each(collection, result);
   };
 
   /**
