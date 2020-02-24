@@ -137,7 +137,17 @@
     return arr1;
   };
 
-  _.reduce = (collection, iterator, accumulator) => {};
+  _.reduce = (collection, iterator, accumulator) => {
+    let memo = accumulator;
+    if (memo === undefined) {
+      memo = collection[0];
+      collection = _.tail(collection, collection.length - 1);
+    }
+    _.each(collection, (item) => {
+      memo = iterator(memo, item);
+    });
+    return memo;
+  };
 
   _.contains = (collection, target) => {
     return _.reduce(
