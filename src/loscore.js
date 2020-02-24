@@ -132,7 +132,16 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
-  };
+      let result = accumulator;
+      if (typeof accumulator === "undefined") {
+        result = collection[0];
+        collection = _.tail(collection)
+      }
+      _.each(collection, function(item) {
+        result = iterator(result, item);
+      });return result;
+    };
+
 
   _.contains = (collection, target) => {
     return _.reduce(collection, (wasFound, item) => {
@@ -143,8 +152,16 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+    if (typeof test === "undefined") {
+      return true;
+    }
+    return _.reduce(collection, function(wasPassed, item) {
+      if (!wasPassed) {
+        return false;
+      }
+      else return test(item);     
+     }, true);
   };
 
   /**
