@@ -223,19 +223,17 @@
 
   _.invoke = function(collection, functionOrKey) {
     let result = [];
-
-    if (typeof functionOrKey === "function") {
-      for (var key in collection) {
-        result.push(functionOrKey.apply(collection[key]));
-      }
-    }
-
-    if (typeof functionOrKey === "string") {
-      let stringToFunction = new Function(functionOrKey);
-      for (var key in collection) {
-        stringToFunction(...collection[key]);
-        alert(collection[key]);
-      }
+    //key
+    if (typeof functionOrKey !== "function") {
+      _.each(collection, (element) => {
+        //use functionOrKey as a Key on element
+        result.push(element[functionOrKey].apply(element));
+      });
+      //function
+    } else {
+      _.each(collection, (element) => {
+        result.push(functionOrKey.apply(element));
+      });
     }
 
     return result;
