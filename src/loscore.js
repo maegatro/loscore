@@ -113,7 +113,16 @@
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    const rejectArray =  _.filter(collection, test);
+    const notTruth = (val) => {
+      let count = [];
+      for (let i = 0; i < rejectArray.length; i++) {
+        if (val === rejectArray[i]) count.push(rejectArray[i]);
+      }
+      if (count.length === 0) return true;
+    }
+
+    return _.filter(collection, notTruth);
   };
 
   _.pluck = (collection, key) => {
