@@ -141,11 +141,20 @@
     return result;
   };
 
-  _.reduce = (collection, iterator, accumulator) => {
+  _.reduce = (collection, iterator, accumulator)=> {
+    let memo = accumulator;
+    if(memo === undefined){
+      memo = collection[0];
+      collection = _.tail(collection);
+    }
+    _.each(collection, function(item, index, collection){
+    memo = iterator(memo, item);
+    });
+    return memo;
   };
 
   _.contains = (collection, target) => {
-    return _.reduce(collection, (wasFound, item) => {
+    return  _.reduce(collection, (wasFound, item) => {
       if (wasFound) {
         return true;
       }
@@ -164,6 +173,11 @@
 
   _.extend = function (obj) {
     // YOUR CODE HERE
+    _.each(obj, function(value, key, collection){
+      collection.key = value;
+      _.extend(obj);
+    });
+    return obj
   };
 
   /**
@@ -173,6 +187,10 @@
 
   _.once = function (func) {
     // YOUR CODE HERE
+    return function called(func){
+      return func;
+    }
+    called = undefined;
   };
 
   _.memoize = function (func) {
