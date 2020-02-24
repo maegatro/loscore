@@ -188,13 +188,28 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
-  };
+    var result;
+    return function () {
+      if (func) {
+        result = func.apply(this, arguments);
+        func = undefined;
+      }
+      return result;
+    }
+  }
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    var cache = {};
+    return function(){
+      var key = JSON.stringify(arguments);
+      if(!cache[key]){
+        cache[key] = func.apply(this, arguments);
+      }
+      return cache[key];
+    }
+    
   };
-  
+
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
   };
