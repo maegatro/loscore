@@ -207,11 +207,20 @@
       }
       return cache[key];
     }
-    
   };
 
-  _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+  _.invoke = function(collection, functionOrKey) {
+    return _.map(collection, function(item){
+      if(typeof functionOrKey == "string"){
+        if(Array.isArray(item)){
+          return [][functionOrKey].apply(item);
+        }else{
+          return ""[functionOrKey].apply(item);
+        }
+      }else{
+        return functionOrKey.apply(item);
+      }
+    })
   };
 
   /**
