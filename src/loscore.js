@@ -17,20 +17,48 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    let output = [];
+    if (array.length <= 1) {
+      return output;
+    } 
+    for (let i = 1; i < array.length; i++) {
+      output.push(array[i]);
+    } return output;
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  _.take = (array, n = 1) => {
+    let output = [];
+    if (n === 0) {
+      return output;
+    } 
+    for (let i = 0; i < (n > array.length ? array.length : n); i++) {
+      output.push(array[i]);
+    } return output;    
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    let output = [];
+    if (n === 0) {
+      return output;
+    } else if (n > array.length) {
+      return array;
+    }
+    for (let i = array.length - 1; n > 0; i--, n--) {
+      output.unshift(array[i]);
+    } return output;
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
-  };
+    let match = false;
+    let output = [];
+    for (let i = 0; i < array.length; i++){
+        match = false;
+        output.length === 0 && output.push(array[0]);
+        for (let j = 0; j < output.length; j++){
+            if (array[i] === output[j]) match = true;
+        } if (!match) output.push(array[i]);
+    } return output;
+  }; 
 
   /**
   | COLLECTIONS
