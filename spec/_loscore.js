@@ -115,9 +115,9 @@
 
       it('should return all unique values contained in an unsorted array', () => {
         const numbers = [5, 3, 2, 1, 5, 6, 1, 3];
-        expect(_.uniq(numbers)).toEqual([5, 3, 2, 1, 6]);
-        expect(_.uniq([1, 1, 2, 3])).toEqual([1, 2, 3]);
-        expect(_.uniq([5, 5, 3, 3, 5, 6, 9])).toEqual([5, 3, 6, 9]);
+          expect(_.uniq(numbers)).toEqual([5, 3, 2, 1, 6]);
+          expect(_.uniq([1, 1, 2, 3])).toEqual([1, 2, 3]);
+          expect(_.uniq([5, 5, 3, 3, 5, 6, 9])).toEqual([5, 3, 6, 9]);
       });
     });
   });
