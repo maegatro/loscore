@@ -64,7 +64,9 @@
   _.size = (collection) => {
     let counter = 0;
     for (let item in collection) {
-      counter ++;
+      if (item) {
+        counter ++;
+      }  
     }return counter;    
   };
 
