@@ -3,13 +3,9 @@
   
   window._ = {};
 
-  _.identity = (val) => {
-    // YOUR CODE HERE
-  };
+  _.identity = val => val;
 
-  _.add = (x, y) => {
-    return x + y;
-  };
+  _.add = (x, y) => x + y;
 
   /**
   | ARRAYS
