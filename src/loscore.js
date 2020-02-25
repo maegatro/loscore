@@ -66,7 +66,10 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    let length = 0;
+    for (let prop in collection){
+      length++;
+    } return length;
   };
 
   _.indexOf = (array, target) => {
