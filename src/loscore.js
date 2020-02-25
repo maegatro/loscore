@@ -159,8 +159,18 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+    if (test) {
+      return _.reduce(collection, (truthy, item) => {
+        if (truthy === false) return false;
+        return test(item);
+      }, true);  
+    } else {
+      return _.reduce(collection, (truthy, item) => {
+        if (truthy === false) return false;
+        return item;
+      }, true); 
+    }
   };
 
   /**
