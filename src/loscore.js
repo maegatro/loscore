@@ -178,11 +178,11 @@
 
   _.once = function (func) {
     let wasExecuted = false;
-    let firstResult = func();
-    return function (){
+    let firstResult = undefined;
+    return function (n){
       if (!wasExecuted){
         wasExecuted = true;
-        return firstResult;
+        firstResult = func(n);
       }
       return firstResult;
     }
