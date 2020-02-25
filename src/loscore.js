@@ -31,14 +31,14 @@
   _.take = (array, n) => {
     const newArr = [];
     if (n === 0){
-      return newArr;
+      //return newArr;
     } else if (!n) {
       newArr.push(array[0])
     } else if (n > array.length){
       for (let i = 0; i < array.length; i++){
         newArr.push(array[i]);
      }
-     return newArr;
+    // return newArr;
     } else {
       for (let i = 0; i < n; i++){
         newArr.push(array[i]);
@@ -48,7 +48,22 @@
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    const newArr = [];
+    const length = array.length;
+    if (n === 0 ){
+
+    } else if (!n){
+      newArr.push(array[length -1]);
+    } else if (n > length){
+      for (let i = 0; i < length; i++){
+        newArr.push(array[i]);
+      }
+    } else {
+      for (let i = 0; i < n; i++){
+        newArr.unshift(array[length - i - 1])        
+      }
+    }
+    return newArr;
   };
 
   _.uniq = (array) => {
