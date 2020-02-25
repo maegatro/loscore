@@ -134,6 +134,20 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    let acc = "";
+    if (accumulator || accumulator === 0 || accumulator === false) {
+      acc = accumulator;
+      _.each(collection, (l) => {
+        acc = iterator(acc, l);
+      });
+    } else {
+      acc = collection[0];
+      _.each(collection, (l, i) => {
+        if (i !== 0) acc = iterator(acc, l);
+      });
+    }
+    
+    return acc;
   };
 
   _.contains = (collection, target) => {
