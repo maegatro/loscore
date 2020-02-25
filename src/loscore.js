@@ -105,7 +105,7 @@
   _.filter = (collection, test) => {
     let result = [];
     _.each(collection, function(value){
-      if(test(value) === true) {
+      if(test(value)) {
         result.push(value);
       }
     });
@@ -122,6 +122,11 @@
     });
     return result;
   };
+
+  // _.pluck = (collection, key) => {
+  //   return _.map(collection, (item) => {
+  //     return item[key];
+
 
   _.pluck = (collection, key) => {
     let result = [];
@@ -209,14 +214,20 @@
           cache[args] = value;
           return value;
         }
-
-      }
-
-      
+      }  
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    let result = [];
+    if (typeof functionOrKey !== "function") {
+      _.each(collection, function (item){
+        result.push(item[functionOrKey].apply(item)) 
+      })
+    }else {
+       _.each(collection, function(item){
+        result.push(functionOrKey.apply(item));
+      })
+    }return result;
   };
 
   /**
