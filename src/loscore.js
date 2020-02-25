@@ -160,17 +160,15 @@
   };
 
   _.every = function (collection, test) {
-    if (test) {
-      return _.reduce(collection, (truthy, item) => {
-        if (truthy === false) return false;
+    return _.reduce(collection, (truthy, item) => {
+      if (truthy === false) {
+        return false;
+      } else if (test) {
         return test(item);
-      }, true);  
-    } else {
-      return _.reduce(collection, (truthy, item) => {
-        if (truthy === false) return false;
-        return item;
-      }, true); 
-    }
+      } else {
+        return item
+      }
+    }, true);  
   };
 
   /**
