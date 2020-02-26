@@ -229,6 +229,15 @@
   
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
+    let result = [];
+    _.each(collection, function(key){
+      if(typeof functionOrKey === 'string'){
+        result.push(key[functionOrKey]())
+      } else {
+        result.push(functionOrKey.apply(key))
+      }
+    })
+    return result;
   };
 
   /**
