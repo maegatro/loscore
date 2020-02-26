@@ -203,9 +203,9 @@
     // YOUR CODE HERE
     let called = false;
     let result = undefined;
-    return function(){
+    return function(arg){
       if(!called){
-        result = func.apply(this, arguments);
+        result = func(arg);
         called = true;
       }
       return result;
