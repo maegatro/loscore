@@ -107,7 +107,7 @@
   _.indexOf = (array, target) => {
     let result;
     _.each(array, (value, index) =>{
-      if (value === target){
+      if (target === value){
         result = index;
         return
       } else {
@@ -136,13 +136,21 @@
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    const newArr =[];
+    _.filter(collection, (value) => {
+      if (test(value) === false){
+        newArr.push(value);
+      }
+    })
+    return newArr;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    const newArr = [];
+    for (let i = 0; i < collection.length; i++){
+      newArr.push(collection[i][key])
+    }
+    return newArr;
   };
 
   _.reduce = (collection, iterator, accumulator) => {
