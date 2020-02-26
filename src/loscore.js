@@ -82,7 +82,7 @@
   **/ 
 
   _.size = (collection) => {
-    if (collection.isArray === true){
+    if (Array.isArray(collection)){
       return collection.length;
     } else if (typeof collection === 'object'){
       return Object.keys(collection).length
@@ -92,25 +92,47 @@
   };
   
   _.each = (collection, iteratee) => {
-    if (collection.isArray){
+    if (Array.isArray(collection)){
       for (let i = 0; i < collection.length; i++){
         iteratee(collection[i], i, collection); 
       }
     } else {
-       iteratee(Object.values(collection), Object.values, collection)
+       for (const key in collection){
+         iteratee(collection[key], key, collection)
+       }
     }
   };
 
+  //skip for now
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let result;
+    _.each(array, (value, index) =>{
+      if (value === target){
+        result = index;
+        return
+      } else {
+        result = -1;
+      }
+    });
+    return result;
   };
 
   _.map = (collection, iteratee) => {
-    
+    const newArr =[]
+    _.each(collection, (value, index, collection) =>{
+      newArr.push(iteratee(value, index, collection))
+    });
+    return newArr;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    const newArr =[];
+    _.each(collection, (value) =>{
+      if (test(value)){
+        newArr.push(value)
+      }
+    });
+    return newArr;
   };
 
   _.reject = (collection, test) => {
