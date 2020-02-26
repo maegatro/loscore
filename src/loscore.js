@@ -147,7 +147,7 @@
       memo = collection[0];
       collection = _.tail(collection);
     }
-    _.each(collection, function(item, index, collection){
+    _.each(collection, function(item){
     memo = iterator(memo, item);
     });
     return memo;
@@ -188,7 +188,7 @@
     } else if(arguments.length > 1){
       source = arguments[1];
     }
-    _.each(source, function(value, key, collection){
+    _.each(source, function(value, key){
       obj[key] = source[key];
     });
     return obj;
