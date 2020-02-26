@@ -150,6 +150,7 @@
   _.extend = function (obj) {
     let output = obj
     for (const object of arguments) {
+      object
       _.each(object, (el,key, object) =>{output[key] = el});
     }
     return output
