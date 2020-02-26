@@ -91,7 +91,7 @@
       }
     } else {
       for (let key in collection){
-        iteratee(collection[key], key, collection)
+        iteratee(collection[key], key, collection);
       }
     }
   };
@@ -106,11 +106,15 @@
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let newArray = [];
+    _.each(collection, (value) => test(value) && newArray.push(value));
+    return newArray;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let newArray = [];
+    _.filter(collection, (value) => !test(value) && newArray.push(value));
+    return newArray;
   };
 
   _.pluck = (collection, key) => {
