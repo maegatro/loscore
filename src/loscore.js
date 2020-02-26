@@ -214,6 +214,17 @@
 
   _.memoize = function (func) {
     // YOUR CODE HERE
+    let cache = {};
+    return function(){
+      let key = JSON.stringify(arguments);
+      if(cache[key]){
+        return cache[key];
+      } else {
+        let val = func.apply(this, arguments);
+        cache[key] = val;
+        return val;
+      }
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
