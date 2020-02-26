@@ -63,15 +63,23 @@
     return newArr;
   };
 
-  //skipped for now!!!
+ 
   _.uniq = (array) => {
     const uniqArray = [];
-      for (let i = 0; i < array.length; i++){
-        uniqArray.push(array[i])  
+    let count = 0;
+    let found = false;
+      for (let i = 0; i < array.length; i++){  
         for(let j = 0; j < uniqArray.length; j++){
-        // if (array[i] !== uniqArray[j]){
-        // }
+          if (array[i] === uniqArray[j]){
+            found = true;
+          }        
       }
+      count++
+      if (count === 1 && found === false){
+        uniqArray.push(array[i])
+      }
+      count = 0;
+      found = false;
     }
     return uniqArray;
   };
@@ -193,9 +201,11 @@
   | OBJECTS
   |~~~~~~~~~~
   **/
-
+//skip for now 
   _.extend = function (obj) {
-    // YOUR CODE HERE
+    _.each(obj, (value, index, obj) =>{
+      return obj[value] = obj[index];
+    })
   };
 
   /**
@@ -204,15 +214,37 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let ran = false;
+    let output;
+    return (...args) => {
+      if (ran === false){
+        ran = true
+      output = func(...args);
+      } 
+      return output;
+    }    
   };
 
+//skip for now 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let memory = [];
+    return (...args) =>{
+
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    const results =[];
+    if (typeof functionOrKey === "string"){
+      for (let j = 0; j < collection.length; j++){
+        results.push(functionOrKey.apply(collection[functionOrKey[j]]));
+      }
+    } else {
+      for (let i = 0; i < collection.length; i++){
+        results.push(functionOrKey.apply(collection[i]))
+      }
+    }
+    return results;
   };
 
   /**
