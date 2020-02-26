@@ -128,7 +128,7 @@
 
   _.filter = (collection, test) => {
     let result = [];
-    _.each(collection, function(ele, index, collection) {
+    _.each(collection, function(ele) {
       if (test(ele)) {
         result.push(ele);
       }
@@ -138,7 +138,7 @@
 
   _.reject = (collection, test) => {
     let result = [];
-    _.filter(collection, function(ele, index, collection) {
+    _.filter(collection, function(ele) {
       if (!test(ele)) {
         result.push(ele);
       }
@@ -266,9 +266,15 @@
   };
 
   _.invoke = function(collection, functionOrKey) {
-    let result = [];
-    for (const i of collection) {
-      result.push(collection[0][functionOrKey].apply(i));
+    var result = [];
+    if (typeof functionOrKey === "string") {
+      _.each(collection, function(el) {
+        result.push(collection[0][functionOrKey].apply(el));
+      });
+    } else {
+      _.each(collection, function(el) {
+        result.push(functionOrKey.apply(el));
+      });
     }
     return result;
   };
