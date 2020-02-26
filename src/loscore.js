@@ -200,10 +200,26 @@
   };
   
   _.invoke = function (collection, functionOrKey) {
-    let result = functionOrKey;
-    
-    return _.each(collection, result);
+    let result = [];
+    if (typeof functionOrKey === 'string'){
+      for (const i of collection){
+        result.push(collection[functionOrKey].apply(i));
+      }
+    } else {
+      for (const e of collection){
+        result.push(functionOrKey.apply(e));
+      }
+    }
+    return result;
   };
+  // define result array
+// if functionOrKey is NOT a function, we know it is a key
+// loop through every element in the collection
+// for each element, use functionOrKey as a key on this element, and .apply/.call the element
+// else if functionOrKey IS a function 
+// loop through every element in the collection
+// use functionOrKey as a function, and .apply/.call the element
+// return result array
 
   /**
   | ADVANCED REQUIREMENTS
