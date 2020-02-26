@@ -153,8 +153,19 @@
     return newArr;
   };
 
+ 
   _.reduce = (collection, iterator, accumulator) => {
+    let currentCount = accumulator;
+    if (accumulator === undefined) {
+      currentCount = collection[0];
+      collection = _.tail(collection, collection.length -1);
+    }
+    _.each(collection, (value) => {
+      currentCount = iterator(currentCount, value);
+    });
+    return currentCount;
   };
+
 
   _.contains = (collection, target) => {
     return _.reduce(collection, (wasFound, item) => {
@@ -165,8 +176,17 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+    if (!test){
+      return true;
+    }
+    return _.reduce(collection, (pass, item) =>{
+      if (!pass){
+        return false;
+      } else {
+        return test(item);
+      }
+    }, true );
   };
 
   /**
