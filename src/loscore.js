@@ -31,14 +31,12 @@
   _.take = (array, n) => {
     const newArr = [];
     if (n === 0){
-      //return newArr;
     } else if (!n) {
       newArr.push(array[0])
     } else if (n > array.length){
       for (let i = 0; i < array.length; i++){
         newArr.push(array[i]);
      }
-    // return newArr;
     } else {
       for (let i = 0; i < n; i++){
         newArr.push(array[i]);
@@ -51,7 +49,6 @@
     const newArr = [];
     const length = array.length;
     if (n === 0 ){
-
     } else if (!n){
       newArr.push(array[length -1]);
     } else if (n > length){
@@ -66,8 +63,17 @@
     return newArr;
   };
 
+  //skipped for now!!!
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    const uniqArray = [];
+      for (let i = 0; i < array.length; i++){
+        uniqArray.push(array[i])  
+        for(let j = 0; j < uniqArray.length; j++){
+        // if (array[i] !== uniqArray[j]){
+        // }
+      }
+    }
+    return uniqArray;
   };
 
   /**
@@ -76,19 +82,31 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    if (collection.isArray === true){
+      return collection.length;
+    } else if (typeof collection === 'object'){
+      return Object.keys(collection).length
+    } else {
+        return collection.length;
+    }
+  };
+  
+  _.each = (collection, iteratee) => {
+    if (collection.isArray){
+      for (let i = 0; i < collection.length; i++){
+        iteratee(collection[i], i, collection); 
+      }
+    } else {
+       iteratee(Object.values(collection), Object.values, collection)
+    }
   };
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
   };
 
-  _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
-  };
-
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    
   };
 
   _.filter = (collection, test) => {
