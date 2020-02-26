@@ -67,17 +67,30 @@
 
   _.size = (collection) => {
     let length = 0;
-    for (let prop in collection){
-      length++;
-    } return length;
+    if (collection instanceof Array)
+      length = collection.length;
+    else
+      for (let key in collection){
+        if (collection.hasOwnProperty(key))
+        length++;
+      }
+    return length;
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (collection instanceof Array){
+      for (let i = 0; i < collection.length; i++){
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+      for (let key in collection){
+        iteratee(collection[key], key, collection)
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
