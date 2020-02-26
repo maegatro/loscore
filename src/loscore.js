@@ -4,7 +4,7 @@
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+    return val
   };
 
   _.add = (x, y) => {
@@ -21,19 +21,27 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    return array.slice(1, array.length)
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  _.take = (array, n = 1) => {
+    return array.slice(0, n)
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    return array.slice(array.length - n >=0 ? array.length -n : 0, array.length)
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let output = array
+    for ( let i=0; i < output.length; i++) {
+      for ( let j=0; j < output.length; j++) {
+        if (i !== j && output[i] === output[j]) {
+          output = output.slice(0, j).concat(output.slice(j + 1, output.length))
+        }
+      }
+    }
+    return output
   };
 
   /**
@@ -42,36 +50,77 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    let i = 0
+    for (let el in collection) {
+      el
+      i++
+    }
+    return i
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let output = -1
+    let flag = 0
+    _.each(array, (l, i) => {
+      if (l === target && flag === 0 ) {
+        output = i
+        flag = 1
+      }
+    })
+    return output
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if(Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection)
+      }
+    }
+    else {
+      for (let i = 0; i < Object.keys(collection).length; i++) {
+        iteratee(collection[Object.keys(collection)[i]], Object.keys(collection)[i], collection) 
+      }
+    }
   };
-
+  
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let output = []
+    _.each(collection, (el) => output.push(iteratee(el)))
+    return output
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let output = []
+    _.each(collection, (el) => {
+      if (test(el)) output.push(el)
+    })
+    return output
   };
-
+  
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let output = _.filter(collection, (el) => { 
+      return !test(el)
+    })
+    return output
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let output = []
+    for (let i = 0; i < collection.length; i++) {
+      output.push(collection[i][key])
+    }
+    return output
   };
 
-  _.reduce = (collection, iterator, accumulator) => {
+  _.reduce = (collection, iterator, accumulator = collection[0]) => {
+    let memo = accumulator
+    let item
+    _.each(collection, (el) => {
+      item = el 
+      if (item !== collection[0] || item !== memo) memo = iterator(memo, item)
+      else if (iterator(memo, item) == undefined) memo
+    })
+    return memo
   };
 
   _.contains = (collection, target) => {
@@ -82,19 +131,29 @@
       return item === target;
     }, false);
   };
-
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  
+  _.every = function (collection, test) {
+    if (test == undefined) return true
+    return _.reduce(collection, (wasnotFound, item) => {
+      if (!wasnotFound) {
+        return false;
+      }
+      return test(item)
+    }, true);
   };
-
+  
   /**
   | OBJECTS
   |~~~~~~~~~~
   **/
 
   _.extend = function (obj) {
-    // YOUR CODE HERE
-  };
+    let output = obj
+    for (let object of arguments) {
+      _.each(object, (el,key) =>{output[key] = el});
+    }
+    return output
+};
 
   /**
   | FUNCTIONS
@@ -102,16 +161,62 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
-  };
+    let initial 
+    return (b) => {
+      if (b !== undefined) {
+        if (initial === undefined) initial = b
+        return func(initial) 
+      }
+      else {
+        if (initial === undefined) { 
+          initial = 1
+          return func()
+        }
+      }
+    } 
+  }
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let cache
+    return (b) => {
+      if(cache === undefined) {
+        cache = {}
+        let output = func(b)
+        cache[b] = output
+        return output
+      }
+      else if(cache[b] === undefined) {
+        let output = func(b)
+        cache[b] = output
+        return output
+      }
+      else {
+        return cache[b]
+      }
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
-  };
+    let output = []
+    if (typeof (functionOrKey) === 'function') {
+      for (let el of collection) {
+          output.push(functionOrKey.apply(el))
+        }
+      
+    }
+    else {
+      var obj = {func: function () {
+        return this[functionOrKey]()
+      }
+      }
+      // obj.func.apply(collection)
+      for (let el of collection) {
+        output.push(obj.func.apply(el))
+      }
+    }
+    return output
+  }
+  
 
   /**
   | ADVANCED REQUIREMENTS
