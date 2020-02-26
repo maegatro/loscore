@@ -201,10 +201,15 @@
 
   _.once = function (func) {
     // YOUR CODE HERE
-    return function called(func){
-      return func;
+    let called = false;
+    let result = undefined;
+    return function(){
+      if(!called){
+        result = func.apply(this, arguments);
+        called = true;
+      }
+      return result;
     }
-    called = undefined;
   };
 
   _.memoize = function (func) {
