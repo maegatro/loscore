@@ -194,8 +194,28 @@
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
-  };
+    let output = []
+    if (typeof (functionOrKey) === 'function') {
+      for (let el of collection) {
+          output.push(functionOrKey.apply(el))
+        }
+      
+    }
+    else {
+      var obj = {func: function () {
+        // console.log(this)
+        return this[functionOrKey]()
+      }
+      }
+      // obj.func.apply(collection)
+      for (let el of collection) {
+        console.log(obj.func.apply(el))
+        output.push(obj.func.apply(el))
+      }
+    }
+    return output
+  }
+  
 
   /**
   | ADVANCED REQUIREMENTS
