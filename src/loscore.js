@@ -69,16 +69,19 @@
     let length = 0;
     if (collection instanceof Array)
       length = collection.length;
-    else
-      for (let key in collection){
-        if (collection.hasOwnProperty(key))
-        length++;
+    else for (let key in collection){
+        collection.hasOwnProperty(key) && length++;
       }
     return length;
   };
 
   _.indexOf = (array, target) => {
-    
+    let foundIndex = -1;
+    _.each(array, (value, index) => {
+      if (foundIndex === -1 && target === value)
+        foundIndex = index;
+    });
+    return foundIndex;
   };
 
   _.each = (collection, iteratee) => {
@@ -142,7 +145,8 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let counter = 0;
+    return 
   };
 
   _.memoize = function (func) {
