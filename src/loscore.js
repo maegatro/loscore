@@ -162,8 +162,21 @@
     );
   };
 
-  _.every = function(/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = (collection, test) => {
+    if (test === undefined) {
+      test = (item) => item;
+    }
+    return _.reduce(
+      collection,
+      (accumulator, item) => {
+        if (accumulator === false) {
+          return false;
+        } else {
+          return test(item);
+        }
+      },
+      true
+    );
   };
 
   /**
