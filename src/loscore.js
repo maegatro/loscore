@@ -97,7 +97,12 @@
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let newArray = [];
+    function callBack(value, i, collection){
+      newArray.push(iteratee(value, i, collection));
+    }
+    _.each(collection, callBack);
+    return newArray;
   };
 
   _.filter = (collection, test) => {
