@@ -113,16 +113,13 @@
 
   //skip for now
   _.indexOf = (array, target) => {
-    let result;
     _.each(array, (value, index) =>{
-      if (target === value){
-        result = index;
-        return
+      if (target === index){
+        return value;
       } else {
-        result = -1;
+        return -1
       }
     });
-    return result;
   };
 
   _.map = (collection, iteratee) => {
@@ -225,19 +222,23 @@
     }    
   };
 
-//skip for now 
-  _.memoize = function (func) {
-    let memory = [];
-    return (...args) =>{
 
+  _.memoize = function (func) {
+    const memory = [];
+    let result;
+    return (...args) =>{
+      let i = args[0];
+      i in memory ? memory.push(i) : result = func(i); memory[i] = result;
+      return result;
     }
   };
+
   
   _.invoke = function (collection, functionOrKey) {
     const results =[];
     if (typeof functionOrKey === "string"){
       for (let j = 0; j < collection.length; j++){
-        results.push(functionOrKey.apply(collection[functionOrKey[j]]));
+        results.push(collection[j][functionOrKey].apply(collection[j]));
       }
     } else {
       for (let i = 0; i < collection.length; i++){
