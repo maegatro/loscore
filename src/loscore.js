@@ -51,14 +51,17 @@
 
   _.size = (collection) => {
     let i = 0
-    for (let el in collection) i++
+    for (let el in collection) {
+      el
+      i++
+    }
     return i
   };
 
   _.indexOf = (array, target) => {
     let output = -1
     let flag = 0
-    _.each(array, (l, i, collection) => {
+    _.each(array, (l, i) => {
       if (l === target && flag === 0 ) {
         output = i
         flag = 1
@@ -146,7 +149,7 @@
 
   _.extend = function (obj) {
     let output = obj
-    for (let object of arguments) {
+    for (const object of arguments) {
       _.each(object, (el,key, object) =>{output[key] = el});
     }
     return output
@@ -203,13 +206,11 @@
     }
     else {
       var obj = {func: function () {
-        // console.log(this)
         return this[functionOrKey]()
       }
       }
       // obj.func.apply(collection)
       for (let el of collection) {
-        console.log(obj.func.apply(el))
         output.push(obj.func.apply(el))
       }
     }
