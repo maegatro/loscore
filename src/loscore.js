@@ -149,9 +149,10 @@
 
   _.extend = function (obj) {
     let output = obj
-    for (const object of arguments) {
-      object
+    for (let object of arguments) {
+      
       _.each(object, (el,key, object) =>{output[key] = el});
+      object = 'done'
     }
     return output
 };
