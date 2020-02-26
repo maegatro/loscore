@@ -111,15 +111,14 @@
     }
   };
 
-  //skip for now
   _.indexOf = (array, target) => {
+    let result = -1
     _.each(array, (value, index) =>{
-      if (target === index){
-        return value;
-      } else {
-        return -1
+      if (value === target && result === -1){
+        result = index;   
       }
     });
+      return result;
   };
 
   _.map = (collection, iteratee) => {
@@ -200,9 +199,12 @@
   **/
 //skip for now 
   _.extend = function (obj) {
-    _.each(obj, (value, index, obj) =>{
-      return obj[value] = obj[index];
-    })
+    let newObj = {}
+    _.each(obj, (value) =>{
+        newObj[value] = obj[value]
+      //  newObj[value] += obj[value];
+    });
+    return newObj;
   };
 
   /**
