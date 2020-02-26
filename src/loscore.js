@@ -60,7 +60,7 @@
 
   _.indexOf = (array, target) => {
     let result = -1;
-    _.each(array, function(value, index, collection){
+    _.each(array, function(value, index){
       for (let i = 0; i < array.length; i++){
         if (value === target){
           if (result === -1){
@@ -202,8 +202,8 @@
   _.invoke = function (collection, functionOrKey) {
     let result = [];
     if (typeof functionOrKey === 'string'){
-      for (const i of collection){
-        result.push(collection[functionOrKey].apply(i));
+      for (let i = 0; i < collection.length; i++){
+        result.push(collection[i][functionOrKey].apply(collection[i]));
       }
     } else {
       for (const e of collection){
@@ -212,14 +212,6 @@
     }
     return result;
   };
-  // define result array
-// if functionOrKey is NOT a function, we know it is a key
-// loop through every element in the collection
-// for each element, use functionOrKey as a key on this element, and .apply/.call the element
-// else if functionOrKey IS a function 
-// loop through every element in the collection
-// use functionOrKey as a function, and .apply/.call the element
-// return result array
 
   /**
   | ADVANCED REQUIREMENTS
