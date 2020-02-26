@@ -118,9 +118,12 @@
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let newArray = []
+    for (let obj in collection){
+      collection[obj].hasOwnProperty([key]) &&
+        newArray.push(collection[obj][key]);
+    }
+    return newArray;
   };
 
   _.reduce = (collection, iterator, accumulator) => {
