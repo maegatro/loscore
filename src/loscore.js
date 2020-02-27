@@ -198,7 +198,18 @@
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    let output = [];
+    if (typeof functionOrKey === 'function'){
+      _.map(collection, function(value, i, collection){
+        output.push(functionOrKey.apply(value));
+      });
+
+    } else {
+      _.map(collection, function(value, i , collection){
+        output.push(collection[i][functionOrKey].apply(value))
+      });
+    }
+    return output;
   };
 
   /**
