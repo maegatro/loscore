@@ -184,8 +184,15 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function(obj) {
-    // YOUR CODE HERE
+  _.extend = function(obj, ...objects) {
+    if (objects !== undefined) {
+      _.each(objects, (addToOriginal) => {
+        for (let prop in addToOriginal) {
+          obj[prop] = addToOriginal[prop];
+        }
+      });
+    }
+    return obj;
   };
 
   /**
@@ -194,7 +201,16 @@
   **/
 
   _.once = function(func) {
-    // YOUR CODE HERE
+    let executed = false;
+    let result = func();
+    return function() {
+      if (!executed) {
+        executed = true;
+      } else {
+        return false;
+      }
+      return executed;
+    };
   };
 
   _.memoize = function(func) {
