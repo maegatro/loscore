@@ -98,10 +98,9 @@
 
   _.map = (collection, iteratee) => {
     let newArray = [];
-    function callBack(value, i, collection){
+    _.each(collection, function(value, i, collection){
       newArray.push(iteratee(value, i, collection));
-    }
-    _.each(collection, callBack);
+    });
     return newArray;
   };
 
@@ -127,6 +126,14 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    if (accumulator === undefined){
+      accumulator = collection[0];
+      collection = _.tail(collection);
+    } 
+    _.each(collection, function(value, i, collection){
+      accumulator = iterator(accumulator, value);
+    });
+    return accumulator;
   };
 
   _.contains = (collection, target) => {
