@@ -31,6 +31,7 @@
   _.take = (array, n) => {
     let newArr = [];
     if (n === 0){
+      return newArr;
     } else if (!n) {
       newArr.push(array[0])
     } else if (n > array.length){
@@ -49,6 +50,7 @@
     let newArr = [];
     const length = array.length;
     if (n === 0 ){
+      return newArr;
     } else if (!n){
       newArr.push(array[length -1]);
     } else if (n > length){
