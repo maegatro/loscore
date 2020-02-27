@@ -145,8 +145,15 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+    if (collection.length === 0 || test === undefined){
+      return true;
+    } else {return _.reduce(collection, function(passed, item){
+      if (!passed) {
+        return false;
+      }
+      return test(item);
+    }, true)};
   };
 
   /**
