@@ -32,7 +32,21 @@
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+    let arrayTake = [];
+
+    if (n == undefined) {
+      n = 1;
+    }
+
+    if (n > array.length) {
+      n = array.length;
+    }
+
+    for(let i = 0; i < n; i++) {
+      arrayTake.push(array[i]);
+    }
+    
+    return arrayTake;    
   };
 
   _.takeRight = (array, n) => {
