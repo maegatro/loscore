@@ -189,7 +189,12 @@
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let cache = {};
+    return function(args){
+      return JSON.stringify(args) in cache
+      ? cache[(JSON.stringify(args))]
+      : cache[(JSON.stringify(args))] = func(args);  
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
