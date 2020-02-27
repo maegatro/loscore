@@ -5,6 +5,7 @@
 
   _.identity = (val) => {
     // YOUR CODE HERE
+    return val;
   };
 
   _.add = (x, y) => {
@@ -22,18 +23,38 @@
 
   _.tail = (array) => {
     // YOUR CODE HERE
+    return array.slice(1);
   };
 
   _.take = (array, n) => {
     // YOUR CODE HERE
+    if (n === undefined) {
+      return [array[0]];
+    } else if (n === 0) {
+      return [];
+    } else {
+      return array.slice(0, n);
+    }
   };
 
   _.takeRight = (array, n) => {
     // YOUR CODE HERE
+    if (n === undefined) {
+      return [array[array.length -1]];
+    } else if (n === 0) {
+      return [];
+    } else if (n > array.length) {
+      return array;
+    } else {
+      return array.slice(n-1);
+    }
   };
 
   _.uniq = (array) => {
     // YOUR CODE HERE
+    let set = [...new Set(array)];
+    return set;
+
   };
 
   /**
