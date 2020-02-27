@@ -196,8 +196,7 @@
   /**
   | OBJECTS
   |~~~~~~~~~~
-  **/
-//skip for now 
+  **/ 
   _.extend = function (obj) {
     let newArr = [];
     for (let i = 1; i < arguments.length; i++){
