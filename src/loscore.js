@@ -177,7 +177,13 @@
   **/
 
   _.extend = function (obj) {
-    // YOUR CODE HERE
+    let shallowCopy = obj;
+    _.each(arguments, (object) => {
+      for (const prop in object) {
+        shallowCopy[prop] = object[prop];
+      }
+    });
+    return shallowCopy;
   };
 
   /**
@@ -186,7 +192,17 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let wasCalled = false;
+    let result = "";
+    return function(arg) {
+      if (!wasCalled) {
+        wasCalled = true;
+        result = func(arg);
+        return result;
+      } else {
+        return result;
+      }
+    } 
   };
 
   _.memoize = function (func) {
