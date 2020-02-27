@@ -199,13 +199,18 @@
   **/
 //skip for now 
   _.extend = function (obj) {
-    let newObj = {}
-    _.each(obj, (value) =>{
-        newObj[value] = obj[value]
-      //  newObj[value] += obj[value];
+    let newArr = [];
+    for (let i = 1; i < arguments.length; i++){
+      newArr.push(arguments[i]);
+    };   
+    _.each(newArr, (objects) =>{
+      _.each(objects, (value, key) =>{
+        obj[key] = value;
+      });
     });
-    return newObj;
+    return obj
   };
+
 
   /**
   | FUNCTIONS
