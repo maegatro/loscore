@@ -29,7 +29,7 @@
   };
 
   _.take = (array, n) => {
-    const newArr = [];
+    let newArr = [];
     if (n === 0){
     } else if (!n) {
       newArr.push(array[0])
@@ -46,7 +46,7 @@
   };
 
   _.takeRight = (array, n) => {
-    const newArr = [];
+    let newArr = [];
     const length = array.length;
     if (n === 0 ){
     } else if (!n){
