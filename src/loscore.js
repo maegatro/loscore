@@ -130,7 +130,7 @@
       accumulator = collection[0];
       collection = _.tail(collection);
     } 
-    _.each(collection, function(value, i, collection){
+    _.each(collection, function(value){
       accumulator = iterator(accumulator, value);
     });
     return accumulator;
@@ -163,7 +163,7 @@
 
   _.extend = function (...obj) {
     for (let i = 1; i < obj.length; i++) {
-      _.each(obj[i], (value, key, collection)=>{
+      _.each(obj[i], (value, key)=>{
         if(obj[i].hasOwnProperty(key)){
           obj[0][key] = obj[i][key];
           }
@@ -200,10 +200,9 @@
   _.invoke = function (collection, functionOrKey) {
     let output = [];
     if (typeof functionOrKey === 'function'){
-      _.map(collection, function(value, i, collection){
+      _.map(collection, function(value){
         output.push(functionOrKey.apply(value));
       });
-
     } else {
       _.map(collection, function(value, i , collection){
         output.push(collection[i][functionOrKey].apply(value))
