@@ -161,8 +161,15 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
+  _.extend = function (...obj) {
+    for (let i = 1; i < obj.length; i++) {
+      _.each(obj[i], (value, key, collection)=>{
+        if(obj[i].hasOwnProperty(key)){
+          obj[0][key] = obj[i][key];
+          }
+        });
+    }
+    return obj[0];
   };
 
   /**
