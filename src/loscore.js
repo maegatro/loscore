@@ -178,8 +178,14 @@
   **/
 
   _.once = function (func) {
-    let counter = 0;
-    return 
+    let wasCalled = false;
+    let prevResults;
+    return function(...args){
+      if (wasCalled)
+        return prevResults;
+      wasCalled = true;
+      return prevResults = func(...args);
+    } 
   };
 
   _.memoize = function (func) {
