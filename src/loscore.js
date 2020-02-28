@@ -206,7 +206,13 @@
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let cache = {};
+    return function(arg) {
+      if (cache[arg]) return cache[arg];
+      let result = func(arg);
+      cache[arg] = result;
+      return result;
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
