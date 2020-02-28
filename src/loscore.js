@@ -50,7 +50,21 @@
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    let arrayTakeRight = [];
+
+    if (n > array.length) {
+      n = array.length;
+    }
+
+    if(n == undefined) {
+      arrayTakeRight.push(array[array.length-1]);
+    } else {
+        for (let i = array.length - n; i < array.length; i++) {
+          arrayTakeRight.push(array[i]);
+        }
+      }
+
+    return arrayTakeRight;
   };
 
   _.uniq = (array) => {
