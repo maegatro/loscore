@@ -200,19 +200,17 @@
   |~~~~~~~~~~
   **/
 
-  _.once = function(func) {
-    let executed = false;
-    let result = func();
-    return function() {
-      if (!executed) {
-        executed = true;
-      } else {
-        return false;
+  _.once = (func) => {
+    let executed = true;
+    let result;
+    return function(arg) {
+      if (executed) {
+        result = func(arg);
+        executed = false;
       }
-      return executed;
+      return result;
     };
   };
-
   _.memoize = function(func) {
     // YOUR CODE HERE
   };
