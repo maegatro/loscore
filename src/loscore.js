@@ -146,7 +146,13 @@
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let mapArray = [];
+
+    _.each(collection, function(index) {
+      mapArray.push(iteratee(index));
+    })
+
+    return mapArray;
   };
 
   _.filter = (collection, test) => {
