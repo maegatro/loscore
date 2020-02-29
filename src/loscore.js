@@ -115,7 +115,20 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    
+    let indexOf = [];
+
+    _.each(array, function (test, index) {
+      if(target == test) {
+        indexOf.push(index);
+      }
+    });
+
+    if (indexOf.length != 0) {
+      return indexOf[0];
+    } else {
+        return -1;
+      }
   };
 
   _.each = (collection, iteratee) => {
