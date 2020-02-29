@@ -95,7 +95,23 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    let collectionLength = 0;
+    
+    if((typeof(collection) == 'string')) {
+      for(let i = 0; i < collection.length; i++) {
+        collectionLength++;
+      }
+      return collectionLength;
+    }
+
+    if((Array.isArray(collection))) {
+      return collection.length;
+    } else {
+      for(let key in collection) {
+          collectionLength++;
+        }
+      return collectionLength;
+    }
   };
 
   _.indexOf = (array, target) => {
