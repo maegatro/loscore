@@ -216,7 +216,15 @@
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    let result = [];
+    for (const el of collection) {
+      if (typeof functionOrKey === 'string') {
+        result.push(el[functionOrKey].apply(el))
+      } else {
+        result.push(functionOrKey.apply(el));
+      }
+    }
+    return result;
   };
 
   /**
