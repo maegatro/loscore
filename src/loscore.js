@@ -119,7 +119,17 @@
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    
+    if(Array.isArray(collection)) {
+      for(let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+        for(let key in collection) {
+          iteratee(collection[key], key, collection);
+        }
+      }
+
   };
 
   _.map = (collection, iteratee) => {
