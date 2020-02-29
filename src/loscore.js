@@ -156,7 +156,15 @@
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let filterArray = [];
+
+    _.each(collection, function(index) {
+      if(test(index)) {
+        filterArray.push(index);
+      }
+    })
+
+    return filterArray;
   };
 
   _.reject = (collection, test) => {
