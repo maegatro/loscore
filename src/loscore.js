@@ -68,7 +68,25 @@
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let arrayUniq = [];
+
+    function checkValue(arrayUnique, num) { 
+      
+      for(let i = 0; i < arrayUnique.length; i++) {
+        if(arrayUnique[i] == num)
+          return false;
+      }
+      
+      return true;
+    }
+
+    for(let i = 0; i < array.length; i++) {
+      if(checkValue(arrayUniq, array[i])) {
+        arrayUniq.push(array[i]);
+      }
+    }
+
+    return arrayUniq;
   };
 
   /**
