@@ -168,7 +168,15 @@
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    let rejectArray = [];
+
+    _.filter(collection, function(index) {
+      if(!test(index)) {
+        rejectArray.push(index);
+      }
+    });
+
+    return rejectArray;
   };
 
   _.pluck = (collection, key) => {
