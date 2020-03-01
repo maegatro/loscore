@@ -4,7 +4,7 @@
   window._ = {};
 
   _.identity = (val) => {
-    // YOUR CODE HERE
+    return val;
   };
 
   _.add = (x, y) => {
@@ -21,19 +21,43 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] != array[0]) result.push(array[i]);
+    }
+    return result;
   };
 
-  _.take = (array, n) => {
-    // YOUR CODE HERE
+  _.take = (array, n = 1) => {
+    if (n > array.length) return array;
+    let result = [];
+    for (let i = 0; i < n; i++) {
+      result.push(array[i]);
+    }
+    return result;
   };
 
-  _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+  _.takeRight = (array, n = 1) => {
+    if (n > array.length) return array;
+    let result = [];
+    for (let i = array.length - n; i < array.length ; i++) {
+      result.push(array[i]);
+    }
+    return result;
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+      if (!alreadyExists(result, array[i])) result.push(array[i]);
+    }
+    return result;
+    
+    function alreadyExists(array, element) {
+      for (let i = 0; i < array.length; i++) {
+        if (array[i] === element) return true;
+      }
+    }
   };
 
   /**
@@ -42,36 +66,88 @@
   **/ 
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    if (typeof collection === "object") {
+      let count = [];
+      for (const property in collection) {
+        count.push(property);
+      }
+      return count.length;
+    }
+    return collection.length;
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let index = [];
+    _.each(array, (l, i) => {
+      if (l === target) index[index.length] = i;
+    });
+    return index.length === 0 ? -1 : index[0];
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (collection.constructor === Array) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+      for (const property in collection) {
+        iteratee(collection[property], property, collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, (l) => {
+      result.push(iteratee(l));
+    });
+    return result;
   };
 
   _.filter = (collection, test) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, (l) => {
+      if (test(l)) result.push(l);
+    });
+    return result;
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    const rejectArray =  _.filter(collection, test);
+    const notTruth = (val) => {
+      let count = 0;
+      for (let i = 0; i < rejectArray.length; i++) {
+        if (val != rejectArray[i]) count++;
+      }
+      if (count === rejectArray.length) return true;
+    }
+
+    return _.filter(collection, notTruth);
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let result = [];
+    for (let i = 0; i < collection.length; i++) {
+      result.push(collection[i][key]);
+    }
+    return result;
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    let acc = "";
+    if (accumulator || accumulator === 0 || accumulator === false) {
+      acc = accumulator;
+      _.each(collection, (l) => {
+        acc = iterator(acc, l);
+      });
+    } else {
+      acc = collection[0];
+      _.each(collection, (l, i) => {
+        if (i !== 0) acc = iterator(acc, l);
+      });
+    }
+    
+    return acc;
   };
 
   _.contains = (collection, target) => {
@@ -83,8 +159,16 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+    return _.reduce(collection, (truthy, item) => {
+      if (truthy === false) {
+        return false;
+      } else if (test) {
+        return test(item);
+      } else {
+        return item
+      }
+    }, true);  
   };
 
   /**
@@ -93,7 +177,13 @@
   **/
 
   _.extend = function (obj) {
-    // YOUR CODE HERE
+    let shallowCopy = obj;
+    _.each(arguments, (object) => {
+      for (const prop in object) {
+        shallowCopy[prop] = object[prop];
+      }
+    });
+    return shallowCopy;
   };
 
   /**
@@ -102,15 +192,39 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let wasCalled = false;
+    let result = "";
+    return function(arg) {
+      if (!wasCalled) {
+        wasCalled = true;
+        result = func(arg);
+        return result;
+      } else {
+        return result;
+      }
+    } 
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let cache = {};
+    return function(arg) {
+      if (cache[arg]) return cache[arg];
+      let result = func(arg);
+      cache[arg] = result;
+      return result;
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+    let result = [];
+    for (const el of collection) {
+      if (typeof functionOrKey === 'string') {
+        result.push(el[functionOrKey].apply(el))
+      } else {
+        result.push(functionOrKey.apply(el));
+      }
+    }
+    return result;
   };
 
   /**
