@@ -293,7 +293,17 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let beenCalled = false;
+    let initialValue = 0;
+    return function (test) {
+      if (!beenCalled) {
+        beenCalled = true;
+        initialValue = 1;
+        return func(test);
+      } else {
+        return initialValue;
+      }
+    }
   };
 
   _.memoize = function (func) {
