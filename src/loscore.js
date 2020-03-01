@@ -91,7 +91,7 @@
   _.indexOf = (array, target) => {
     let index = -1;
 
-    let iteratee = (value, key, collection) => {
+    let iteratee = (value, key) => {
       if (value === target && index === -1) {
         index = key;
       }
@@ -113,7 +113,7 @@
 
   _.filter = (collection, test) => {
     let filtered = [];
-    let moohBack = (value, key, collection) => {
+    let moohBack = (value) => {
       if (test(value) === true) {
         filtered.push(value);
       }
@@ -123,7 +123,7 @@
   };
 
   _.reject = (collection, test) => {
-    let callBack = (value, key, collection) => {
+    let callBack = (value) => {
       return !test(value);
     };
     return _.filter(collection, callBack);
@@ -224,7 +224,7 @@
   };
 
   _.invoke = function(collection, functionOrKey) {
-    return _.map(collection, function(value, key, collect) {
+    return _.map(collection, function(value) {
       if (typeof functionOrKey === "string") {
         return value[functionOrKey]();
       } else if (typeof functionOrKey === "function") {
