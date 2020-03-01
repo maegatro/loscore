@@ -274,7 +274,17 @@
   **/
 
   _.extend = function (obj) {
-    // YOUR CODE HERE
+    
+    let newObj = obj;
+
+    for(let object of arguments) {
+      _.each(object, function (item, key) {
+        { newObj[key] = item };
+      });
+    }
+
+    return newObj;
+
   };
 
   /**
