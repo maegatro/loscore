@@ -180,7 +180,31 @@
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
+    
+    function pluckEach (collection, iteratee) {
+    
+      if(Array.isArray(collection)) {
+        for(let i = 0; i < collection.length; i++) {
+          iteratee(collection[i], i, collection);
+        }
+      } else {
+          for(let key in collection) {
+            iteratee(collection[key], key, collection);
+          }
+        }
+    };
+  
+    function pluckMap (collection, iteratee) {
+      let pluckMapArray = [];
+  
+      pluckEach(collection, function(index) {
+        pluckMapArray.push(iteratee(index));
+      })
+  
+      return pluckMapArray;
+    };
+
+    return pluckMap(collection, (item) => {
       return item[key];
     });
   };
