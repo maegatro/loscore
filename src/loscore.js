@@ -247,8 +247,25 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+    
+    let everyTest = test;
+
+    if (test === undefined) {
+      return true;
+    } else {
+        return _.reduce(collection, function (boolean, item) {
+          if(boolean === false) {
+            return false;
+          }
+          
+          if(everyTest === undefined) {
+            return item;
+          } else {
+              return test(item);
+            }
+         }, true);
+      }
   };
 
   /**
