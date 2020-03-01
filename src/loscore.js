@@ -23,18 +23,39 @@
 
   _.tail = (array) => {
     // YOUR CODE HERE
+    return array.slice(1);
   };
 
-  _.take = (array, n) => {
+  _.take = (array, n=1) => {
     // YOUR CODE HERE
+    if (n == 0) {
+      return [];
+    }
+    return array.slice(0,n); 
   };
 
-  _.takeRight = (array, n) => {
+  _.takeRight = (array, n=1) => {
     // YOUR CODE HERE
+    if (n == 0) {
+      return [];
+    }
+    return array.slice(-n); 
   };
 
   _.uniq = (array) => {
     // YOUR CODE HERE
+    let uniq_array = [array[0]];
+    for (let e = 0; e < array.length; e++) {
+      for (let i = 0; i < uniq_array.length; i++) {
+        if (uniq_array[i] == array[e]) {
+          break;
+        } else if (i == uniq_array.length - 1) {
+          uniq_array.push(array[e]);
+        }
+      }
+    }
+    console.log(uniq_array);
+    return uniq_array;
   };
 
   /**
