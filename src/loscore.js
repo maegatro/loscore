@@ -210,6 +210,32 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+      
+    let memo = accumulator;
+
+    if(memo === undefined) {
+      
+      memo = collection[0];
+      let newCollection = [];
+
+      for(let i = 1; i < collection.length; i++) {
+        newCollection.push(collection[i]);
+      }
+
+      _.each(newCollection, function(index) {
+        memo = iterator(memo, index);
+      });
+
+      return memo;
+
+    } else {
+        _.each(collection, function(index) {
+          memo = iterator(memo, index);
+        });
+
+        return memo;
+      }
+  
   };
 
   _.contains = (collection, target) => {
