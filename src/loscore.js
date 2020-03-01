@@ -64,33 +64,95 @@
 
   _.size = (collection) => {
     // YOUR CODE HERE
+    if (Array.isArray(collection)) {
+      return collection.length;
+    } else if (typeof collection === "string") {
+      return collection.length;
+    } else {
+      return Object.keys(collection).length;
+    } 
   };
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
+
+    let result = -1;
+
+    _.each(array, (value, index) => {
+      if (result != -1) return;
+      if (value === target) {
+        result = index;
+      }
+    });
+    return result;
   };
 
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+      for (let key in collection) {
+        iteratee(collection[key], key, collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
+
+    let newArray = [];
+
+    _.each(collection, (value) => {
+      newArray.push(iteratee(value));
+    })
+
+    return newArray;
   };
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE
+
+    let newArray = [];
+
+    _.each(collection, (value) => {
+      if(test(value) === true) {
+        newArray.push(value);
+      }
+    })
+
+    return newArray;
   };
 
   _.reject = (collection, test) => {
     // YOUR CODE HERE
+    let newArray = [];
+    
+    _.filter(collection, (value) => {
+      if (test(value) === false) {
+        newArray.push(value);
+      }
+    })
+
+    return newArray;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
-  };
+    let newArray = [];
+
+    for (let i = 0; i < collection.length; i++){
+      newArray.push(collection[i][key]);
+    }
+
+    return newArray;
+  }
+
+  //   return _.map(collection, (item) => {
+  //     return item[key];
+  //   });
+  // };
 
   _.reduce = (collection, iterator, accumulator) => {
   };
