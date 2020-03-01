@@ -324,7 +324,20 @@
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
+
+    let result = [];
+    
+    if(typeof functionOrKey === 'string') {
+      this.each(collection, function (item) {
+        result.push(item[functionOrKey]());
+      });
+    } else {
+        this.each(collection, function (item) {
+          result.push(functionOrKey.apply(item));
+        });
+      }
+
+    return result;
   };
 
   /**
