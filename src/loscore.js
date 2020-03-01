@@ -67,11 +67,11 @@
 
   _.size = (collection) => {
     if (typeof collection === "object") {
-      let count = 0;
+      let count = [];
       for (const property in collection) {
-        count++;
+        count.push(property);
       }
-      return count;
+      return count.length;
     }
     return collection.length;
   };
