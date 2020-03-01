@@ -307,7 +307,20 @@
   };
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    
+    let memory = {};
+
+    return function(...args){
+      let num = args[0];
+      if (num in memory) { 
+        return memory[num];
+      } else {
+          let result = func(num);
+          memory[num] = result;
+          return result;
+        }
+    }
+    
   };
   
   _.invoke = function (collection, functionOrKey) {
