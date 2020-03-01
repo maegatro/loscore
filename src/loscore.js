@@ -212,11 +212,25 @@
     };
   };
   _.memoize = function(func) {
-    // YOUR CODE HERE
+    let cache = {};
+    return function(arg) {
+      let key = JSON.stringify(arg);
+      if (cache.hasOwnProperty(key)) {
+        return cache[key];
+      } else {
+        return (cache[key] = func(arg));
+      }
+    };
   };
 
   _.invoke = function(collection, functionOrKey) {
-    // YOUR CODE HERE
+    return _.map(collection, function(value, key, collect) {
+      if (typeof functionOrKey === "string") {
+        return value[functionOrKey]();
+      } else if (typeof functionOrKey === "function") {
+        return functionOrKey.apply(value);
+      }
+    });
   };
 
   /**
