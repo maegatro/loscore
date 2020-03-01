@@ -155,6 +155,19 @@
   // };
 
   _.reduce = (collection, iterator, accumulator) => {
+
+    let result =　accumulator;
+
+     if (accumulator === undefined) {
+       result = collection[0];
+       collection = collection.slice(1, collection.length);
+     }
+
+     _.each(collection, (value) => {
+       result = iterator(result, value);
+     });
+
+     return result;
   };
 
   _.contains = (collection, target) => {
@@ -166,9 +179,19 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = (collection, test) => {
+    if (test === undefined) return true;
+
+    return _.reduce(collection, (passed, value) => {
+      if (!passed) {
+        return false;
+      }
+      if (test(value)) {
+        return true;
+      }
+    }, true);
   };
+
 
   /**
   | OBJECTS
