@@ -107,7 +107,8 @@
     if((Array.isArray(collection))) {
       return collection.length;
     } else {
-      for(let key in collection) {
+        for(let key in collection) {
+          key;
           collectionLength++;
         }
       return collectionLength;
