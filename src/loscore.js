@@ -79,28 +79,59 @@
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
-    // let result = 0;
-    for (let i = 0; i < array.length; i++){
-      if (array[i] === target){
-        return i; 
-      } else {
-        return -1;
-      };
-    }
-    
+    let result = -1;
+    _.each(array, (val, index)=> {
+      // console.log(array, "target", target, "index", index);
+      for (; index < array.length; index++){
+        if (val === target && result === -1){
+          result = index;
+          break;
+        }
+      }
+    });
+    return result;
   };
 
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE
-    console.log(collection, iteratee);
+    if (Array.isArray(collection)){
+      // console.log(collection, iteratee);
+      for (let index = 0; index < collection.length; index++){
+        iteratee(collection[index], index, collection);
+      }
+    } else {
+      for (let key in collection){
+        iteratee(collection[key], key, collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
+    let result = [];
+    _.each(collection, (val) => {
+      // console.log("collection", collection, "iteratee", iteratee);
+      result.push(iteratee(val));
+    });
+  
+    return result;
   };
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE
+    let result = [];
+    _.each(collection, (val) =>{
+      // console.log("collection", collection, "test", test, "val", val);
+      if (!!test(val)){
+        result.push(val);
+      }
+    });
+
+    if (result.length === 0){
+      result = collection;
+    }
+
+    return result;
   };
 
   _.reject = (collection, test) => {
