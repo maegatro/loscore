@@ -120,7 +120,7 @@
   _.filter = (collection, test) => {
     // YOUR CODE HERE
     let result = [];
-    _.each(collection, (val) =>{
+    _.each(collection, (val, index, collection) =>{
       // console.log("collection", collection, "test", test, "val", val);
       if (!!test(val)){
         result.push(val);
@@ -136,12 +136,31 @@
 
   _.reject = (collection, test) => {
     // YOUR CODE HERE
+    let result = [];
+    // console.log("collection", collection, "test", test);
+    _.filter(collection, (val)=> {
+      if (!test(val)){
+        result.push(val);
+      }
+    });
+    return result;
   };
 
   _.pluck = (collection, key) => {
+    let result = [];
+    for (const obj of collection){
+      if (obj[key]){
+        result.push(obj[key]);
+      }
+    }
+    return result;
+
+    /* this is original code
     return _.map(collection, (item) => {
+      console.log(collection, key);
       return item[key];
     });
+    */
   };
 
   _.reduce = (collection, iterator, accumulator) => {
