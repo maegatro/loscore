@@ -249,10 +249,31 @@
 
   _.once = function (func) {
     // YOUR CODE HERE
+    let wasCalled = false;
+    let result = 0; 
+    return function(num){
+      // console.log(num);
+      if (!wasCalled){
+        wasCalled = true; 
+        result = func(num);
+      } 
+      return result;
+    };
   };
 
   _.memoize = function (func) {
     // YOUR CODE HERE
+    let cache = {};
+    return function (input){
+      // console.log(input);
+      if(input in cache){
+        return cache[input];
+      } else {
+        let result = func(input);
+        cache[input] = result;
+        return result;
+      }
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
