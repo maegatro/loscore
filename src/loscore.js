@@ -230,6 +230,16 @@
 
   _.extend = function (obj) {
     // YOUR CODE HERE
+    let extend = obj; 
+    // console.log(arguments); //the values of the arguments passed to that function
+    for (let arg of arguments){
+      // console.log(arg);
+      _.each(arg, (value, key)=>{
+        // console.log("value", value, "key", key);
+        extend[key] = value;
+      });
+    }
+    return extend;
   };
 
   /**
