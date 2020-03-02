@@ -23,18 +23,42 @@
 
   _.tail = (array) => {
     // YOUR CODE HERE
+    return array.slice(1);
   };
 
   _.take = (array, n) => {
     // YOUR CODE HERE
+    let result = (n === 0 ? []
+                : n > 0 ? array.slice(0, n)
+                : array.slice(0,1));
+    return result;
+
   };
 
   _.takeRight = (array, n) => {
     // YOUR CODE HERE
+    let result = (n === 0 ? []
+                : n > 0 ? array.slice(-n)
+                : array.slice(-1));
+    return result; 
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+  //   // YOUR CODE HERE
+    let result = [];
+    let firstElement = true;
+      for (let value of array){
+        for (let i = 0; i < result.length; i++){
+          if (value === result[i]){
+            firstElement = false;
+          }
+        }
+        if (firstElement === true){
+          result.push(value);
+        }
+        firstElement = true;
+      }
+    return result;
   };
 
   /**
@@ -44,14 +68,31 @@
 
   _.size = (collection) => {
     // YOUR CODE HERE
+    let length = 0; 
+    for (let key in collection){
+      if (collection[key]){
+        length++
+      }
+    }
+    return length;
   };
 
   _.indexOf = (array, target) => {
     // YOUR CODE HERE
+    // let result = 0;
+    for (let i = 0; i < array.length; i++){
+      if (array[i] === target){
+        return i; 
+      } else {
+        return -1;
+      };
+    }
+    
   };
 
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE
+    console.log(collection, iteratee);
   };
 
   _.map = (collection, iteratee) => {
