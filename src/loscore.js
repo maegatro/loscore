@@ -54,7 +54,6 @@
         }
       }
     }
-    console.log(uniq_array);
     return uniq_array;
   };
 
@@ -65,22 +64,55 @@
 
   _.size = (collection) => {
     // YOUR CODE HERE
-  };
-
-  _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let count = 0;
+    for (let i in collection) {
+      count = count + 1;
+    }
+    return count;
   };
 
   _.each = (collection, iteratee) => {
     // YOUR CODE HERE
+    if (Array.isArray(collection)) {
+      for (let k = 0; k < collection.length; k++) {
+        iteratee(collection[k], k, collection);
+      }
+    } else {
+      for (let k in collection) {
+        iteratee(collection[k], k, collection);
+      }
+    }
+  };
+
+  _.indexOf = (array, target) => {
+    // YOUR CODE HERE
+    let index = -1;
+    _.each(array, function(k,i) {
+      if (k == target && index == -1)  {
+        index = i;
+      }
+    });
+    return index;
   };
 
   _.map = (collection, iteratee) => {
     // YOUR CODE HERE
+    let mapped_array = [];
+    _.each(collection, function(k,i){
+      mapped_array.push(iteratee(k,i));
+    });
+    return mapped_array;
   };
 
   _.filter = (collection, test) => {
     // YOUR CODE HERE
+    let filtered_array = [];
+    _.each(collection, function(k,i){
+      if (test(k,i)) {
+        filtered_array.push(k);
+      }
+    });
+    return filtered_array;
   };
 
   _.reject = (collection, test) => {
