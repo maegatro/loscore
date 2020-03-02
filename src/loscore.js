@@ -164,6 +164,34 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+
+    /* Collection: The is an array or an object that you want to reduce
+
+    Iterator: This a function that does something to the items in the collection
+
+    Accumulator: This is the value that your accumulation can start with if something is passed in for this value. Sometimes nothing will be passed in here. Then start form collection[0].
+    */
+
+
+    //console.log("collection", collection, "iterator", iterator, "accumulator", accumulator);
+    
+    let result = accumulator;
+
+    if (accumulator === undefined){
+      result = collection[0];
+      collection = collection.slice(1, collection.length); // get rid of 1st value of collection and update collection
+    }
+
+    _.each(collection, (value) => {
+      //console.log(collection);
+      // console.log("value", value);
+      result = iterator(result, value);
+      
+    });
+    // console.log("result", result);
+    return result; 
+    
+   
   };
 
   _.contains = (collection, target) => {
@@ -175,8 +203,24 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
+  _.every = function (collection, test) {
     // YOUR CODE HERE
+    // console.log("collection", collection, "test", test);
+    return _.reduce(collection, (acc, val) => {
+      //  console.log("val", val);
+       if (test === undefined){
+          acc = _.contains(collection, false);
+          return !acc;
+      }
+      
+      if (acc === true && !!test(val)){
+        acc = true;
+      } else {
+        acc = false;
+      }
+      // console.log("acc", acc);
+      return acc;
+     }, true);
   };
 
   /**
