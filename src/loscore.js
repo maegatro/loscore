@@ -120,7 +120,7 @@
   _.filter = (collection, test) => {
     // YOUR CODE HERE
     let result = [];
-    _.each(collection, (val, index, collection) =>{
+    _.each(collection, (val) =>{
       // console.log("collection", collection, "test", test, "val", val);
       if (!!test(val)){
         result.push(val);
@@ -279,12 +279,12 @@
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
     let result = [];
-    console.log("collection", collection, functionOrKey);
+    // console.log("collection", collection, functionOrKey);
     if (typeof functionOrKey === "string"){
       // console.log(collection);
       _.each(collection, (value, index) => {
         result.push(collection[index][functionOrKey].apply(value));
-
+        // arr[index][stringKey] = value.method();
 
       });
     } else if (typeof functionOrKey === "function"){
