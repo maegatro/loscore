@@ -190,7 +190,7 @@
     }
 
     // run each for accumulator
-    _.each(collection, (el, i) => {
+    _.each(collection, (el) => {
       accumulator = iterator(accumulator, el);
     });
 
