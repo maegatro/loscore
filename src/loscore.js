@@ -278,6 +278,20 @@
   
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
+    let result = [];
+    console.log("collection", collection, functionOrKey);
+    if (typeof functionOrKey === "string"){
+      // console.log(collection);
+      _.each(collection, (value) => {
+        result.push(functionOrKey.apply(value, collection));
+      });
+    } else if (typeof functionOrKey === "function"){
+      _.each(collection, (value) => {
+        result.push(functionOrKey.apply(value));
+      });
+    }
+    return result
+  
   };
 
   /**
