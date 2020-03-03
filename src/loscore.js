@@ -117,12 +117,22 @@
 
   _.reject = (collection, test) => {
     // YOUR CODE HERE
+    let rejected_array = [];
+    let filtered_array = _.filter(collection, test);
+    for (let i=0; i < collection.length; i++) {
+      if (_.indexOf(filtered_array, collection[i]) == -1){
+        rejected_array.push(Number(collection[i]));
+      }
+    };
+    return rejected_array;
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let plucked = []
+    for (let k in collection) {
+      plucked.push(collection[k][key]);
+    };
+    return plucked;
   };
 
   _.reduce = (collection, iterator, accumulator) => {
