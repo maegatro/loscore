@@ -282,8 +282,10 @@
     console.log("collection", collection, functionOrKey);
     if (typeof functionOrKey === "string"){
       // console.log(collection);
-      _.each(collection, (value) => {
-        result.push(functionOrKey.apply(value, collection));
+      _.each(collection, (value, index) => {
+        result.push(collection[index][functionOrKey].apply(value));
+
+
       });
     } else if (typeof functionOrKey === "function"){
       _.each(collection, (value) => {
