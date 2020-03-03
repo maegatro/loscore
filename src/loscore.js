@@ -247,7 +247,7 @@
         obj[prop] = value;
       })
     })
-    //return object
+    //return 
     return obj;
   };
 
@@ -302,8 +302,16 @@
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
     //call functionOrKey on each value in list, if function, apply values onto it
-
-
+    
+    if (typeof functionOrKey === "function") {
+      return _.map(collection, (value) => functionOrKey.apply(value));
+    } 
+    
+    if (typeof functionOrKey === "string") {
+      
+      return _.map(collection, (value) => value[functionOrKey].apply(value));
+      
+    }
 
   };
 
