@@ -136,6 +136,14 @@
   };
 
   _.reduce = (collection, iterator, accumulator) => {
+    _.each(collection, (k, index) => {
+      if(index == 0 && accumulator == undefined){
+          accumulator = k;
+      }else{
+        accumulator = iterator(accumulator, k, index);
+      }
+    });
+    return accumulator; 
   };
 
   _.contains = (collection, target) => {
@@ -147,8 +155,19 @@
     }, false);
   };
 
-  _.every = function (/* Your Arguments Here*/) {
+  _.every = function (collection, test) {
     // YOUR CODE HERE
+    let isTrue = 0;
+    if (test == undefined) {
+      return collection;
+    };
+    _.reduce(collection, (accumulator, item) => {
+      console.log(isTrue, test(item), item); 
+      if (!test(item)) {
+        isTrue++;
+      }
+    });
+    return !isTrue;
   };
 
   /**
