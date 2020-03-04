@@ -156,7 +156,7 @@
 
   _.reduce = (collection, iterator, accumulator) => {
 
-    let result =　accumulator;
+    let result = accumulator;
 
      if (accumulator === undefined) {
        result = collection[0];
