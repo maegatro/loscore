@@ -198,26 +198,56 @@
   |~~~~~~~~~~
   **/
 
-  _.extend = function (obj) {
-    // YOUR CODE HERE
-  };
-
+ _.extend = function () {
+  _.each(arguments, (obj) => {
+      for (let key in obj) {
+          if (Object.prototype.toString.call(obj[key]) === '[object Object]') {
+              arguments[0][key] = _.extend(arguments[0][key], obj[key]);
+          } else {
+              arguments[0][key] = obj[key];
+          }
+      }
+  });
+  return arguments[0];
+};
   /**
   | FUNCTIONS
   |~~~~~~~~~~
   **/
 
-  _.once = function (func) {
-    // YOUR CODE HERE
+ _.once = function (func) {
+  let isCalled = false;
+  let preVal;
+  return function() {
+      if (!isCalled) {
+          preVal = func.apply(this, arguments);
+          isCalled = true;
+      }
+      return preVal;
   };
+}
 
   _.memoize = function (func) {
-    // YOUR CODE HERE
+    let cache = {};
+    return function(key) {
+        for (let c in cache) {
+            if (c == key) {
+                return cache[key];
+            }
+        }
+    return cache[key] = func(key);
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
-    // YOUR CODE HERE
-  };
+    let result = [];
+    let isFunc = typeof functionOrKey !== 'string';
+    for (let obj of collection) {
+        let func = isFunc ? functionOrKey : obj[functionOrKey];
+        result.push(func.apply(obj)) ;
+    }
+    return result;
+  }
 
   /**
   | ADVANCED REQUIREMENTS
