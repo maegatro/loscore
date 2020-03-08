@@ -162,7 +162,6 @@
       return collection;
     };
     _.reduce(collection, (accumulator, item) => {
-      console.log(isTrue, test(item), item); 
       if (!test(item)) {
         isTrue++;
       }
@@ -177,6 +176,13 @@
 
   _.extend = function (obj) {
     // YOUR CODE HERE
+    let extendedObj = obj;
+    _.each(arguments, (obj) => {
+      for (const prop in obj) {
+        extendedObj[prop] = obj[prop];
+      }
+    });
+    return extendedObj;
   };
 
   /**
