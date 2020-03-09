@@ -223,6 +223,18 @@
   
   _.invoke = function (collection, functionOrKey) {
     // YOUR CODE HERE
+    let result = [];
+    console.log(collection[0])
+    if (typeof functionOrKey === "string"){
+      _.map(collection, (value) => {
+        result.push(collection[0][functionOrKey].apply(value));
+      });
+    } else if (typeof functionOrKey === "function"){
+      _.map(collection, (value) => {
+        result.push(functionOrKey.apply(value));
+      });
+    }
+    return result;
   };
 
   /**
