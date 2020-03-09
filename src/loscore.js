@@ -192,10 +192,33 @@
 
   _.once = function (func) {
     // YOUR CODE HERE
+    let wasExecuted = false;
+    let firstResult = undefined;
+    return function (args){
+      if (!wasExecuted){
+        wasExecuted = true;
+        if (args != undefined) {
+          firstResult = func(args);
+        } else {
+          firstResult = func(); 
+        }
+        return firstResult;
+      }
+      return firstResult;
+    }
   };
 
   _.memoize = function (func) {
     // YOUR CODE HERE
+    let memory = {};
+    return (arg) => {
+      if (!memory[arg]) {
+        memory[arg] = func(arg);
+        return memory[arg];
+      } else {
+        return memory[arg];
+      }
+    }
   };
   
   _.invoke = function (collection, functionOrKey) {
