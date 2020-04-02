@@ -65,8 +65,10 @@
   _.size = (collection) => {
     // YOUR CODE HERE
     let count = 0;
+    let d = 0;
     for (let i in collection) {
       count = count + 1;
+      d = i;
     }
     return count;
   };
