@@ -74,7 +74,7 @@
   **/
 
   _.size = (collection) => {
-    // YOUR CODE HERE
+    return Object.keys(collection).length;
   };
 
   _.indexOf = (array, target) => {
