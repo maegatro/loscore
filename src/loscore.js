@@ -59,7 +59,13 @@
   };
 
   _.uniq = (array) => {
-    // YOUR CODE HERE
+    let hash = new Map();
+    for (let e of array) {
+      if (!hash.has(e)) {
+        hash.set(e, true);
+      }
+    }
+    return Array.from(hash.keys());
   };
 
   /**
