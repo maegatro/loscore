@@ -45,7 +45,17 @@
   };
 
   _.takeRight = (array, n) => {
-    // YOUR CODE HERE
+    let newArr = [];
+    if (n === undefined) {
+      newArr.push(array[array.length - 1]);
+    } else if (n > array.length) {
+      n = array.length;
+    }
+    for (let i = array.length - n; i < array.length; i++) {
+      newArr.push(array[i]);
+    }
+
+    return newArr;
   };
 
   _.uniq = (array) => {
