@@ -21,11 +21,27 @@
   };
 
   _.tail = (array) => {
-    // YOUR CODE HERE
+    // let newArr = array.slice(1);
+    // return newArr;
+    let newArr = [];
+    for (let i = 1; i < array.length; i++) {
+      newArr.push(array[i]);
+    }
+    return newArr;
   };
 
   _.take = (array, n) => {
-    // YOUR CODE HERE
+    let newArr = [];
+    if (n == undefined) {
+      newArr.push(array[0]);
+    } else if (n > array.length) {
+      newArr = array.slice();
+    } else if (n !== 0) {
+      for (let i = 0; i < n; i++) {
+        newArr.push(array[i]);
+      }
+    }
+    return newArr;
   };
 
   _.takeRight = (array, n) => {
