@@ -82,7 +82,15 @@
   };
 
   _.each = (collection, iteratee) => {
-    // YOUR CODE HERE
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i], i, collection);
+      }
+    } else {
+      for (let el in collection) {
+        iteratee(collection[el], el, collection);
+      }
+    }
   };
 
   _.map = (collection, iteratee) => {
