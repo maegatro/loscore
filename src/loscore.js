@@ -111,7 +111,7 @@
 
   _.filter = (collection, test) => {
     let result = [];
-    _.each(collection, (val, key) => {
+    _.each(collection, (val) => {
       if (test(val)) {
         result.push(val);
       }
@@ -120,7 +120,11 @@
   };
 
   _.reject = (collection, test) => {
-    // YOUR CODE HERE
+    return _.filter(collection, (val) => {
+      if (!test(val)) {
+        return val;
+      }
+    });
   };
 
   _.pluck = (collection, key) => {
