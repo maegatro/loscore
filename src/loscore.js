@@ -78,7 +78,15 @@
   };
 
   _.indexOf = (array, target) => {
-    // YOUR CODE HERE
+    let result = -1;
+    let first = true;
+    _.each(array, (e, i) => {
+      if (e === target && first) {
+        first = false;
+        result = i;
+      }
+    });
+    return result;
   };
 
   _.each = (collection, iteratee) => {
