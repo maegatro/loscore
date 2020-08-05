@@ -218,7 +218,15 @@
   **/
 
   _.once = function (func) {
-    // YOUR CODE HERE
+    let called = false;
+    let result;
+    return function (e) {
+      if (!called) {
+        called = true;
+        result = func(e);
+      }
+      return result;
+    };
   };
 
   _.memoize = function (func) {
