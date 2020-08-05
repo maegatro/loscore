@@ -200,7 +200,16 @@
   **/
 
   _.extend = function (obj) {
-    // YOUR CODE HERE
+    let source;
+    if (arguments.length > 2) {
+      source = arguments[arguments.length - 1];
+    } else {
+      source = arguments[1];
+    }
+    _.each(source, (val, key) => {
+      obj[key] = val;
+    });
+    return obj;
   };
 
   /**
