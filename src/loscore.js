@@ -128,9 +128,17 @@
   };
 
   _.pluck = (collection, key) => {
-    return _.map(collection, (item) => {
-      return item[key];
-    });
+    let result = [];
+    for (let obj of collection) {
+      if (key in obj) {
+        result.push(obj[key]);
+      }
+    }
+    return result;
+
+    // return _.map(collection, (item) => {
+    //   return item[key];
+    // });
   };
 
   _.reduce = (collection, iterator, accumulator) => {};
