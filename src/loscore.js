@@ -141,7 +141,24 @@
     // });
   };
 
-  _.reduce = (collection, iterator, accumulator) => {};
+  _.reduce = (collection, iterator, accumulator) => {
+    let result = 0;
+    if (accumulator == undefined) {
+      result = collection[0];
+      let newCol = collection.slice();
+      newCol.shift();
+      _.each(newCol, (val) => {
+        result = iterator(result, val);
+      });
+    } else {
+      result = accumulator;
+      _.each(collection, (val) => {
+        result = iterator(result, val);
+      });
+    }
+
+    return result;
+  };
 
   _.contains = (collection, target) => {
     return _.reduce(
@@ -156,8 +173,25 @@
     );
   };
 
-  _.every = function (/* Your Arguments Here*/) {
-    // YOUR CODE HERE
+  _.every = function (collection, test) {
+    if (test === undefined) {
+      return _.reduce(collection, (passed, item) => {
+        if (!passed) {
+          return false;
+        }
+        return item == true;
+      });
+    }
+    return _.reduce(
+      collection,
+      (passed, item) => {
+        if (!passed) {
+          return false;
+        }
+        return test(item);
+      },
+      true
+    );
   };
 
   /**
