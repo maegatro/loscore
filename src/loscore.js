@@ -102,7 +102,11 @@
   };
 
   _.map = (collection, iteratee) => {
-    // YOUR CODE HERE
+    let result = [];
+    _.each(collection, (val, key, collection) => {
+      result.push(iteratee(val, key, collection));
+    });
+    return result;
   };
 
   _.filter = (collection, test) => {
